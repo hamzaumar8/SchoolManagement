@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
-    <title>{{ str_replace('_', ' ', config('app.name', 'Jambasangsang')) }}</title>
+    <title>{{ str_replace('_', ' ', config('app.name', '')) }}</title>
     <!-- Scripts -->
     <script src="{{ asset('js/app.js') }}" defer></script>
     <!-- Fonts -->
@@ -27,17 +27,17 @@
     <!-- Standard iPhone Touch Icon-->
     <link rel="apple-touch-icon" sizes="57x57" href="http://placehold.it/57.png/000/fff">
     <!-- Styles -->
-    <link href="{{ asset('jambasangsang/assets/css/lib/calendar2/pignose.calendar.min.css') }}" rel="stylesheet">
-    <link href="{{ asset('jambasangsang/assets/css/lib/chartist/chartist.min.css') }}" rel="stylesheet">
-    <link href="{{ asset('jambasangsang/assets/css/lib/font-awesome.min.css') }}" rel="stylesheet">
-    <link href="{{ asset('jambasangsang/assets/css/lib/themify-icons.css') }}" rel="stylesheet">
-    <link href="{{ asset('jambasangsang/assets/css/lib/owl.carousel.min.css') }}" rel="stylesheet" />
-    <link href="{{ asset('jambasangsang/assets/css/lib/owl.theme.default.min.css') }}" rel="stylesheet" />
-    <link href="{{ asset('jambasangsang/assets/css/lib/weather-icons.css') }}" rel="stylesheet" />
-    <link href="{{ asset('jambasangsang/assets/css/lib/menubar/sidebar.css') }}" rel="stylesheet">
-    <link href="{{ asset('jambasangsang/assets/css/lib/bootstrap.min.css') }}" rel="stylesheet">
-    <link href="{{ asset('jambasangsang/assets/css/lib/helper.css') }}" rel="stylesheet">
-    <link href="{{ asset('jambasangsang/assets/css/style.css') }}" rel="stylesheet">
+    <link href="{{ asset('assets/css/lib/calendar2/pignose.calendar.min.css') }}" rel="stylesheet">
+    <link href="{{ asset('assets/css/lib/chartist/chartist.min.css') }}" rel="stylesheet">
+    <link href="{{ asset('assets/css/lib/font-awesome.min.css') }}" rel="stylesheet">
+    <link href="{{ asset('assets/css/lib/themify-icons.css') }}" rel="stylesheet">
+    <link href="{{ asset('assets/css/lib/owl.carousel.min.css') }}" rel="stylesheet" />
+    <link href="{{ asset('assets/css/lib/owl.theme.default.min.css') }}" rel="stylesheet" />
+    <link href="{{ asset('assets/css/lib/weather-icons.css') }}" rel="stylesheet" />
+    <link href="{{ asset('assets/css/lib/menubar/sidebar.css') }}" rel="stylesheet">
+    <link href="{{ asset('assets/css/lib/bootstrap.min.css') }}" rel="stylesheet">
+    <link href="{{ asset('assets/css/lib/helper.css') }}" rel="stylesheet">
+    <link href="{{ asset('assets/css/style.css') }}" rel="stylesheet">
 </head>
 
 <body class="bg-primary">
@@ -51,40 +51,40 @@
                             <a href="index.html"><span>{{ __('Login') }}</span></a>
                         </div>
                         <div class="login-form">
-                            <h4>{{ str_replace('_', ' ', config('app.name', 'Jambasangsang')) }} {{ __('Login') }}</h4>
+                            <h4>{{ str_replace('_', ' ', config('app.name', '')) }} {{ __('Login') }}</h4>
                             <form method="POST" action="{{ route('login') }}">
                                 @csrf
                                 <div class="form-group">
                                     <label>{{ __('Email Address') }}</label>
                                     <input id="email" type="email" placeholder="Email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email" autofocus>
-                                @error('email')
+                                    @error('email')
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>
                                     </span>
-                                @enderror
+                                    @enderror
                                 </div>
                                 <div class="form-group">
                                     <label>{{ __('Password') }}</label>
                                     <input id="password" type="password" placeholder="Password" class="form-control @error('password') is-invalid @enderror" name="password" required autocomplete="current-password">
 
-                                @error('password')
+                                    @error('password')
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>
                                     </span>
-                                @enderror
+                                    @enderror
                                 </div>
                                 <div class="checkbox">
                                     <label>
-                                    <input class="form-check-input" type="checkbox" name="remember" id="remember" {{ old('remember') ? 'checked' : '' }}>
-                                    {{ __('Remember Me') }}
-									</label>
+                                        <input class="form-check-input" type="checkbox" name="remember" id="remember" {{ old('remember') ? 'checked' : '' }}>
+                                        {{ __('Remember Me') }}
+                                    </label>
                                     <label class="pull-right">
-										@if (Route::has('password.request'))
-                                    <a class="btn btn-link" href="{{ route('password.request') }}">
-                                        {{ __('Forgot Your Password?') }}
-                                    </a>
-                                    @endif
-									</label>
+                                        @if (Route::has('password.request'))
+                                        <a class="btn btn-link" href="{{ route('password.request') }}">
+                                            {{ __('Forgot Your Password?') }}
+                                        </a>
+                                        @endif
+                                    </label>
 
                                 </div>
                                 <button type="submit" class="btn btn-primary btn-flat m-b-30 m-t-30">

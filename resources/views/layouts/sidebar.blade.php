@@ -4,11 +4,10 @@
             <ul>
                 <div class="logo"><a href="index.html">
                         <!-- <img src="assets/images/logo.png" alt="" /> --><span>
-                            {{ str_replace('_', ' ', config('app.name', 'Jambasangsang')) }}</span>
+                            {{ str_replace('_', ' ', config('app.name', '')) }}</span>
                     </a></div>
                 <li class="label">{{ __('Main') }}</li>
-                <li class="{{ Route::has('home') ? 'active' : '' }}"><a href="{{ route('home') }}"><i
-                            class="ti-home"></i> {{ __('Dashboard') }} </a>
+                <li class="{{ Route::has('home') ? 'active' : '' }}"><a href="{{ route('home') }}"><i class="ti-home"></i> {{ __('Dashboard') }} </a>
                 </li>
 
                 <li class="label">{{ __('HR') }}</li>
