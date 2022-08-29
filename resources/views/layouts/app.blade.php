@@ -10,8 +10,9 @@
 
     <!-- Fonts -->
     <link rel="stylesheet" href="https://fonts.bunny.net/css2?family=Nunito:wght@400;600;700&display=swap">
-
-
+    <!-- Popper -->
+    <script src="https://unpkg.com/@popperjs/core@2"></script>
+    <link href="{{ asset('assets/css/ui.min.css') }}" rel="stylesheet" />
     <!-- Styles -->
     @livewireStyles
     @powerGridStyles
@@ -21,35 +22,34 @@
 
 </head>
 
-<body class="font-sans antialiased">
+<body class="m-0 font-sans antialiased font-normal text-base bg-gray-50 text-slate-500">
     <x-notifications />
-    <div class="min-h-screen bg-gray-100">
+    @include('layouts.sidenav')
+
+    <main class="ease-soft-in-out xl:ml-68.5 relative h-full max-h-screen rounded-xl transition-all duration-200">
+
         @include('layouts.navigation')
-
-        <!-- Page Heading -->
-        <header class="bg-white shadow">
-            <div class="max-w-7xl mx-auto py-6 px-4 sm:px-6 lg:px-8">
-                {{ $header }}
-            </div>
-        </header>
-
         <!-- Page Content -->
         <main>
             {{ $slot }}
         </main>
-    </div>
 
+        <!-- Scripts -->
+        @livewireScripts
+        @powerGridScripts
 
-    <!-- Scripts -->
-    @livewireScripts
-    @powerGridScripts
+        <script>
+        document.getElementById('card-holder-name').click(function(e) {
+            e.preventDefault();
+            $(this).parent().parent().hide(500)
+        })
+        </script>
 
-    <script>
-    document.getElementById('card-holder-name').click(function(e) {
-        e.preventDefault();
-        $(this).parent().parent().hide(500)
-    })
-    </script>
+        <!-- plugin for charts  -->
+        <script src="{{ asset('assets/js/plugins/chartjs.min.js') }}" async></script>
+        <!-- plugin for scrollbar  -->
+        <script src="{{ asset('assets/js/plugins/perfect-scrollbar.min.js') }}" async></script>
+        <script src="{{ asset('assets/js/ui.min.js') }}"></script>
 </body>
 
 </html>
