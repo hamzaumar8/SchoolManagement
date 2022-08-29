@@ -1,7 +1,5 @@
 <x-app-layout>
-    <x-slot name="header">
-        <h6 class="mb-0 font-bold capitalize">{{ __('Dashboard') }}</h6>
-    </x-slot>
+    <x-slot name="header"> {{ __('Dashboard') }}</x-slot>
 
 
     <!-- cards -->

@@ -5,7 +5,7 @@
     <div class="flex items-center justify-between w-full p-4 mx-auto flex-wrap-inherit">
 
         <nav>
-            {{ $header }}
+            <h6 class="mb-0 font-bold capitalize text-lg"> {{ $header }}</h6>
         </nav>
 
         <div class="flex items-center mt-2 grow sm:mt-0 sm:mr-6 md:mr-0 lg:flex lg:basis-auto">
@@ -16,7 +16,7 @@
                     <x-local-dropdown align="right" width="48">
                         <x-slot name="trigger">
                             <button
-                                class="flex items-center text-sm font-medium text-gray-500 hover:text-gray-700 hover:border-gray-300 focus:outline-none focus:text-gray-700 focus:border-gray-300 transition duration-150 ease-in-out">
+                                class="flex items-center text-lg uppercase text-gray-500 hover:text-gray-700 hover:border-gray-300 focus:outline-none focus:text-gray-700 focus:border-gray-300 transition duration-150 font-bold ease-in-out">
                                 <div>{{ Auth::user()->name }}</div>
 
                                 <div class="ml-1">
