@@ -2,6 +2,7 @@
 
 namespace App\Http\Livewire;
 
+use App\Models\Classes;
 use App\Models\Student;
 use Illuminate\Support\Carbon;
 use Illuminate\Database\Eloquent\Builder;
@@ -51,9 +52,9 @@ final class StudentTable extends PowerGridComponent
     |  Edit Student button
     |--------------------------------------------------------------------------
     */
-    public function editStudent(array $data): void
+    public function editStudent(array $data)
     {
-        dd('You are editing', $data);
+        return redirect()->route('students.edit', ['student' => $data['studentId']]);
     }
 
 
@@ -67,7 +68,6 @@ final class StudentTable extends PowerGridComponent
     public function setUp(): array
     {
         $this->showCheckBox();
-
         return [
             Exportable::make('export')
                 ->striped()
@@ -94,7 +94,12 @@ final class StudentTable extends PowerGridComponent
      */
     public function datasource(): Builder
     {
-        return Student::query();
+
+        return Student::query()
+            ->join('classes', function ($classes) {
+                $classes->on('students.class_id', '=', 'classes.id');
+            })
+            ->select('students.*', 'classes.name as class_name');
     }
 
     /*
@@ -145,7 +150,12 @@ final class StudentTable extends PowerGridComponent
             ->addColumn('first_language')
             ->addColumn('previous_school')
             ->addColumn('email')
-            ->addColumn('class_id')
+            ->addColumn('class_id', function (Student $student) {
+                return $student->class_id;
+            })
+            ->addColumn('class_name', function (Student $student) {
+                return $student->class->name;
+            })
             ->addColumn('class_type')
             ->addColumn('term')
             ->addColumn('accomodation_type')
@@ -247,8 +257,9 @@ final class StudentTable extends PowerGridComponent
                 ->searchable()
                 ->makeInputText(),
 
-            Column::make('CLASS ID', 'class_id')
-                ->makeInputRange(),
+            Column::make('CLASS', 'class_name', 'classes.name')
+                ->makeInputMultiSelect(Classes::all(), 'name', 'class_id')
+                ->sortable(),
 
             Column::make('CLASS TYPE', 'class_type')
                 ->sortable()
@@ -274,10 +285,6 @@ final class StudentTable extends PowerGridComponent
                 ->searchable()
                 ->sortable()
                 ->makeInputDatePicker(),
-
-            Column::make('PICTURE', 'picture')
-                ->sortable()
-                ->searchable(),
 
             Column::make('HPA', 'hpa')
                 ->sortable()
@@ -332,7 +339,6 @@ final class StudentTable extends PowerGridComponent
         return [
             Button::make('edit', 'Edit')
                 ->class('bg-indigo-500 cursor-pointer text-white px-3 py-2.5 m-1 rounded text-sm')
-                //    ->route('student.edit', ['student' => 'id']),
                 ->emit('edit-student', [
                     'studentId' => 'id',
                     'custom' => __METHOD__

@@ -10,8 +10,8 @@ class Classes extends Model
 {
     use HasFactory;
 
-    public function dishes(): HasMany
+    public function students(): HasMany
     {
-        return $this->hasMany(Dish::class, "class_id");
+        return $this->hasMany(Student::class, "class_id");
     }
 }
