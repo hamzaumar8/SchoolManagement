@@ -16,6 +16,8 @@ class Create extends Component
 
     public $father_full_name, $father_email, $father_phone_number, $father_occupation, $father_home_digital_address, $father_postal_address, $father_relation, $father_picture, $mother_full_name, $mother_email, $mother_phone_number, $mother_occupation, $mother_home_digital_address, $mother_postal_address, $mother_relation, $mother_picture, $guardian_full_name, $guardian_email, $guardian_phone_number, $guardian_occupation, $guardian_home_digital_address, $guardian_postal_address, $guardian_relation, $guardian_picture;
 
+    public $contact_name, $contact_phone_number, $contact_name2, $contact_phone_number2;
+
     protected function rules()
     {
         return [
@@ -48,7 +50,6 @@ class Create extends Component
             'father_occupation' => 'required',
             'father_home_digital_address' => 'required',
             'father_postal_address' => 'required',
-            'father_relation' => 'required',
             'father_picture' => 'nullable|mimes:webp,jpeg,jpg,png',
             // Mother
             'mother_full_name' => 'required',
@@ -57,17 +58,21 @@ class Create extends Component
             'mother_occupation' => 'required',
             'mother_home_digital_address' => 'required',
             'mother_postal_address' => 'required',
-            'mother_relation' => 'required',
             'mother_picture' => 'nullable|mimes:webp,jpeg,jpg,png',
-            // Mother
-            'guardian_full_name' => 'required',
-            'guardian_email' => 'required',
-            'guardian_phone_number' => 'required',
-            'guardian_occupation' => 'required',
-            'guardian_home_digital_address' => 'required',
-            'guardian_postal_address' => 'required',
-            'guardian_relation' => 'required',
+            // Guardian
+            'guardian_full_name' => 'nullable|string',
+            'guardian_email' => 'nullable|string',
+            'guardian_phone_number' => 'nullable|string',
+            'guardian_occupation' => 'nullable|string',
+            'guardian_home_digital_address' => 'nullable|string',
+            'guardian_postal_address' => 'nullable|string',
+            'guardian_relation' => 'nullable|string',
             'guardian_picture' => 'nullable|mimes:webp,jpeg,jpg,png',
+            // emergency
+            'contact_name' => 'required|string',
+            'contact_phone_number' => 'required|string',
+            'contact_name2' => 'required|nullable|string',
+            'contact_phone_number2' => 'required|nullable|string',
         ];
     }
 
@@ -79,8 +84,6 @@ class Create extends Component
 
     public function render()
     {
-
-
         return view('livewire.admin.students.create');
     }
 }

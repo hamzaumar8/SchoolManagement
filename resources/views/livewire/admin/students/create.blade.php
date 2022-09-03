@@ -60,7 +60,8 @@
                     ['value' => 'boarding', 'name' => 'Boarding']]" option-label="name" option-value="value"
                 wire:model.defer="term" required />
 
-            <x-input label="Phone (If Any)" type="tel" placeholder="Phone (If Any)" wire:model.defer="phone" />
+            <x-inputs.maskable label="Phone (If Any)" mask="['(###) ###-####', '+# ### ###-####', '+## ## ####-####']"
+                placeholder="Phone (If Any)" required wire:model.defer="phone" />
 
             <x-input label="Date Adnitted" type="date" placeholder="Date Adnitted" wire:model.defer="date_admitted" />
 
@@ -79,11 +80,6 @@
             <div class="">
                 <x-auth-label for="picture" :value="__('Picture')" />
                 <x-auth-input type="file" wire:model.defer="picture" class="w-full mb-4 bg-indigo-400" />
-                @if($picture)
-                <div class=" mb-4">
-                    <img src="{{$picture->temporaryUrl()}}" class="max-h-[150px] text-center" alt="">
-                </div>
-                @endif
             </div>
         </div>
         <!-- Mother Datails -->
@@ -96,8 +92,8 @@
 
             <x-input label="Email" type="text" placeholder="Email" required wire:model.defer="father_email" />
 
-            <x-input label="Phone Number" type="text" placeholder="Phone Number" required
-                wire:model.defer="father_phone_number" />
+            <x-inputs.maskable label="Phone Number" mask="['(###) ###-####', '+# ### ###-####', '+## ## ####-####']"
+                placeholder="Phone Number" required wire:model.defer="father_phone_number" />
 
             <x-input label="Occupation" type="text" placeholder="Occupation" required
                 wire:model.defer="father_occupation" />
@@ -111,11 +107,6 @@
             <div class="">
                 <x-auth-label for="father_picture" :value="__('Picture')" />
                 <x-auth-input type="file" wire:model.defer="father_picture" class="w-full mb-4 bg-indigo-400" />
-                @if($father_picture)
-                <div class=" mb-4">
-                    <img src="{{$father_picture->temporaryUrl()}}" class="max-h-[150px] text-center" alt="">
-                </div>
-                @endif
             </div>
         </div>
 
@@ -128,8 +119,8 @@
 
             <x-input label="Email" type="text" placeholder="Email" wire:model.defer="mother_email" />
 
-            <x-input label="Phone Number" type="text" placeholder="Phone Number"
-                wire:model.defer="mother_phone_number" />
+            <x-inputs.maskable label="Phone Number" mask="['(###) ###-####', '+# ### ###-####', '+## ## ####-####']"
+                placeholder="Phone Number" required wire:model.defer="mother_phone_number" />
 
             <x-input label="Occupation" type="text" placeholder="Occupation" wire:model.defer="mother_occupation" />
 
@@ -142,11 +133,6 @@
             <div class="">
                 <x-auth-label for="mother_picture" :value="__('Picture')" />
                 <x-auth-input type="file" wire:model.defer="mother_picture" class="w-full mb-4 bg-indigo-400" />
-                @if($mother_picture)
-                <div class=" mb-4">
-                    <img src="{{$mother_picture->temporaryUrl()}}" class="max-h-[150px] text-center" alt="">
-                </div>
-                @endif
             </div>
         </div>
 
@@ -159,8 +145,8 @@
 
             <x-input label="Email" type="text" placeholder="Email" wire:model.defer="mother_email" />
 
-            <x-input label="Phone Number" type="text" placeholder="Phone Number"
-                wire:model.defer="mother_phone_number" />
+            <x-inputs.maskable label="Phone Number" mask="['(###) ###-####', '+# ### ###-####', '+## ## ####-####']"
+                placeholder="Phone number" required wire:model.defer="mother_phone_number" />
 
             <x-input label="Occupation" type="text" placeholder="Occupation" wire:model.defer="mother_occupation" />
 
@@ -176,17 +162,70 @@
                     ['value' => 'sibling', 'name' => 'Sibling'],
                     ['value' => 'guardian', 'name' => 'Guardian'],
                     ['value' => 'other', 'name' => 'Other'],
-                    ]" option-label="name" option-value="value" wire:model.defer="mother_relation" required />
+                    ]" option-label="name" option-value="value" wire:model.defer="mother_relation" />
 
             <div class="">
                 <x-auth-label for="mother_picture" :value="__('Picture')" />
                 <x-auth-input type="file" wire:model.defer="mother_picture" class="w-full mb-4 bg-indigo-400" />
-                @if($mother_picture)
-                <div class=" mb-4">
-                    <img src="{{$mother_picture->temporaryUrl()}}" class="max-h-[150px] text-center" alt="">
-                </div>
-                @endif
             </div>
+        </div>
+
+        <!-- Guardian Details -->
+        <div class="my-4 text-xl font-semibold text-gray-700">
+            {{ __('GUARDIAN\'S DETAILS') }}
+        </div>
+        <div class="grid grid-cols-3 gap-5">
+            <x-input label="Full Name" type="text" placeholder="Full Name" wire:model.defer="mother_full_name" />
+
+            <x-input label="Email" type="text" placeholder="Email" wire:model.defer="mother_email" />
+
+            <x-inputs.maskable label="Phone Number" mask="['(###) ###-####', '+# ### ###-####', '+## ## ####-####']"
+                placeholder="Phone number" required wire:model.defer="mother_phone_number" />
+
+            <x-input label="Occupation" type="text" placeholder="Occupation" wire:model.defer="mother_occupation" />
+
+            <x-input label="Home / Digital Address" type="text" placeholder="Home / Digital Address"
+                wire:model.defer="mother_home_digital_address" />
+
+            <x-input label="postal address" type="text" placeholder="postal address"
+                wire:model.defer="mother_postal_address" />
+
+
+            <x-native-select label="Relation to Student: " placeholder="Select Select one" :options="[['value' => 'uncle', 'name' => 'Uncle'],
+                    ['value' => 'aunty', 'name' => 'Aunty'],
+                    ['value' => 'sibling', 'name' => 'Sibling'],
+                    ['value' => 'guardian', 'name' => 'Guardian'],
+                    ['value' => 'other', 'name' => 'Other'],
+                    ]" option-label="name" option-value="value" wire:model.defer="mother_relation" />
+
+            <div class="">
+                <x-auth-label for="mother_picture" :value="__('Picture')" />
+                <x-auth-input type="file" wire:model.defer="mother_picture" class="w-full mb-4 bg-indigo-400" />
+            </div>
+        </div>
+
+
+        <!-- Guardian Details -->
+        <div class="my-4 text-xl font-semibold text-gray-700">
+            {{ __('EMERGENCY CONTACT 1') }}
+        </div>
+        <div class="grid grid-cols-2 gap-5">
+            <x-input label="Contact Name" type="text" placeholder="Contact Name" wire:model.defer="contact_name"
+                required />
+
+            <x-inputs.maskable label="Phone Number" mask="['(###) ###-####', '+# ### ###-####', '+## ## ####-####']"
+                placeholder="Phone number" required wire:model.defer="contact_phone_number" required />
+        </div>
+
+        <!-- Guardian Details -->
+        <div class="my-4 text-xl font-semibold text-gray-700">
+            {{ __('EMERGENCY CONTACT 2') }}
+        </div>
+        <div class="grid grid-cols-2 gap-5">
+            <x-input label="Contact Name" type="text" placeholder="Contact Name" wire:model.defer="contact_name2" />
+
+            <x-inputs.maskable label="Phone Number" mask="['(###) ###-####', '+# ### ###-####', '+## ## ####-####']"
+                placeholder="Phone number" required wire:model.defer="contact_phone_number2" />
         </div>
 
 
