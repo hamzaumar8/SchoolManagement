@@ -1,5 +1,5 @@
 <div>
-
+    {{ str_replace('-', ' ', Request::path()) }}
     <form wire:submit.prevent="save" enctype="multipart/form-data">
         <div class="my-4 text-xl font-semibold text-gray-700">
             {{ __('STUDENT\'S DETAILS') }}

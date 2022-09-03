@@ -12,11 +12,23 @@
             <div class="flex items-center md:ml-auto md:pr-4">
             </div>
             <ul class="flex flex-row justify-end pl-0 mb-0 list-none md-max:w-full">
-                <li class="flex items-center">
+                <li class="flex items-center pl-4 xl:hidden">
+                    <a href="javascript:;" class="block p-0 transition-all ease-nav-brand text-sm text-slate-500"
+                        sidenav-trigger="">
+                        <div class="w-4.5 overflow-hidden">
+                            <i
+                                class="ease-soft mb-0.75 relative block h-0.5 rounded-sm bg-slate-500 transition-all"></i>
+                            <i
+                                class="ease-soft mb-0.75 relative block h-0.5 rounded-sm bg-slate-500 transition-all"></i>
+                            <i class="ease-soft relative block h-0.5 rounded-sm bg-slate-500 transition-all"></i>
+                        </div>
+                    </a>
+                </li>
+                <li class="flex items-center pr-4">
                     <x-local-dropdown align="right" width="48">
                         <x-slot name="trigger">
                             <button
-                                class="flex items-center text-lg uppercase text-gray-500 hover:text-gray-700 hover:border-gray-300 focus:outline-none focus:text-gray-700 focus:border-gray-300 transition duration-150 font-bold ease-in-out">
+                                class="flex items-center text-sm uppercase text-gray-500 hover:text-gray-700 hover:border-gray-300 focus:outline-none focus:text-gray-700 focus:border-gray-300 transition duration-150 font-bold ease-in-out">
                                 <div>{{ Auth::user()->name }}</div>
 
                                 <div class="ml-1">
@@ -35,8 +47,8 @@
                             <form method="POST" action="{{ route('logout') }}">
                                 @csrf
 
-                                <x-dropdown-link :href="route('logout')" onclick="event.preventDefault();
-                                                this.closest('form').submit();">
+                                <x-dropdown-link :href="route('logout')"
+                                    onclick="event.preventDefault();  this.closest('form').submit();">
                                     {{ __('Log Out') }}
                                 </x-dropdown-link>
                             </form>
@@ -45,6 +57,8 @@
                 </li>
 
             </ul>
+
+
         </div>
     </div>
 </nav>

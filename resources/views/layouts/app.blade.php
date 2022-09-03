@@ -49,6 +49,7 @@
         <script src="{{ asset('assets/js/plugins/chartjs.min.js') }}" async></script>
         <!-- plugin for scrollbar  -->
         <script src="{{ asset('assets/js/plugins/perfect-scrollbar.min.js') }}" async></script>
+
         <script src="{{ asset('assets/js/ui.min.js') }}"></script>
 </body>
 
