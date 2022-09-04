@@ -65,7 +65,8 @@
                                 <tbody>
                                     <tr>
                                         <td class="text-center">Visit: <span
-                                                class="underline font=bold">{{route('login')}}</span> to complete your
+                                                class="underline font=bold">{{route('voucher.auth')}}</span> to complete
+                                            your
                                             admission
                                             process. </td>
                                     </tr>

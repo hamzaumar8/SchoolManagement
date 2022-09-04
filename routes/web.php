@@ -4,6 +4,7 @@ use App\Http\Controllers\AddmissionController;
 use App\Http\Controllers\AddmissionGenerateController;
 use App\Http\Controllers\StaffController;
 use App\Http\Controllers\StudentController;
+use App\Http\Controllers\Voucher\VoucherController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -34,6 +35,15 @@ Route::middleware(['auth'])->group(function () {
         Route::resource('addmissions', AddmissionController::class);
         Route::resource('addmissiongenerate', AddmissionGenerateController::class);
     });
+});
+
+// Voucher Routes
+Route::get('voucher/auth', [VoucherController::class, 'create'])->name('voucher.auth');
+Route::post('voucher/auth', [VoucherController::class, 'store']);
+
+Route::middleware(['auth-voucher'])->group(function () {
+    Route::get('voucher/addmission', [VoucherController::class, 'index'])->name('voucher.index');
+    Route::post('voucher/logout', [VoucherController::class, 'destroy'])->name('voucher.logout');
 });
 
 require __DIR__ . '/auth.php';
