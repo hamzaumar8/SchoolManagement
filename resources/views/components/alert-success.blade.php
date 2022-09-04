@@ -1,4 +1,5 @@
-<div id="alert-3" class="flex p-4 mb-4 bg-green-100 rounded-lg dark:bg-green-200 transition ease-in-out delay-200"
+<div id="alert-3"
+    class="print:hidden flex p-4 mb-4 bg-green-100 rounded-lg dark:bg-green-200 transition ease-in-out delay-200"
     role="alert">
 
     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"

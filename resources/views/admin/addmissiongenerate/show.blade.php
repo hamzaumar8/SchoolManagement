@@ -1,8 +1,7 @@
 <x-app-layout>
     <x-slot name="header">
-        <h6 class="mb-0 font-bold capitalize">{{ __('details Admission PIN') }}</h6>
+        <h6 class="mb-0 font-bold capitalize">{{ __('Details Admission Voucher') }}</h6>
     </x-slot>
-    {{$addmissionGenerate}}
     <div class="w-full px-6 py-6 mx-auto">
         <div class="flex flex-wrap -mx-3">
             <div class="max-w-full px-3 lg:w-2/3 lg:flex-none">
@@ -10,27 +9,67 @@
                     <div class="max-w-full px-3 mb-4 lg:mb-0 lg:w-full lg:flex-none">
                         <!-- Html Print Component -->
                         <x-html-print>
-                            <x-slot name="header">{{ __('Generate Admission PIN') }}</x-slot>
-                            <div class="flex flex-wrap -mx-3">
-                                <div class="max-w-full px-3 mb-6 md:mb-0 md:w-1/2 md:flex-none">
-                                    <div
-                                        class="relative flex flex-row items-center min-w-0 p-6 break-words bg-transparent border border-solid shadow-none rounded-xl border-slate-100 bg-clip-border">
-                                        <h6 class="mb-0 mr-4 font-bold">Addmission Number</h6>
-                                        <h6 class="mb-0">
-                                            KHTBDJVBFVHD
-                                        </h6>
-                                    </div>
+
+                            <div class="grid grid-cols-4 items-center pb-8">
+                                <div class="flex justify-center items-center">
+                                    <x-application-logo class="h-20" />
                                 </div>
-                                <div class="max-w-full px-3 mb-6 md:mb-0 md:w-1/2 md:flex-none">
-                                    <div
-                                        class="relative flex flex-row items-center min-w-0 p-6 break-words bg-transparent border border-solid shadow-none rounded-xl border-slate-100 bg-clip-border">
-                                        <h6 class="mb-0 mr-4 font-bold">PIN</h6>
-                                        <h6 class="mb-0">
-                                            KHTBDJVBFVHD
-                                        </h6>
-                                    </div>
+                                <div class="col-span-2 text-center uppercase">
+                                    <h6 class="font-bold">University of Cape Coast Basic Junior High School
+                                    </h6>
+                                    <h6 class="underline font-bold">Admission Voucher
+                                    </h6>
                                 </div>
                             </div>
+                            <table class="table-auto w-full uppercase">
+                                <tbody>
+                                    <tr>
+                                        <th width="20%" class="text-left font-bold">Name:</th>
+                                        <td width="40%">{{$addmissionGenerate->name}}</td>
+                                        <th width="20%" class="text-left font-bold">Phone:</th>
+                                        <td width="20%">{{$addmissionGenerate->phone}}</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                            <table class="table-auto w-full uppercase">
+                                <tbody>
+                                    <tr>
+                                        <th width="20%" class="text-left font-bold">Campus:</th>
+                                        <td width="40%">
+                                            {{$addmissionGenerate->campus === "north" ? "North (Annex)" : "South
+                                            (Main)"}}
+                                        </td>
+                                        <th width="20%" class="text-left font-bold"></th>
+                                        <td width="20%"></td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                            <br />
+                            <div class="col-span-2 border-b"></div>
+                            <br />
+                            <table class="table-auto w-full uppercase">
+                                <tbody>
+                                    <tr>
+                                        <th width="20%" class="text-left font-bold">Addmission Number:</th>
+                                        <td width="40%">{{$addmissionGenerate->addmission_number}}</td>
+                                        <th width="20%" class="text-left font-bold">Token:</th>
+                                        <td width="20%">{{$addmissionGenerate->token}}</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                            <br />
+                            <div class="col-span-2 border-b"></div>
+                            <br />
+                            <table class="table-auto w-full">
+                                <tbody>
+                                    <tr>
+                                        <td class="text-center">Visit: <span
+                                                class="underline font=bold">{{route('login')}}</span> to complete your
+                                            admission
+                                            process. </td>
+                                    </tr>
+                                </tbody>
+                            </table>
                         </x-html-print>
                     </div>
                 </div>

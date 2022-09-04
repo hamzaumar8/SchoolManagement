@@ -44,9 +44,9 @@ class AddmissionGenerateController extends Controller
      * @param  \App\Models\AddmissionGenerate  $addmissionGenerate
      * @return \Illuminate\Http\Response
      */
-    public function show(AddmissionGenerate $addmissionGenerate)
+    public function show($id)
     {
-        // $addmissionGenerate = $addmissionGenerate::findOrFail()
+        $addmissionGenerate = AddmissionGenerate::findOrFail($id);
         return view('admin.addmissiongenerate.show', compact('addmissionGenerate'));
     }
 

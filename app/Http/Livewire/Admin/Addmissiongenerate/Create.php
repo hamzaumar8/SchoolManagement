@@ -27,6 +27,9 @@ class Create extends Component
             'phone' => $this->phone,
             'campus' => $this->campus,
         ]);
+
+        session()->flash('message', 'Addimssion Voucher was successfull Generated!');
+
         return redirect()->route('addmissiongenerate.show', $addmissionGenerate);
     }
     public function render()
