@@ -13,8 +13,14 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('addmissions.', function (Blueprint $table) {
+        Schema::create('addmission_generates', function (Blueprint $table) {
             $table->id();
+            $table->uuid('uuid');
+            $table->string('addmission_number')->unique();
+            $table->string('pin');
+            $table->string('name')->nullable();
+            $table->string('phone')->nullable();
+            $table->enum('campus', ['north', 'south'])->nullable();
             $table->timestamps();
         });
     }
@@ -26,6 +32,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('addmissions.');
+        Schema::dropIfExists('addmission_generates');
     }
 };

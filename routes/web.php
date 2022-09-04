@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\AddmissionController;
+use App\Http\Controllers\AddmissionGenerateController;
 use App\Http\Controllers\StaffController;
 use App\Http\Controllers\StudentController;
 use Illuminate\Support\Facades\Route;
@@ -29,6 +31,8 @@ Route::middleware(['auth'])->group(function () {
     Route::group(['prefix' => 'admin'], function () {
         Route::resource('students', StudentController::class);
         Route::resource('staffs', StaffController::class);
+        Route::resource('addmissions', AddmissionController::class);
+        Route::resource('addmissiongenerate', AddmissionGenerateController::class);
     });
 });
 

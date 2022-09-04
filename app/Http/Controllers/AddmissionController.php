@@ -2,11 +2,9 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Admission;
-use App\Http\Requests\StoreAdmissionRequest;
-use App\Http\Requests\UpdateAdmissionRequest;
+use Illuminate\Http\Request;
 
-class AdmissionController extends Controller
+class AddmissionController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -15,7 +13,7 @@ class AdmissionController extends Controller
      */
     public function index()
     {
-        //
+        return view('admin.addmissions.index');
     }
 
     /**
@@ -25,16 +23,16 @@ class AdmissionController extends Controller
      */
     public function create()
     {
-        //
+        return view('admin.addmissions.create');
     }
 
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \App\Http\Requests\StoreAdmissionRequest  $request
+     * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(StoreAdmissionRequest $request)
+    public function store(Request $request)
     {
         //
     }
@@ -42,10 +40,10 @@ class AdmissionController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\Admission  $admission
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show(Admission $admission)
+    public function show($id)
     {
         //
     }
@@ -53,10 +51,10 @@ class AdmissionController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\Admission  $admission
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit(Admission $admission)
+    public function edit($id)
     {
         //
     }
@@ -64,11 +62,11 @@ class AdmissionController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \App\Http\Requests\UpdateAdmissionRequest  $request
-     * @param  \App\Models\Admission  $admission
+     * @param  \Illuminate\Http\Request  $request
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(UpdateAdmissionRequest $request, Admission $admission)
+    public function update(Request $request, $id)
     {
         //
     }
@@ -76,10 +74,10 @@ class AdmissionController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\Admission  $admission
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Admission $admission)
+    public function destroy($id)
     {
         //
     }
