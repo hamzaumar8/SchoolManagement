@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Livewire\Admin\addmissions.;
+namespace App\Http\Livewire\Admin\Addmission;
 
 use Livewire\Component;
 use LivewireUI\Modal\ModalComponent;

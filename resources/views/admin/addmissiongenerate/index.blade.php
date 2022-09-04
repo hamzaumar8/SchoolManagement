@@ -23,7 +23,7 @@
                     </div>
 
                     <div class="flex-auto p-6">
-                        <livewire:student-table />
+                        <livewire:addmission-voucher-table />
                     </div>
                 </div>
             </div>

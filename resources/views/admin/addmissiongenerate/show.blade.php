@@ -26,8 +26,8 @@
                                     <tr>
                                         <th width="20%" class="text-left font-bold">Name:</th>
                                         <td width="40%">{{$addmissionGenerate->name}}</td>
-                                        <th width="20%" class="text-left font-bold">Phone:</th>
-                                        <td width="20%">{{$addmissionGenerate->phone}}</td>
+                                        <th width="15%" class="text-left font-bold">Phone:</th>
+                                        <td width="25%">{{$addmissionGenerate->phone}}</td>
                                     </tr>
                                 </tbody>
                             </table>
@@ -39,8 +39,9 @@
                                             {{$addmissionGenerate->campus === "north" ? "North (Annex)" : "South
                                             (Main)"}}
                                         </td>
-                                        <th width="20%" class="text-left font-bold"></th>
-                                        <td width="20%"></td>
+                                        <th width="15%" class="text-left font-bold">Date:</th>
+                                        <td width="25%">{{$addmissionGenerate->created_at->format('d-M-Y g:i:s A')}}
+                                        </td>
                                     </tr>
                                 </tbody>
                             </table>
@@ -52,8 +53,8 @@
                                     <tr>
                                         <th width="20%" class="text-left font-bold">Addmission Number:</th>
                                         <td width="40%">{{$addmissionGenerate->addmission_number}}</td>
-                                        <th width="20%" class="text-left font-bold">Token:</th>
-                                        <td width="20%">{{$addmissionGenerate->token}}</td>
+                                        <th width="15%" class="text-left font-bold">Token:</th>
+                                        <td width="25%">{{$addmissionGenerate->token}}</td>
                                     </tr>
                                 </tbody>
                             </table>

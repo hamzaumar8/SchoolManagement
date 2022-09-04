@@ -17,7 +17,7 @@ return new class extends Migration
             $table->id();
             $table->uuid('uuid');
             $table->string('addmission_number')->unique();
-            $table->string('pin');
+            $table->string('token');
             $table->string('name')->nullable();
             $table->string('phone')->nullable();
             $table->enum('campus', ['north', 'south'])->nullable();
