@@ -37,7 +37,7 @@ class VoucherController extends Controller
             ]);
         }
 
-        session(['addmission_number' => $request->addmission_number, 'token' => $request->token]);
+        session(['VoucherUser' => $user]);
 
         return redirect()->route('voucher.index');
     }

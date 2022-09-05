@@ -18,12 +18,11 @@ class AuthVoucher
     public function handle(Request $request, Closure $next)
     {
 
-        $addmission_number = session()->get('addmission_number');
-        $token = session()->get('token');
+        $addmission_number = session()->get('VoucherUser')['addmission_number'];
+        $token = session()->get('VoucherUser')['token'];
         $user = AddmissionGenerate::where('addmission_number', $addmission_number)->orWhere('token', $token)->first();
 
         if ($user) {
-            session(['VoucherUser' => $user]);
             return $next($request);
         }
         session()->flush();
