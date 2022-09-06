@@ -18,6 +18,9 @@ class VoucherController extends Controller
 
     public function create()
     {
+        if (session()->get('VoucherUser')) {
+            return redirect()->route('voucher.index');
+        }
         return view('voucher.auth');
     }
 

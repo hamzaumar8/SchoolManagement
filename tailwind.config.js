@@ -1,3 +1,4 @@
+const colors = require("tailwindcss/colors");
 const defaultTheme = require("tailwindcss/defaultTheme");
 
 /** @type {import('tailwindcss').Config} */
@@ -18,6 +19,11 @@ module.exports = {
         extend: {
             fontFamily: {
                 sans: ["Nunito", ...defaultTheme.fontFamily.sans],
+            },
+            colors: {
+                base: "#2c3690",
+                primary: "#ec1f28",
+                // rose: "#ec1f28",
             },
         },
     },

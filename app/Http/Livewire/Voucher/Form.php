@@ -13,6 +13,7 @@ class Form extends Component
     public $first_name, $surname, $other_name, $gender, $birthdate, $birthplace, $religion, $nationality, $home_town, $home_digital_address, $postal_address, $first_language, $previous_school, $email, $class_id, $class_type, $term, $accomodation_type, $phone, $picture, $hpa;
     public $father_name, $father_email, $father_phone_number, $father_occupation, $father_home_digital_address, $father_postal_address, $father_relation, $father_picture, $mother_name, $mother_email, $mother_phone_number, $mother_occupation, $mother_home_digital_address, $mother_postal_address, $mother_relation, $mother_picture, $guardian_name, $guardian_email, $guardian_phone_number, $guardian_occupation, $guardian_home_digital_address, $guardian_postal_address, $guardian_relation, $guardian_picture;
     public $contact_name1, $contact_phone_number1, $contact_name2, $contact_phone_number2;
+    public $saved_picture;
 
     public function mount()
     {
@@ -39,7 +40,7 @@ class Form extends Component
             $this->accomodation_type = $addmission->accomodation_type;
             $this->phone = $addmission->phone;
             $this->hpa = $addmission->hpa;
-            $this->picture = $addmission->picture;
+            $this->saved_picture = $addmission->picture;
             // Father
             $this->father_name = $addmission->father_name;
             $this->father_email = $addmission->father_email;
