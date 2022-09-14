@@ -3,7 +3,7 @@
     <div class="w-full sm:max-w-md ">
         <a href="/" class="flex items-end">
             <x-application-logo class="h-[5rem] mr-3" />
-            <div id="site-slogan" class="text-[#2c3690] text-[1.5rem] font-bold uppercase">UCC Basic JHS Admission
+            <div id="site-slogan" class="text-[#2c3690] text-[1.5rem] font-bold uppercase">UCC Basic JHS Addmission
                 Portal</div>
         </a>
     </div>
