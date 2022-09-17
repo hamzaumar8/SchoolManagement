@@ -29,14 +29,15 @@ return new class extends Migration
             $table->string('first_language')->nullable();
             $table->string('previous_school')->nullable();
             $table->string('email')->nullable();
-            $table->foreignId('class_id')->constrained()->nullOnDelete;
-            $table->enum('class_type', ['A', 'B'])->nullable();
+            $table->unsignedBigInteger('class_id')->nullable();
+            $table->enum('class_type', ['A', 'B', 'C', 'D', 'E', 'F'])->nullable();
             $table->enum('term', [1, 2, 3])->nullable();
             $table->enum('accomodation_type', ['day', 'boarding'])->nullable();
             $table->string('phone')->nullable();
             $table->date('date_admitted')->nullable();
             $table->text('picture')->nullable();
             $table->enum('hpa', ['yes', 'no'])->nullable();
+            $table->foreign('class_id')->references('id')->on('classes')->onDelete('set null');
             $table->timestamps();
         });
     }

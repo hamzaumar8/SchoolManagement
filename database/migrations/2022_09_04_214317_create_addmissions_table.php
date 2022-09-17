@@ -25,52 +25,80 @@ return new class extends Migration
             $table->string('religion')->nullable();
             $table->string('nationality')->nullable();
             $table->string('home_town')->nullable();
-            $table->string('home_digital_address')->nullable();
-            $table->string('postal_address')->nullable();
             $table->string('first_language')->nullable();
             $table->string('previous_school')->nullable();
+            $table->string('previous_class')->nullable();
             $table->string('email')->nullable();
-            $table->foreignId('class_id')->constrained()->nullable();
-            $table->enum('class_type', ['A', 'B'])->nullable();
+            $table->unsignedBigInteger('class_id')->nullable();
+            $table->enum('class_type', ['A', 'B', 'C', 'D', 'E', 'F'])->nullable();
             $table->enum('term', [1, 2, 3])->nullable();
             $table->enum('accomodation_type', ['day', 'boarding'])->nullable();
-            $table->string('phone')->nullable();
             $table->date('date_admitted')->nullable();
-            $table->text('picture')->nullable();
-            $table->enum('hpa', ['yes', 'no'])->nullable();
+            $table->text('passport_picture')->nullable();
 
+            // Parent information
             $table->string('father_name')->nullable();
             $table->string('father_email')->nullable();
             $table->string('father_phone_number')->nullable();
             $table->string('father_occupation')->nullable();
             $table->string('father_home_digital_address')->nullable();
-            $table->string('father_postal_address')->nullable();
-            $table->text('father_picture')->nullable();
 
             $table->string('mother_name')->nullable();
             $table->string('mother_email')->nullable();
             $table->string('mother_phone_number')->nullable();
             $table->string('mother_occupation')->nullable();
             $table->string('mother_home_digital_address')->nullable();
-            $table->string('mother_postal_address')->nullable();
-            $table->text('mother_picture')->nullable();
-
 
             $table->string('guardian_name')->nullable();
             $table->string('guardian_email')->nullable();
             $table->string('guardian_phone_number')->nullable();
             $table->string('guardian_occupation')->nullable();
             $table->string('guardian_home_digital_address')->nullable();
-            $table->string('guardian_postal_address')->nullable();
             $table->enum('guardian_relation', ['uncle', 'aunty', 'sibling', 'guardian', 'other'])->nullable();
-            $table->text('guardian_picture')->nullable();
 
+            $table->enum('parent_staff', ['staff', 'non-staff'])->nullable();
+
+            // for Staff Only
+            $table->string('personnel_number')->nullable();
+            $table->string('unit_section_department')->nullable();
+            $table->enum('registered_biological_ward', ['yes', 'no'])->nullable();
+            $table->enum('registered_ward', ['yes', 'no'])->nullable();
+            $table->string('registered_ward_explain')->nullable();
+
+            // Contact Information
             $table->string('contact_name1')->nullable();
             $table->string('contact_phone_number1')->nullable();
             $table->string('contact_name2')->nullable();
             $table->string('contact_phone_number2')->nullable();
             $table->enum('status', ['save', 'submit'])->nullable();
 
+            // Health Status
+            $table->enum('chronic_health_problem', ['yes', 'no'])->nullable();
+            $table->text('chp_report')->nullable();
+            $table->enum('diagnose_physical_challenge', ['yes', 'no'])->nullable();
+            $table->text('dpc_report')->nullable();
+
+            // disciplinary report
+            $table->enum('disciplinary_problem', ['yes', 'no'])->nullable();
+
+            // significant information
+            $table->string('athletics1')->nullable();
+            $table->string('athletics2')->nullable();
+            $table->string('games1')->nullable();
+            $table->string('games2')->nullable();
+            $table->string('hobbies1')->nullable();
+            $table->string('hobbies2')->nullable();
+            $table->string('academic_achievement1')->nullable();
+            $table->string('academic_achievement2')->nullable();
+
+            // development Development
+            $table->enum('neatness', ['A', 'B', 'C'])->nullable();
+            $table->enum('honesty', ['A', 'B', 'C'])->nullable();
+            $table->enum('emotinal_control', ['A', 'B', 'C'])->nullable();
+            $table->enum('friendliness', ['A', 'B', 'C'])->nullable();
+            $table->enum('work_habits', ['A', 'B', 'C'])->nullable();
+
+            $table->foreign('class_id')->references('id')->on('classes')->onDelete('set null');
             $table->timestamps();
         });
     }
