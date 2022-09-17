@@ -18,14 +18,17 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
+
+
+Route::middleware(['auth'])->group(function () {
+    Route::get('/dashboard', function () {
+        return view('dashboard');
+    })->name('dashboard');
+
+    Route::get('/', function () {
+        return redirect()->route('dashboard');
+    });
 });
-
-Route::get('/dashboard', function () {
-    return view('dashboard');
-})->middleware(['auth'])->name('dashboard');
-
 
 // Admin Routes 
 Route::middleware(['auth'])->group(function () {
@@ -41,9 +44,12 @@ Route::middleware(['auth'])->group(function () {
 Route::get('voucher/auth', [VoucherController::class, 'create'])->name('voucher.auth');
 Route::post('voucher/auth', [VoucherController::class, 'store']);
 
+
 Route::middleware(['auth-voucher'])->group(function () {
-    Route::get('voucher/addmission', [VoucherController::class, 'index'])->name('voucher.index');
-    Route::post('voucher/logout', [VoucherController::class, 'destroy'])->name('voucher.logout');
+    Route::group(['prefix' => 'voucher'], function () {
+        Route::get('addmission', [VoucherController::class, 'index'])->name('voucher.index');
+        Route::post('logout', [VoucherController::class, 'destroy'])->name('voucher.logout');
+    });
 });
 
 require __DIR__ . '/auth.php';
