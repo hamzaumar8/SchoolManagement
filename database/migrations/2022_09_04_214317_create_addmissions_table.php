@@ -28,7 +28,6 @@ return new class extends Migration
             $table->string('first_language')->nullable();
             $table->string('previous_school')->nullable();
             $table->string('previous_class')->nullable();
-            $table->string('email')->nullable();
             $table->unsignedBigInteger('class_id')->nullable();
             $table->enum('class_type', ['A', 'B', 'C', 'D', 'E', 'F'])->nullable();
             $table->enum('term', [1, 2, 3])->nullable();
@@ -70,7 +69,7 @@ return new class extends Migration
             $table->string('contact_phone_number1')->nullable();
             $table->string('contact_name2')->nullable();
             $table->string('contact_phone_number2')->nullable();
-            $table->enum('status', ['save', 'submit'])->nullable();
+            $table->enum('status', ['save', 'submit', 'addmitted'])->default('save');
 
             // Health Status
             $table->enum('chronic_health_problem', ['yes', 'no'])->nullable();

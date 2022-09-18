@@ -1,0 +1,25 @@
+<x-select label="Class" wire:model.defer="class_id" placeholder="Select class" :async-data="route('api.classes.index')"
+    option-label="name" class="uppercase" option-value="id" required />
+
+<x-native-select label="Class Type" placeholder="Select class type" :options=" [
+                    ['value' => 'A', 'name' => 'A'],
+                    ['value' => 'B', 'name' => 'B']]" option-label="name" option-value="value" class="uppercase"
+    wire:model.defer="class_type" required />
+
+<x-native-select label="Term" placeholder="Select Term" :options="[['value' => '1', 'name' => 'Term 1 '],
+                    ['value' => '2', 'name' => 'Term 2 '],
+                    ['value' => '3', 'name' => 'Term 3']]" option-label="name" option-value="value" class="uppercase"
+    wire:model.defer="term" required />
+
+<x-native-select label="Accomodation Type" placeholder="Select Accomodation Type" :options=" [
+                    ['value' => 'day', 'name' => 'Day'],
+                    ['value' => 'boarding', 'name' => 'Boarding']]" option-label="name" option-value="value"
+    class="uppercase" wire:model.defer="term" required />
+
+<x-inputs.maskable label="Phone (If Any)" mask="['(###) ###-####', '+# ### ###-####', '+## ## ####-####']"
+    placeholder="Phone (If Any)" wire:model.defer="phone" />
+
+<x-native-select label="Health Problems/Allergies?" placeholder="Select Health Problems/Allergies?" :options=" [
+                    ['value' => 'no', 'name' => 'No'],
+                    ['value' => 'yes', 'name' => 'Yes']]" option-label="name" option-value="value" class="uppercase"
+    wire:model.defer="hpa" required />
