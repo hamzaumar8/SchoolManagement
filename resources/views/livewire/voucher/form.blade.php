@@ -227,7 +227,7 @@
 
         <div class="py-5">
             <div class="my-4 text-xl font-bold text-indigo-900 border-b dark:border-0 py-2.5 uppercase">
-                {{ __('3. For U.c.c Staff Only') }}
+                {{ __(' For U.c.c Staff Only') }}
             </div>
             <div class="grid grid-cols-2 gap-5 ">
                 <x-input label="Personnel Number" placeholder="Enter Personnel Number" class="uppercase"
@@ -327,9 +327,11 @@
                 <div class="col-span-2">
                     Academic / co-curricular Achievements (if any)
                 </div>
-                <x-input label="Hobby 1" placeholder="" class="uppercase" wire:model.defer="academic_achievement1" />
+                <x-input label="Academic Achievement 1" placeholder="" class="uppercase"
+                    wire:model.defer="academic_achievement1" />
 
-                <x-input label="Hobby 2" placeholder="" class="uppercase" wire:model.defer="academic_achievement2" />
+                <x-input label="Academic Achievement 2" placeholder="" class="uppercase"
+                    wire:model.defer="academic_achievement2" />
 
             </div>
         </div>
