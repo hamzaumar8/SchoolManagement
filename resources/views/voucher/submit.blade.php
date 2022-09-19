@@ -9,6 +9,8 @@
                     @endif
                     <!--  -->
                     show details infomation
+
+                    {{$addmission}}
                 </div>
             </div>
         </div>

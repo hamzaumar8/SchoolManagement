@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Voucher;
 
 use Session;
 use App\Http\Controllers\Controller;
+use App\Models\Addmission;
 use App\Models\AddmissionGenerate;
 use Illuminate\Validation\ValidationException;
 use Illuminate\Http\Request;
@@ -15,9 +16,13 @@ class VoucherController extends Controller
         return view('voucher.index');
     }
 
-    public function submitted()
+    public function submitted($addmission_number)
     {
-        return view('voucher.submit');
+        $addmission = Addmission::where('addmission_number', $addmission_number)->first();
+        if (!$addmission) {
+            abort(404);
+        }
+        return view('voucher.submit', compact('addmission'));
     }
 
 

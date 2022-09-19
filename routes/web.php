@@ -52,7 +52,7 @@ Route::middleware(['auth-voucher'])->group(function () {
             Route::post('logout', [VoucherController::class, 'destroy'])->name('voucher.logout');
         });
 
-        Route::get('addmission/submitted', [VoucherController::class, 'submitted'])->name(('voucher.submitted'));
+        Route::get('addmission/{addmission_number}/submitted', [VoucherController::class, 'submitted'])->name(('voucher.submitted'));
     });
 });
 

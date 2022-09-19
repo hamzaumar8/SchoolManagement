@@ -23,7 +23,7 @@ class AuthVoucherSubmit
             $addmission = Addmission::where('addmission_number', $addmission_number)->first();
 
             if ($addmission->status === 'submit') {
-                return redirect()->route('voucher.submitted');
+                return redirect()->route('voucher.submitted', $addmission->addmission_number);
             }
             return $next($request);
         }
