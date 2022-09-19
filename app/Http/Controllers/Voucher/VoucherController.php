@@ -15,6 +15,11 @@ class VoucherController extends Controller
         return view('voucher.index');
     }
 
+    public function submitted()
+    {
+        return view('voucher.submit');
+    }
+
 
     public function create()
     {

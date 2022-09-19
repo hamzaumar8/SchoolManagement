@@ -36,10 +36,10 @@
                             <x-input label="Other Name" class="uppercase" type="text" wire:model.defer="other_name" />
                         </div>
 
-                        <x-native-select label="Gender" placeholder="Select gender" :options=" [
-                ['value' => 'male', 'name' => 'Male'],
-                ['value' => 'female', 'name' => 'Female']]" option-label="name" option-value="value" class="uppercase"
-                            wire:model.defer="gender" required />
+                        <x-native-select label="Gender" placeholder="Select gender"
+                            :options=" [['value' => 'male', 'name' => 'Male'],['value' => 'female', 'name' => 'Female']]"
+                            option-label="name" option-value="value" class="uppercase" wire:model.defer="gender"
+                            required />
 
                         <div class="mb-4">
                             <x-input label="Birth Date" class="uppercase" type="date" required
@@ -73,8 +73,6 @@
                             :async-data="route('api.nationality.index')" option-label="name" option-value="name"
                             class="uppercase" required />
 
-
-
                         <div class="mb-4">
                             <x-input label="First Language" class="uppercase" type="text" required
                                 wire:model.defer="first_language" />
@@ -82,14 +80,13 @@
 
                         <div class="mb-4">
                             <x-input label="Previous School" class="uppercase" type="text"
-                                wire:model.defer="previous_school" />
+                                wire:model.defer="previous_school" required />
                         </div>
 
-                        <div class="mb-4">
-                            <x-input label="Previous Class" class="uppercase" type="text"
-                                wire:model.defer="previous_class" />
-                        </div>
-
+                        <!-- TODO:check selected for nationality and class -->
+                        <x-select label="Previous Class" wire:model.defer="previous_class"
+                            placeholder="Select Previous class" :async-data="route('api.classes.index')"
+                            option-label="name" class="uppercase" option-value="name" required />
                     </div>
                 </div>
                 <div class="">
@@ -192,42 +189,41 @@
             <!-- Guardian Information -->
             <div class="grid grid-cols-3 gap-5">
                 <x-input label="Guardian's Full Name" placeholder="Guardian's Name" class="uppercase"
-                    wire:model.defer="guardian_name" required />
+                    wire:model.defer="guardian_name" />
 
                 <x-input label="Guardian's Eamil" placeholder="Guardian's Eamil" class="uppercase"
-                    wire:model.defer="guardian_email" required />
+                    wire:model.defer="guardian_email" />
 
                 <x-inputs.maskable label="Guardian's Phone Number"
                     mask="['(###) ###-####', '+# ### ###-####', '+## ## ####-####']"
-                    placeholder="Guardian's Phone Number" class="uppercase" wire:model.defer="guardian_phone_number"
-                    required />
+                    placeholder="Guardian's Phone Number" class="uppercase" wire:model.defer="guardian_phone_number" />
 
                 <x-input label="Guardian's Occupation" placeholder="Guardian's Occupation" class="uppercase"
-                    wire:model.defer="guardian_occupation" required />
+                    wire:model.defer="guardian_occupation" />
 
                 <x-input label="Guardian's Home / Digital Address" placeholder="Guardian's Home / Digital Address"
-                    class="uppercase" wire:model.defer="guardian_home_digital_address" required />
+                    class="uppercase" wire:model.defer="guardian_home_digital_address" />
 
-                <x-native-select label="Guardian Relationship" placeholder="Select guardian relationship" :options="[['value' => 'uncle', 'name' => 'uncle'],
-                    ['value' => 'aunty', 'name' => 'aunty'],
-                    ['value' => 'sibling', 'name' => 'sibling'],
-                    ['value' => 'guardian', 'name' => 'guardian'],
-                    ['value' => 'other', 'name' => 'other']]" option-label="name" option-value="value"
-                    class="uppercase" wire:model.defer="term" required />
+                <x-native-select label="Guardian Relationship" placeholder="Select guardian relationship"
+                    :options="[['value' => 'uncle', 'name' => 'uncle'],['value' => 'aunty', 'name' => 'aunty'],['value' => 'sibling', 'name' => 'sibling'],['value' => 'guardian', 'name' => 'guardian'],['value' => 'other', 'name' => 'other']]"
+                    option-label="name" option-value="value" class="uppercase" wire:model.defer="guardian_relation" />
             </div>
 
-            <div class="grid grid-cols-3 gap-5 py-4">
-                <div class="">Is Parant / Guardian A staff or Non-Staff Of Ucc</div>
-                <div class="">
-                    <x-radio id="parent_staff" left-label="U.C.C Staff" wire:model.defer="parent_staff" value="staff"
-                        name="parent_staff" class="uppercase" required />
-                </div>
-                <div class="">
-                    <x-radio id="parent_staff" label="Non-U.C.C Staff" wire:model.defer="parent_staff" value="non-staff"
-                        name="parent_staff" class="uppercase" required />
+            <div class="mt-5">
+                <div class="grid grid-cols-3 gap-5">
+                    <div class="">Is Parant / Guardian A staff or Non-Staff Of Ucc</div>
+                    <div class="">
+                        <x-radio id="parent_staff" left-label="U.C.C Staff" wire:model.lazy="parent_staff" value="staff"
+                            name="parent_staff" class="uppercase" required />
+                    </div>
+                    <div class="">
+                        <x-radio id="parent_staff" label="Non-U.C.C Staff" wire:model.lazy="parent_staff"
+                            value="non-staff" name="parent_staff" class="uppercase" required />
+                    </div>
                 </div>
             </div>
         </div>
+
 
         <div class="py-5">
             <div class="my-4 text-xl font-bold text-indigo-900 border-b dark:border-0 py-2.5 uppercase">
@@ -235,25 +231,25 @@
             </div>
             <div class="grid grid-cols-2 gap-5 ">
                 <x-input label="Personnel Number" placeholder="Enter Personnel Number" class="uppercase"
-                    wire:model.defer="personnel_number" required />
+                    wire:model.defer="personnel_number" />
 
                 <x-input label="Unit / Section / Department" placeholder="Enter Unit / Section / Department"
-                    class="uppercase" wire:model.defer="unit_section_department" required />
+                    class="uppercase" wire:model.defer="unit_section_department" />
 
                 <x-native-select label="Is pupil your registered biological child with your personal records?"
                     placeholder="Select one" :options=" [
                     ['value' => 'no', 'name' => 'No'],
                     ['value' => 'yes', 'name' => 'Yes']]" option-label="name" option-value="value" class="uppercase"
-                    wire:model.defer="registered_biological_ward" required />
+                    wire:model.defer="registered_biological_ward" />
 
                 <x-native-select label="Is pupil your registered ward?" placeholder="Select one" :options=" [
                     ['value' => 'no', 'name' => 'No'],
                     ['value' => 'yes', 'name' => 'Yes']]" option-label="name" option-value="value" class="uppercase"
-                    wire:model.defer="registered_ward" required />
+                    wire:model.defer="registered_ward" />
 
                 <div class="col-span-2">
                     <x-textarea label="Explain (If yes)" placeholder="Explain" class="uppercase"
-                        wire:model.defer="registered_ward_explain" required />
+                        wire:model.defer="registered_ward_explain" />
                 </div>
             </div>
         </div>
@@ -273,7 +269,7 @@
                     wire:model.defer="chronic_health_problem" required />
 
                 <x-input label="Provide a doctors report (if yes)" placeholder="Enter Personnel Number"
-                    class="uppercase" wire:model.defer="chp_report" required />
+                    class="uppercase" wire:model.defer="chp_report" type="file" />
 
                 <x-native-select label="Has the child been diagnosed of having anu physical challenges?"
                     placeholder="Select one" :options=" [
@@ -282,7 +278,7 @@
                     wire:model.defer="diagnose_physical_challenge" required />
 
                 <x-input label="Provide a doctors report (if yes)" placeholder="Enter Unit / Section / Department"
-                    class="uppercase" wire:model.defer="dpc_report" required />
+                    class="uppercase" wire:model.defer="dpc_report" type="file" />
 
             </div>
         </div>

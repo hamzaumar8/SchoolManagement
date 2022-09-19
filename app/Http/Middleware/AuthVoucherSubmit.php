@@ -2,11 +2,11 @@
 
 namespace App\Http\Middleware;
 
-use App\Models\AddmissionGenerate;
+use App\Models\Addmission;
 use Closure;
 use Illuminate\Http\Request;
 
-class AuthVoucher
+class AuthVoucherSubmit
 {
     /**
      * Handle an incoming request.
@@ -17,16 +17,15 @@ class AuthVoucher
      */
     public function handle(Request $request, Closure $next)
     {
-
         if (session()->get('VoucherUser')) {
             $addmission_number = session()->get('VoucherUser')['addmission_number'];
-            $token = session()->get('VoucherUser')['token'];
 
-            $user = AddmissionGenerate::where('addmission_number', $addmission_number)->orWhere('token', $token)->first();
+            $addmission = Addmission::where('addmission_number', $addmission_number)->first();
 
-            if ($user) {
-                return $next($request);
+            if ($addmission->status === 'submit') {
+                return redirect()->route('voucher.submitted');
             }
+            return $next($request);
         }
         session()->flush();
         return redirect()->route('voucher.auth');

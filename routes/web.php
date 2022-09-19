@@ -47,8 +47,12 @@ Route::post('voucher/auth', [VoucherController::class, 'store']);
 
 Route::middleware(['auth-voucher'])->group(function () {
     Route::group(['prefix' => 'voucher'], function () {
-        Route::get('addmission', [VoucherController::class, 'index'])->name('voucher.index');
-        Route::post('logout', [VoucherController::class, 'destroy'])->name('voucher.logout');
+        Route::middleware(['auth-voucher-submit'])->group(function () {
+            Route::get('addmission', [VoucherController::class, 'index'])->name('voucher.index');
+            Route::post('logout', [VoucherController::class, 'destroy'])->name('voucher.logout');
+        });
+
+        Route::get('addmission/submitted', [VoucherController::class, 'submitted'])->name(('voucher.submitted'));
     });
 });
 
