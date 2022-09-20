@@ -1,14 +1,13 @@
    <!-- sidenav  -->
    <aside
-       class="max-w-62.5 ease-nav-brand z-990 fixed inset-y-0 my-4 ml-4 block w-full -translate-x-full flex-wrap items-center justify-between overflow-y-auto rounded-2xl border-0 bg-white p-0 antialiased transition-transform duration-200 xl:left-0 xl:translate-x-0 ps xl:bg-white shadow-soft-xl">
+       class="max-w-62.5 ease-nav-brand z-990 fixed inset-y-0 my-4 ml-4 block w-full -translate-x-full flex-wrap items-center justify-between overflow-y-auto rounded-2xl border-0 bg-[#2c3690] p-0 antialiased transition-transform duration-200 xl:left-0 xl:translate-x-0 ps xl:bg-[#2c3690] shadow-soft-xl">
        <div class="h-19.5">
            <i class="absolute top-0 right-0 hidden p-4 opacity-50 cursor-pointer fas fa-times text-slate-400 xl:hidden"
                sidenav-close></i>
            <a class="block px-6 py-5 m-0 text-sm whitespace-nowrap text-slate-700" href="javascript:;">
                <x-application-logo class="inline h-full max-w-full transition-all duration-200 ease-nav-brand max-h-8"
                    alt="main_logo" />
-               <span
-                   class="ml-1 font-bold transition-all duration-200 ease-nav-brand text-[#2c3690] text-lg uppercase">UCC
+               <span class="ml-1 font-bold transition-all duration-200 ease-nav-brand text-white text-lg uppercase">UCC
                    Basic School</span>
            </a>
        </div>
