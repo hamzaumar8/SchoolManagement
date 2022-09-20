@@ -494,7 +494,7 @@
         </div>
 
 
-        <div class="py-5">
+        <div class="py-5">r
             <div class="my-4 text-xl font-bold text-indigo-900 border-b dark:border-0 py-2.5 uppercase">
                 {{ __('7. Emergency Information (Who To Contact In Case Of Emergency)') }}
             </div>

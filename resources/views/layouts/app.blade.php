@@ -44,19 +44,16 @@
         @powerGridScripts
         @livewire('livewire-ui-modal')
 
-        <script>
-        document.getElementById('card-holder-name').click(function(e) {
-            e.preventDefault();
-            $(this).parent().parent().hide(500)
-        })
-        </script>
+        <!--   Core JS Files   -->
+        <script src="{{ asset('assets/js/plugins/perfect-scrollbar.min.js') }}"></script>
+        <script src="{{ asset('assets/js/soft-ui-dashboard-tailwind.js?v=1.0.4')}}" async></script>
 
-        <!-- plugin for charts  -->
-        <script src="{{ asset('assets/js/plugins/chartjs.min.js') }}" async></script>
-        <!-- plugin for scrollbar  -->
-        <script src="{{ asset('assets/js/plugins/perfect-scrollbar.min.js') }}" async></script>
-
-        <script src="{{ asset('assets/js/ui.min.js') }}"></script>
+        <script src="{{ asset('assets/js/perfect-scrollbar.js') }}"></script>
+        <script src="{{ asset('assets/js/tooltips.js') }}"></script>
+        <script src="{{ asset('assets/js/nav-pills.js') }}"></script>
+        <script src="{{ asset('assets/js/dropdown.js') }}"></script>
+        <script src="{{ asset('assets/js/sidenav-burger.js') }}"></script>
+        <script src="{{ asset('assets/js/navbar-sticky.js') }}"></script>
 </body>
 
 </html>

@@ -3,28 +3,7 @@ table {
     width: 100%;
 }
 /* <!-- <link href="{{ asset('assets/css/table.css') }}" rel="stylesheet" /> --> */
-table.table {
-    border-collapse: separate;
-    border-spacing: 1px;
-    border: 1px solid #000;
-}
 
-table.tablebottom {
-    border-collapse: separate;
-    border-spacing: 1px;
-    border-right-width: 1px;
-    border-bottom-width: 1px;
-    border-left-width: 1px;
-    border-top-width: 1px;
-    border-right-style: solid;
-    border-bottom-style: solid;
-    border-left-style: solid;
-    border-top-style: solid;
-    border-right-color: #000000;
-    border-bottom-color: #000000;
-    border-left-color: #000000;
-    border-top-color: #fff;
-}
 
 table.borderless {
     border-collapse: separate;
