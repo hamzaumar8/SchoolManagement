@@ -1,15 +1,15 @@
 <?php
 
-namespace App\Http\Livewire\Admin\Addmissions;
+namespace App\Http\Livewire\Admin\Voucher;
 
-use App\Models\Addmission;
+use App\Models\Voucher;
 use LivewireUI\Modal\ModalComponent;
 
 class Delete extends ModalComponent
 {
-    public ?int $addmissionId = null;
+    public ?int $voucherId = null;
 
-    public array $addmissionIds = [];
+    public array $voucherIds = [];
 
     public string $confirmationTitle = '';
 
@@ -37,22 +37,20 @@ class Delete extends ModalComponent
 
     public function confirm()
     {
-        if ($this->addmissionId) {
-            Addmission::query()->find($this->addmissionId)->delete();
+        if ($this->voucherId) {
+            Voucher::query()->find($this->voucherId)->delete();
         }
 
-        if ($this->addmissionIds) {
-            Addmission::query()->whereIn('id', $this->addmissionIds)->delete();
+        if ($this->voucherIds) {
+            Voucher::query()->whereIn('id', $this->voucherIds)->delete();
         }
 
         $this->closeModalWithEvents([
             'pg:eventRefresh-default',
         ]);
     }
-
-
     public function render()
     {
-        return view('livewire.admin.addmissions.delete');
+        return view('livewire.admin.voucher.delete');
     }
 }

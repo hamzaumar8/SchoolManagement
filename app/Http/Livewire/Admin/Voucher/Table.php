@@ -13,6 +13,42 @@ final class Table extends PowerGridComponent
 {
     use ActionButton;
 
+    //Table sort field
+    public string $sortField = 'vouchers.id';
+
+
+    /*
+    |--------------------------------------------------------------------------
+    |  Event listeners
+    |--------------------------------------------------------------------------
+    | Add custom events to VouchersTable
+    |
+    */
+    protected function getListeners(): array
+    {
+        return array_merge(
+            parent::getListeners(),
+            [
+                'bulkDelete',
+            ]
+        );
+    }
+
+    /*
+    |--------------------------------------------------------------------------
+    |  Bulk delete button
+    |--------------------------------------------------------------------------
+    */
+    public function bulkDelete(): void
+    {
+        $this->emit('openModal', 'admin.voucher.delete', [
+            'voucherIds'                 => $this->checkboxValues,
+            'confirmationTitle'       => 'Delete voucher',
+            'confirmationDescription' => 'Are you sure you want to delete this voucher?',
+        ]);
+    }
+
+
     /*
     |--------------------------------------------------------------------------
     |  Features Setup
@@ -84,12 +120,10 @@ final class Table extends PowerGridComponent
         return PowerGrid::eloquent()
             ->addColumn('id')
             ->addColumn('addmission_number')
+            ->addColumn('token')
             ->addColumn('name')
             ->addColumn('phone')
             ->addColumn('campus')
-            ->addColumn('campus_label', function (Voucher $voucher) {
-                return ($voucher->campus === 'north' ? "north" : "south");
-            })
             ->addColumn('created_at_formatted', fn (Voucher $model) => Carbon::parse($model->created_at)->format('d/m/Y H:i:s'));
     }
 
@@ -113,6 +147,11 @@ final class Table extends PowerGridComponent
             Column::make('ID', 'id'),
 
             Column::make('ADDMISSION NUMBER', 'addmission_number')
+                ->sortable()
+                ->searchable(),
+            // ->makeInputText(),
+
+            Column::make('TOKEN', 'token')
                 ->sortable()
                 ->searchable(),
             // ->makeInputText(),
@@ -142,6 +181,21 @@ final class Table extends PowerGridComponent
 
         ];
     }
+    /*
+    |--------------------------------------------------------------------------
+    | Header Action Buttons
+    |--------------------------------------------------------------------------
+    */
+
+    public function header(): array
+    {
+        return [
+            Button::add('bulk-delete')
+                ->caption(__('Bulk delete'))
+                ->class('outline-none inline-flex justify-center items-center group transition-all ease-in duration-150 focus:ring-2 focus:ring-offset-2 hover:shadow-sm disabled:opacity-80 disabled:cursor-not-allowed rounded gap-x-2 text-sm px-4 py-2  ring-red-500 text-red-500 border border-red-500 hover:bg-red-50 dark:ring-offset-slate-800 dark:hover:bg-slate-700')
+                ->emit('bulkDelete', [])
+        ];
+    }
 
     /*
     |--------------------------------------------------------------------------
@@ -157,21 +211,24 @@ final class Table extends PowerGridComponent
      * @return array<int, Button>
      */
 
-    /*
+
     public function actions(): array
     {
-       return [
-           Button::make('edit', 'Edit')
-               ->class('bg-indigo-500 cursor-pointer text-white px-3 py-2.5 m-1 rounded text-sm')
-               ->route('voucher.edit', ['voucher' => 'id']),
+        return [
+            //    Button::make('edit', 'Edit')
+            //        ->class('bg-indigo-500 cursor-pointer text-white px-3 py-2.5 m-1 rounded text-sm')
+            //        ->route('voucher.edit', ['voucher' => 'id']),
 
-           Button::make('destroy', 'Delete')
-               ->class('bg-red-500 cursor-pointer text-white px-3 py-2 m-1 rounded text-sm')
-               ->route('voucher.destroy', ['voucher' => 'id'])
-               ->method('delete')
+            Button::make('destroy', 'Delete')
+                ->class('px-4 py-2 bg-red-500 border border-transparent rounded-md font-semibold text-xs text-white uppercase  cursor-pointer')
+                ->openModal('admin.voucher.delete', [
+                    'addmissionId'                  => 'id',
+                    'confirmationTitle'       => 'Delete Addmission',
+                    'confirmationDescription' => 'Are you sure you want to delete this addmission?',
+                ]),
         ];
     }
-    */
+
 
     /*
     |--------------------------------------------------------------------------
