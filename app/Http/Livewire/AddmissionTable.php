@@ -243,7 +243,9 @@ final class AddmissionTable extends PowerGridComponent
         return [
             Button::make('addmitted', 'Addmit')
                 ->class('px-4 py-2 bg-green-500 border border-transparent rounded-md font-semibold text-xs text-white uppercase  cursor-pointer')
-                ->route('addmissions.edit', ['addmission' => 'id']),
+                ->openModal('admin.addmissions.addmit', [
+                    'addmissionId' => 'id',
+                ]),
 
             Button::make('edit', 'Edit')
                 ->class('px-4 py-2 bg-indigo-500 border border-transparent rounded-md font-semibold text-xs text-white uppercase  cursor-pointer')
