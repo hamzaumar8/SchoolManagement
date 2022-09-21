@@ -13,6 +13,42 @@ final class AddmissionTable extends PowerGridComponent
 {
     use ActionButton;
 
+    //Table sort field
+    public string $sortField = 'addmissions.id';
+
+
+    /*
+    |--------------------------------------------------------------------------
+    |  Event listeners
+    |--------------------------------------------------------------------------
+    | Add custom events to AddmissionsTable
+    |
+    */
+    protected function getListeners(): array
+    {
+        return array_merge(
+            parent::getListeners(),
+            [
+                'bulkDelete',
+            ]
+        );
+    }
+
+    /*
+    |--------------------------------------------------------------------------
+    |  Bulk delete button
+    |--------------------------------------------------------------------------
+    */
+    public function bulkDelete(): void
+    {
+        $this->emit('openModal', 'admin.addmissions.delete', [
+            'addmissionIds'                 => $this->checkboxValues,
+            'confirmationTitle'       => 'Delete addmission',
+            'confirmationDescription' => 'Are you sure you want to delete this addmission?',
+        ]);
+    }
+
+
     /*
     |--------------------------------------------------------------------------
     |  Features Setup
@@ -123,6 +159,7 @@ final class AddmissionTable extends PowerGridComponent
             Column::make('ADDMISSION NUMBER', 'addmission_number')
                 ->sortable()
                 ->searchable(),
+
             Column::make('LAST NAME', 'first_name')
                 ->sortable()
                 ->searchable(),
@@ -167,6 +204,22 @@ final class AddmissionTable extends PowerGridComponent
                 ->searchable()
                 ->sortable(),
 
+        ];
+    }
+
+    /*
+    |--------------------------------------------------------------------------
+    | Header Action Buttons
+    |--------------------------------------------------------------------------
+    */
+
+    public function header(): array
+    {
+        return [
+            Button::add('bulk-delete')
+                ->caption(__('Bulk delete'))
+                ->class('outline-none inline-flex justify-center items-center group transition-all ease-in duration-150 focus:ring-2 focus:ring-offset-2 hover:shadow-sm disabled:opacity-80 disabled:cursor-not-allowed rounded gap-x-2 text-sm px-4 py-2  ring-red-500 text-red-500 border border-red-500 hover:bg-red-50 dark:ring-offset-slate-800 dark:hover:bg-slate-700')
+                ->emit('bulkDelete', [])
         ];
     }
 
@@ -226,7 +279,6 @@ final class AddmissionTable extends PowerGridComponent
             Rule::button('addmitted')
                 ->when(fn ($addmission) => $addmission->status === 'addmitted')
                 ->hide(),
-
 
             Rule::rows()
                 ->when(fn ($addmission) => $addmission->status === 'submit')
