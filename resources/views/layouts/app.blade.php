@@ -9,8 +9,6 @@
     <title>{{ config('app.name', 'Laravel') }}</title>
 
     <!-- Font Awesome Icons -->
-    <!-- <script src="https://kit.fontawesome.com/42d5adcbca.js" crossorigin="anonymous"></script> -->
-
     <script src="https://kit.fontawesome.com/c814aab068.js" crossorigin="anonymous"></script>
 
     <!-- Fonts -->
@@ -41,8 +39,14 @@
                 <li class="leading-normal text-sm">
                     <a class="text-slate-700 font-semibold" href="{{route('dashboard')}}">Dashboard</a>
                 </li>
+                @if(request()->segment(2))
                 <li class="opacity-50 text-sm pl-2 capitalize leading-normal text-gray-900 before:float-left before:pr-2 before:text-gray-600 before:content-['/']"
                     aria-current="page">{{request()->segment(2)}}</li>
+                @endif
+                @if(request()->segment(3))
+                <li class="opacity-50 text-sm pl-2 capitalize leading-normal text-gray-900 before:float-left before:pr-2 before:text-gray-600 before:content-['/']"
+                    aria-current="page">{{request()->segment(3)}}</li>
+                @endif
             </ol>
         </div>
         @endif
@@ -78,7 +82,6 @@
     <!--   Core JS Files   -->
     <script src="{{ asset('assets/js/plugins/perfect-scrollbar.min.js') }}"></script>
     <script src="{{ asset('assets/js/soft-ui-dashboard-tailwind.js?v=1.0.4')}}" async></script>
-
     <script src="{{ asset('assets/js/perfect-scrollbar.js') }}"></script>
     <script src="{{ asset('assets/js/tooltips.js') }}"></script>
     <script src="{{ asset('assets/js/nav-pills.js') }}"></script>

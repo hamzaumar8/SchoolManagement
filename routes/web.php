@@ -36,7 +36,7 @@ Route::middleware(['auth'])->group(function () {
         Route::resource('students', StudentController::class);
         Route::resource('staffs', StaffController::class);
         Route::resource('addmissions', AddmissionController::class);
-        Route::resource('addmission-vouchers', AdminVoucherController::class);
+        Route::resource('vouchers', AdminVoucherController::class);
     });
 });
 

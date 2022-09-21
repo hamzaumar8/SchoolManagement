@@ -120,6 +120,7 @@ final class Table extends PowerGridComponent
         return PowerGrid::eloquent()
             ->addColumn('id')
             ->addColumn('addmission_number')
+            ->addColumn('addmission_number_formatted', fn (Voucher $model) => "<a href='" . route('vouchers.show', $model->id) . "' class='underline'>$model->addmission_number </a>")
             ->addColumn('token')
             ->addColumn('name')
             ->addColumn('phone')
@@ -146,7 +147,7 @@ final class Table extends PowerGridComponent
         return [
             Column::make('ID', 'id'),
 
-            Column::make('ADDMISSION NUMBER', 'addmission_number')
+            Column::make('ADDMISSION NUMBER', 'addmission_number_formatted', 'addmission_number')
                 ->sortable()
                 ->searchable(),
             // ->makeInputText(),

@@ -30,7 +30,7 @@ class Create extends Component
 
         session()->flash('message', 'Addimssion Voucher was successfull Generated!');
 
-        return redirect()->route('addmission-vouchers.show', $voucher);
+        return redirect()->route('vouchers.show', $voucher);
     }
 
     public function render()
