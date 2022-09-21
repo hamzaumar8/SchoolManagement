@@ -184,21 +184,25 @@ final class AddmissionTable extends PowerGridComponent
      * @return array<int, Button>
      */
 
-    /*
+
     public function actions(): array
     {
-       return [
-           Button::make('edit', 'Edit')
-               ->class('bg-indigo-500 cursor-pointer text-white px-3 py-2.5 m-1 rounded text-sm')
-               ->route('addmission.edit', ['addmission' => 'id']),
+        return [
+            Button::make('addmitted', 'Addmit')
+                ->class('px-4 py-2 bg-green-500 border border-transparent rounded-md font-semibold text-xs text-white uppercase  cursor-pointer')
+                ->route('addmissions.edit', ['addmission' => 'id']),
 
-           Button::make('destroy', 'Delete')
-               ->class('bg-red-500 cursor-pointer text-white px-3 py-2 m-1 rounded text-sm')
-               ->route('addmission.destroy', ['addmission' => 'id'])
-               ->method('delete')
+            Button::make('edit', 'Edit')
+                ->class('px-4 py-2 bg-indigo-500 border border-transparent rounded-md font-semibold text-xs text-white uppercase  cursor-pointer')
+                ->route('addmissions.edit', ['addmission' => 'id']),
+
+            Button::make('destroy', 'Delete')
+                ->class('px-4 py-2 bg-red-500 border border-transparent rounded-md font-semibold text-xs text-white uppercase  cursor-pointer')
+                ->route('addmissions.destroy', ['addmission' => 'id'])
+                ->method('delete')
         ];
     }
-    */
+
 
     /*
     |--------------------------------------------------------------------------
@@ -219,10 +223,9 @@ final class AddmissionTable extends PowerGridComponent
     {
         return [
 
-            //Hide button edit for ID 1
-            // Rule::button('edit')
-            //     ->when(fn($addmission) => $addmission->id === 1)
-            //     ->hide(),
+            Rule::button('addmitted')
+                ->when(fn ($addmission) => $addmission->status === 'addmitted')
+                ->hide(),
 
 
             Rule::rows()
