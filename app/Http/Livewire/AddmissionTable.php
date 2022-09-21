@@ -44,13 +44,13 @@ final class AddmissionTable extends PowerGridComponent
     */
 
     /**
-    * PowerGrid datasource.
-    *
-    * @return Builder<\App\Models\Addmission>
-    */
+     * PowerGrid datasource.
+     *
+     * @return Builder<\App\Models\Addmission>
+     */
     public function datasource(): Builder
     {
-        return Addmission::query();
+        return Addmission::query()->where('status', 'submit')->orWhere('status', 'addmitted')->orderBy('created_at', 'DESC');
     }
 
     /*
@@ -83,6 +83,20 @@ final class AddmissionTable extends PowerGridComponent
     {
         return PowerGrid::eloquent()
             ->addColumn('id')
+            ->addColumn('addmission_number')
+            ->addColumn('first_name')
+            ->addColumn('surname')
+            ->addColumn('other_name')
+            ->addColumn('gender')
+            ->addColumn('birthdate_formatted', fn (Addmission $model) => Carbon::parse($model->birthdate)->format('d/m/Y'))
+            ->addColumn('birthplace')
+            ->addColumn('religion')
+            ->addColumn('nationality')
+            ->addColumn('home_town')
+            ->addColumn('home_digital_address')
+            ->addColumn('postal_address')
+            ->addColumn('first_language')
+            ->addColumn('previous_school')
             ->addColumn('created_at_formatted', fn (Addmission $model) => Carbon::parse($model->created_at)->format('d/m/Y H:i:s'))
             ->addColumn('updated_at_formatted', fn (Addmission $model) => Carbon::parse($model->updated_at)->format('d/m/Y H:i:s'));
     }
@@ -96,7 +110,7 @@ final class AddmissionTable extends PowerGridComponent
     |
     */
 
-     /**
+    /**
      * PowerGrid Columns.
      *
      * @return array<int, Column>
@@ -104,21 +118,56 @@ final class AddmissionTable extends PowerGridComponent
     public function columns(): array
     {
         return [
-            Column::make('ID', 'id')
-                ->makeInputRange(),
+            Column::make('ID', 'id'),
+
+            Column::make('ADDMISSION NUMBER', 'addmission_number')
+                ->sortable()
+                ->searchable(),
+            Column::make('LAST NAME', 'first_name')
+                ->sortable()
+                ->searchable(),
+
+            Column::make('SURNAME', 'surname')
+                ->sortable()
+                ->searchable(),
+
+            Column::make('OTHER NAME', 'other_name')
+                ->sortable()
+                ->searchable(),
+
+            Column::make('GENDER', 'gender')
+                ->sortable()
+                ->searchable(),
+
+            Column::make('BIRTHDATE', 'birthdate_formatted', 'birthdate')
+                ->searchable()
+                ->sortable(),
+
+            Column::make('BIRTHPLACE', 'birthplace')
+                ->sortable()
+                ->searchable(),
+
+            Column::make('RELIGION', 'religion')
+                ->sortable()
+                ->searchable(),
+
+            Column::make('NATIONALITY', 'nationality')
+                ->sortable()
+                ->searchable(),
+
+            Column::make('FIRST LANGUAGE', 'first_language')
+                ->sortable()
+                ->searchable(),
+
+            Column::make('PREVIOUS SCHOOL', 'previous_school')
+                ->sortable()
+                ->searchable(),
 
             Column::make('CREATED AT', 'created_at_formatted', 'created_at')
                 ->searchable()
-                ->sortable()
-                ->makeInputDatePicker(),
+                ->sortable(),
 
-            Column::make('UPDATED AT', 'updated_at_formatted', 'updated_at')
-                ->searchable()
-                ->sortable()
-                ->makeInputDatePicker(),
-
-        ]
-;
+        ];
     }
 
     /*
@@ -129,7 +178,7 @@ final class AddmissionTable extends PowerGridComponent
     |
     */
 
-     /**
+    /**
      * PowerGrid Addmission Action Buttons.
      *
      * @return array<int, Button>
@@ -159,22 +208,26 @@ final class AddmissionTable extends PowerGridComponent
     |
     */
 
-     /**
+    /**
      * PowerGrid Addmission Action Rules.
      *
      * @return array<int, RuleActions>
      */
 
-    /*
+
     public function actionRules(): array
     {
-       return [
+        return [
 
-           //Hide button edit for ID 1
-            Rule::button('edit')
-                ->when(fn($addmission) => $addmission->id === 1)
-                ->hide(),
+            //Hide button edit for ID 1
+            // Rule::button('edit')
+            //     ->when(fn($addmission) => $addmission->id === 1)
+            //     ->hide(),
+
+
+            Rule::rows()
+                ->when(fn ($addmission) => $addmission->status === 'submit')
+                ->setAttribute('class', 'bg-yellow-50 hover:bg-yellow-100')
         ];
     }
-    */
 }
