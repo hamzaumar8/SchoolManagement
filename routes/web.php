@@ -1,7 +1,7 @@
 <?php
 
 use App\Http\Controllers\AddmissionController;
-use App\Http\Controllers\AddmissionGenerateController;
+use App\Http\Controllers\Admin\VoucherController as AdminVoucherController;
 use App\Http\Controllers\StaffController;
 use App\Http\Controllers\StudentController;
 use App\Http\Controllers\Voucher\VoucherController;
@@ -36,14 +36,13 @@ Route::middleware(['auth'])->group(function () {
         Route::resource('students', StudentController::class);
         Route::resource('staffs', StaffController::class);
         Route::resource('addmissions', AddmissionController::class);
-        Route::resource('addmissiongenerate', AddmissionGenerateController::class);
+        Route::resource('addmission-vouchers', AdminVoucherController::class);
     });
 });
 
 // Voucher Routes
 Route::get('voucher/auth', [VoucherController::class, 'create'])->name('voucher.auth');
 Route::post('voucher/auth', [VoucherController::class, 'store']);
-
 
 Route::middleware(['auth-voucher'])->group(function () {
     Route::group(['prefix' => 'voucher'], function () {

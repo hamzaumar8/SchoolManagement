@@ -18,7 +18,7 @@
                         <x-alert-success>{{Session::get('message')}}</x-alert-success>
                         @endif
 
-                        <livewire:admin.addmissiongenerate.create />
+                        <livewire:admin.voucher.create />
                     </div>
                 </div>
             </div>

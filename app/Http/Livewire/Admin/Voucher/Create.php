@@ -1,13 +1,13 @@
 <?php
 
-namespace App\Http\Livewire\Admin\Addmissiongenerate;
+namespace App\Http\Livewire\Admin\Voucher;
 
-use App\Models\AddmissionGenerate;
-use Carbon\Carbon;
+use App\Models\Voucher;
 use Livewire\Component;
 
 class Create extends Component
 {
+
     public $name, $phone, $campus;
 
     protected function rules()
@@ -22,7 +22,7 @@ class Create extends Component
     public function generate()
     {
         $this->validate();
-        $addmissionGenerate = AddmissionGenerate::create([
+        $voucher = Voucher::create([
             'name' => $this->name,
             'phone' => $this->phone,
             'campus' => $this->campus,
@@ -30,10 +30,11 @@ class Create extends Component
 
         session()->flash('message', 'Addimssion Voucher was successfull Generated!');
 
-        return redirect()->route('addmissiongenerate.show', $addmissionGenerate);
+        return redirect()->route('addmission-vouchers.show', $voucher);
     }
+
     public function render()
     {
-        return view('livewire.admin.addmissiongenerate.create');
+        return view('livewire.admin.voucher.create');
     }
 }

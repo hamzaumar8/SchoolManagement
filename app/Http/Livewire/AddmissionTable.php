@@ -251,8 +251,11 @@ final class AddmissionTable extends PowerGridComponent
 
             Button::make('destroy', 'Delete')
                 ->class('px-4 py-2 bg-red-500 border border-transparent rounded-md font-semibold text-xs text-white uppercase  cursor-pointer')
-                ->route('addmissions.destroy', ['addmission' => 'id'])
-                ->method('delete')
+                ->openModal('admin.addmissions.delete', [
+                    'addmissionId'                  => 'id',
+                    'confirmationTitle'       => 'Delete Addmission',
+                    'confirmationDescription' => 'Are you sure you want to delete this addmission?',
+                ]),
         ];
     }
 

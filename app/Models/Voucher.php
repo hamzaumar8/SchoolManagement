@@ -7,7 +7,7 @@ use Illuminate\Support\Str;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class AddmissionGenerate extends Model
+class Voucher extends Model
 {
     use HasFactory;
 
@@ -21,7 +21,7 @@ class AddmissionGenerate extends Model
     public static function booted()
     {
         static::creating(function ($model) {
-            $model->addmission_number = Helper::ADMGenerator(new AddmissionGenerate, 'addmission_number', 'ADM');
+            $model->addmission_number = Helper::ADMGenerator(new Voucher, 'addmission_number', 'ADM');
             $model->uuid = Str::uuid();
             $model->token = strtoupper(Str::random(10));
         });

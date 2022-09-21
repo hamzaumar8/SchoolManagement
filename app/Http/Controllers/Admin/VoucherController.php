@@ -1,11 +1,12 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Admin;
 
-use App\Models\AddmissionGenerate;
+use App\Http\Controllers\Controller;
+use App\Models\Voucher;
 use Illuminate\Http\Request;
 
-class AddmissionGenerateController extends Controller
+class VoucherController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -14,7 +15,7 @@ class AddmissionGenerateController extends Controller
      */
     public function index()
     {
-        return view('admin.addmissiongenerate.index');
+        return view('admin.voucher.index');
     }
 
     /**
@@ -24,7 +25,7 @@ class AddmissionGenerateController extends Controller
      */
     public function create()
     {
-        return view('admin.addmissiongenerate.create');
+        return view('admin.voucher.create');
     }
 
     /**
@@ -41,22 +42,22 @@ class AddmissionGenerateController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\AddmissionGenerate  $addmissionGenerate
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
     public function show($id)
     {
-        $addmissionGenerate = AddmissionGenerate::findOrFail($id);
-        return view('admin.addmissiongenerate.show', compact('addmissionGenerate'));
+        $voucher = Voucher::findOrFail($id);
+        return view('admin.voucher.show', compact('voucher'));
     }
 
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\AddmissionGenerate  $addmissionGenerate
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit(AddmissionGenerate $addmissionGenerate)
+    public function edit($id)
     {
         //
     }
@@ -65,10 +66,10 @@ class AddmissionGenerateController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\AddmissionGenerate  $addmissionGenerate
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, AddmissionGenerate $addmissionGenerate)
+    public function update(Request $request, $id)
     {
         //
     }
@@ -76,10 +77,10 @@ class AddmissionGenerateController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\AddmissionGenerate  $addmissionGenerate
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy(AddmissionGenerate $addmissionGenerate)
+    public function destroy($id)
     {
         //
     }

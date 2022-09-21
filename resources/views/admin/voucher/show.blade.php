@@ -25,9 +25,9 @@
                                 <tbody>
                                     <tr>
                                         <th width="20%" class="text-left font-bold">Name:</th>
-                                        <td width="40%">{{$addmissionGenerate->name}}</td>
+                                        <td width="40%">{{$voucher->name}}</td>
                                         <th width="15%" class="text-left font-bold">Phone:</th>
-                                        <td width="25%">{{$addmissionGenerate->phone}}</td>
+                                        <td width="25%">{{$voucher->phone}}</td>
                                     </tr>
                                 </tbody>
                             </table>
@@ -36,11 +36,11 @@
                                     <tr>
                                         <th width="20%" class="text-left font-bold">Campus:</th>
                                         <td width="40%">
-                                            {{$addmissionGenerate->campus === "north" ? "North (Annex)" : "South
+                                            {{$voucher->campus === "north" ? "North (Annex)" : "South
                                             (Main)"}}
                                         </td>
                                         <th width="15%" class="text-left font-bold">Date:</th>
-                                        <td width="25%">{{$addmissionGenerate->created_at->format('d-M-Y g:i:s A')}}
+                                        <td width="25%">{{$voucher->created_at->format('d-M-Y g:i:s A')}}
                                         </td>
                                     </tr>
                                 </tbody>
@@ -52,9 +52,9 @@
                                 <tbody>
                                     <tr>
                                         <th width="20%" class="text-left font-bold">Addmission Number:</th>
-                                        <td width="40%">{{$addmissionGenerate->addmission_number}}</td>
+                                        <td width="40%">{{$voucher->addmission_number}}</td>
                                         <th width="15%" class="text-left font-bold">Token:</th>
-                                        <td width="25%">{{$addmissionGenerate->token}}</td>
+                                        <td width="25%">{{$voucher->token}}</td>
                                     </tr>
                                 </tbody>
                             </table>

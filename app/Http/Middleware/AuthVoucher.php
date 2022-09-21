@@ -2,7 +2,7 @@
 
 namespace App\Http\Middleware;
 
-use App\Models\AddmissionGenerate;
+use App\Models\Voucher;
 use Closure;
 use Illuminate\Http\Request;
 
@@ -22,7 +22,7 @@ class AuthVoucher
             $addmission_number = session()->get('VoucherUser')['addmission_number'];
             $token = session()->get('VoucherUser')['token'];
 
-            $user = AddmissionGenerate::where('addmission_number', $addmission_number)->orWhere('token', $token)->first();
+            $user = Voucher::where('addmission_number', $addmission_number)->orWhere('token', $token)->first();
 
             if ($user) {
                 return $next($request);

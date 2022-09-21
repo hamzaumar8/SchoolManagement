@@ -5,7 +5,7 @@ namespace App\Http\Controllers\Voucher;
 use Session;
 use App\Http\Controllers\Controller;
 use App\Models\Addmission;
-use App\Models\AddmissionGenerate;
+use App\Models\Voucher;
 use Illuminate\Validation\ValidationException;
 use Illuminate\Http\Request;
 
@@ -42,7 +42,7 @@ class VoucherController extends Controller
             'token' => ['required', 'string'],
         ]);
 
-        $user = AddmissionGenerate::where('addmission_number', $request->addmission_number)->Where('token', $request->token)->first();
+        $user = Voucher::where('addmission_number', $request->addmission_number)->Where('token', $request->token)->first();
 
         if (!$user) {
             throw ValidationException::withMessages([

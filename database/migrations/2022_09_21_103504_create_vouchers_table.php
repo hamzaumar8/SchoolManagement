@@ -13,7 +13,7 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('addmission_generates', function (Blueprint $table) {
+        Schema::create('vouchers', function (Blueprint $table) {
             $table->id();
             $table->uuid('uuid');
             $table->string('addmission_number')->unique();
@@ -32,6 +32,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('addmission_generates');
+        Schema::dropIfExists('vouchers');
     }
 };
