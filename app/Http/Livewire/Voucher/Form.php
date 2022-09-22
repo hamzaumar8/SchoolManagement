@@ -495,6 +495,7 @@ class Form extends Component
             }
 
             $addmission_number = session()->get('VoucherUser')['addmission_number'];
+            $campus = session()->get('VoucherUser')['campus'];
             $addmission = Addmission::where('addmission_number', $addmission_number)->first();
             if ($addmission) {
                 $addmission = Addmission::find($addmission->id);
@@ -574,6 +575,7 @@ class Form extends Component
                 $addmission->work_habits = $this->work_habits;
 
                 // Status
+                $addmission->campus = $campus;
                 $addmission->status = 'submit';
                 $addmission->save();
             } else {
@@ -655,6 +657,7 @@ class Form extends Component
                     'work_habits' => $this->work_habits,
 
                     // status
+                    'campus' => $campus,
                     'status' => 'submit'
                 ]);
             }
