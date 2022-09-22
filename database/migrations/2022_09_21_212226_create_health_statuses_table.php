@@ -13,17 +13,13 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('parents', function (Blueprint $table) {
+        Schema::create('health_statuses', function (Blueprint $table) {
             $table->id();
             $table->foreignId('student_id')->constrained()->onDelete('cascade');
-            $table->string('full_name');
-            $table->string('email');
-            $table->string('phone_number');
-            $table->string('occupation')->nullable();
-            $table->string('home_digital_address')->nullable();
-            $table->string('postal_address')->nullable();
-            $table->enum('relation', ['mother', 'father']);
-            $table->text('picture')->nullable();
+            $table->enum('chronic_health_problem', ['yes', 'no'])->nullable();
+            $table->text('chp_report')->nullable();
+            $table->enum('diagnose_physical_challenge', ['yes', 'no'])->nullable();
+            $table->text('dpc_report')->nullable();
             $table->timestamps();
         });
     }
@@ -35,6 +31,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('parents');
+        Schema::dropIfExists('health_statuses');
     }
 };

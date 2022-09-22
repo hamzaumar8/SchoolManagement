@@ -31,7 +31,8 @@ return new class extends Migration
             $table->unsignedBigInteger('class_id')->nullable();
             $table->enum('class_type', ['A', 'B', 'C', 'D', 'E', 'F'])->nullable();
             $table->enum('term', [1, 2, 3])->nullable();
-            $table->enum('accomodation_type', ['day', 'boarding'])->nullable();
+            $table->enum('accomodation_type', ['day', 'boarding'])->default('day');
+            $table->enum('campus', ['north', 'south'])->nullable();
             $table->date('date_admitted')->nullable();
             $table->text('passport_picture')->nullable();
 

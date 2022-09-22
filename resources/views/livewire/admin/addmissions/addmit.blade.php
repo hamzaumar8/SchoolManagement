@@ -26,6 +26,15 @@
                         :async-data="route('api.classes.index')" option-label="name" class="uppercase" option-value="id"
                         wire:model.defer="class_approved" required />
                 </div>
+
+                <div class="mb-4">
+                    <x-native-select label="Term Addmitted" placeholder="Select a Term" :options=" [
+                    ['value' => '1', 'name' => '1'],
+                    ['value' => '2', 'name' => '2'],
+                    ['value' => '3', 'name' => '3'],
+                    ]" option-label="name" option-value="value" class="uppercase" wire:model.defer="term_addmitted"
+                        required />
+                </div>
             </div>
 
             <div class="space-x-2 flex justify-end pt-4">

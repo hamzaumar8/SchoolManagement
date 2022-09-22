@@ -14,6 +14,7 @@ class Addmit extends ModalComponent
     public $addmissionId;
     public $date_entrance_exam;
     public $class_approved;
+    public $term_addmitted;
 
     public static function modalMaxWidth(): string
     {

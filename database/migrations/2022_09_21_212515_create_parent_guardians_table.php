@@ -13,7 +13,7 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('guardians', function (Blueprint $table) {
+        Schema::create('parent_guardians', function (Blueprint $table) {
             $table->id();
             $table->foreignId('student_id')->constrained()->onDelete('cascade');
             $table->string('full_name');
@@ -21,9 +21,7 @@ return new class extends Migration
             $table->string('phone_number');
             $table->string('occupation')->nullable();
             $table->string('home_digital_address')->nullable();
-            $table->string('postal_address')->nullable();
             $table->enum('relation', ['uncle', 'aunty', 'sibling', 'guardian', 'other']);
-            $table->text('picture')->nullable();
             $table->timestamps();
         });
     }
@@ -35,6 +33,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('guardians');
+        Schema::dropIfExists('parent_guardians');
     }
 };

@@ -285,6 +285,10 @@ final class AddmissionTable extends PowerGridComponent
                 ->when(fn ($addmission) => $addmission->status === 'addmitted')
                 ->hide(),
 
+            Rule::button('destroy')
+                ->when(fn ($addmission) => $addmission->status === 'addmitted')
+                ->hide(),
+
             Rule::rows()
                 ->when(fn ($addmission) => $addmission->status === 'submit')
                 ->setAttribute('class', 'bg-yellow-50 hover:bg-yellow-100')
