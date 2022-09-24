@@ -85,7 +85,7 @@ class Addmit extends ModalComponent
                 $prfx .= 'A';
             }
 
-            $index_number = $prfx . '/' . $currYear . '/' . str_pad($std + 1, 5, '0', STR_PAD_LEFT);
+            $index_number = $prfx . '/' . $currYear . '/' . str_pad($std + 1, 4, '0', STR_PAD_LEFT);
 
             // save student information
             $student = Student::make([

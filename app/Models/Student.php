@@ -53,6 +53,6 @@ class Student extends Model
 
     public function emergencycontact()
     {
-        return $this->hasMany(ParentGuardian::class);
+        return $this->hasMany(EmergencyContact::class);
     }
 }

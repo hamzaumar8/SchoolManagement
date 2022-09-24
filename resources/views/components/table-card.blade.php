@@ -39,6 +39,12 @@
 
                 {{ $slot }}
             </div>
+
+            @isset($footer)
+            <div class="flex px-6">
+                {{ $footer }}
+            </div>
+            @endisset
         </div>
     </div>
 </div>
