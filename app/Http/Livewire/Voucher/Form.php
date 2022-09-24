@@ -88,9 +88,9 @@ class Form extends Component
 
             // Health Status
             $this->chronic_health_problem = $addmission->chronic_health_problem;
-            $this->chp_report = $addmission->chp_report;
+            // $this->chp_report = $addmission->chp_report;
             $this->diagnose_physical_challenge = $addmission->diagnose_physical_challenge;
-            $this->dpc_report = $addmission->dpc_report;
+            // $this->dpc_report = $addmission->dpc_report;
 
             // disciplinary report
             $this->disciplinary_problem = $addmission->disciplinary_problem;
@@ -162,9 +162,9 @@ class Form extends Component
 
             // Health Status
             'chronic_health_problem' => 'required',
-            'chp_report' => 'nullable|mimes:webp,jpeg,jpg,png,pdf',
+            // 'chp_report' => 'nullable|mimes:webp,jpeg,jpg,png,pdf',
             'diagnose_physical_challenge' => 'required',
-            'dpc_report' => 'nullable|mimes:webp,jpeg,jpg,png,pdf',
+            // 'dpc_report' => 'nullable|mimes:webp,jpeg,jpg,png,pdf',
 
             // significant information
             'athletics1' => 'required|string|max:255',
@@ -239,9 +239,9 @@ class Form extends Component
 
             // Health Status
             'chronic_health_problem' => 'nullable',
-            'chp_report' => 'nullable',
+            // 'chp_report' => 'nullable',
             'diagnose_physical_challenge' => 'nullable',
-            'dpc_report' => 'nullable',
+            // 'dpc_report' => 'nullable',
 
             // significant information
             'athletics1' => 'nullable|string|max:255',
@@ -332,9 +332,9 @@ class Form extends Component
 
                 // Health Status
                 $addmission->chronic_health_problem = $this->chronic_health_problem;
-                $addmission->chp_report = $this->chp_report;
+                // $addmission->chp_report = $this->chp_report;
                 $addmission->diagnose_physical_challenge = $this->diagnose_physical_challenge;
-                $addmission->dpc_report = $this->dpc_report;
+                // $addmission->dpc_report = $this->dpc_report;
 
                 // disciplinary report
                 $addmission->disciplinary_problem = $this->disciplinary_problem;
@@ -411,9 +411,9 @@ class Form extends Component
 
                     // Health Status
                     'chronic_health_problem' => $this->chronic_health_problem,
-                    'chp_report' => $this->chp_report,
+                    // 'chp_report' => $this->chp_report,
                     'diagnose_physical_challenge' => $this->diagnose_physical_challenge,
-                    'dpc_report' => $this->dpc_report,
+                    // 'dpc_report' => $this->dpc_report,
 
                     // disciplinary report
                     'disciplinary_problem' => $this->disciplinary_problem,
@@ -464,16 +464,16 @@ class Form extends Component
                     'registered_ward_explain' => 'nullable|string|max:255',
                 ]);
             }
-            if ($this->chronic_health_problem == 'yes') {
-                $this->validate([
-                    'chp_report' => 'required|mimes:webp,jpeg,jpg,png,pdf',
-                ]);
-            }
-            if ($this->diagnose_physical_challenge == 'yes') {
-                $this->validate([
-                    'dpc_report' => 'required|mimes:webp,jpeg,jpg,png,pdf',
-                ]);
-            }
+            // if ($this->chronic_health_problem == 'yes') {
+            //     $this->validate([
+            //         'chp_report' => 'required|mimes:webp,jpeg,jpg,png,pdf',
+            //     ]);
+            // }
+            // if ($this->diagnose_physical_challenge == 'yes') {
+            //     $this->validate([
+            //         'dpc_report' => 'required|mimes:webp,jpeg,jpg,png,pdf',
+            //     ]);
+            // }
             if (!$this->saved_passport_picture) {
                 $this->validate([
                     'passport_picture' => 'required|mimes:webp,jpeg,jpg,png,pdf',
@@ -551,9 +551,9 @@ class Form extends Component
 
                 // Health Status
                 $addmission->chronic_health_problem = $this->chronic_health_problem;
-                $addmission->chp_report = $this->chp_report;
+                // $addmission->chp_report = $this->chp_report;
                 $addmission->diagnose_physical_challenge = $this->diagnose_physical_challenge;
-                $addmission->dpc_report = $this->dpc_report;
+                // $addmission->dpc_report = $this->dpc_report;
 
                 // disciplinary report
                 $addmission->disciplinary_problem = $this->disciplinary_problem;
@@ -633,9 +633,9 @@ class Form extends Component
 
                     // Health Status
                     'chronic_health_problem' => $this->chronic_health_problem,
-                    'chp_report' => $this->chp_report,
+                    // 'chp_report' => $this->chp_report,
                     'diagnose_physical_challenge' => $this->diagnose_physical_challenge,
-                    'dpc_report' => $this->dpc_report,
+                    // 'dpc_report' => $this->dpc_report,
 
                     // disciplinary report
                     'disciplinary_problem' => $this->disciplinary_problem,

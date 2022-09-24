@@ -171,12 +171,12 @@ class Addmit extends ModalComponent
                 $contact2->save();
             }
 
-            session()->flash('success', 'Property was assigned to owners successfully');
+            session()->flash('success', 'Student was addmitted successfully');
 
             if ($this->routeId === 'show') {
-                return redirect()->route('property.show', $this->addmissionId);
+                return redirect()->route('addmissions.show', $this->addmissionId);
             }
-            return redirect()->route('addmissions.index');
+            return redirect()->route('students.index');
 
             // $this->closeModalWithEvents([
             //     'pg:eventRefresh-default',

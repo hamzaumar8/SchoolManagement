@@ -268,8 +268,7 @@
                     ['value' => 'yes', 'name' => 'Yes']]" option-label="name" option-value="value" class="uppercase"
                     wire:model.defer="chronic_health_problem" required />
 
-                <x-input label="Provide a doctors report (if yes)" placeholder="Enter Personnel Number"
-                    class="uppercase" wire:model.defer="chp_report" type="file" />
+                <!-- <x-input label="Provide a doctors report (if yes)" placeholder="Enter Personnel Number" class="uppercase" wire:model.defer="chp_report" type="file" /> -->
 
                 <x-native-select label="Has the child been diagnosed of having anu physical challenges?"
                     placeholder="Select one" :options=" [
@@ -277,8 +276,7 @@
                     ['value' => 'yes', 'name' => 'Yes']]" option-label="name" option-value="value" class="uppercase"
                     wire:model.defer="diagnose_physical_challenge" required />
 
-                <x-input label="Provide a doctors report (if yes)" placeholder="Enter Unit / Section / Department"
-                    class="uppercase" wire:model.defer="dpc_report" type="file" />
+                <!-- <x-input label="Provide a doctors report (if yes)" placeholder="Enter Unit / Section / Department" class="uppercase" wire:model.defer="dpc_report" type="file" /> -->
 
             </div>
         </div>
