@@ -1,9 +1,10 @@
 <?php
 
-use App\Http\Controllers\AddmissionController;
+use App\Http\Controllers\Admin\AddmissionController;
+use App\Http\Controllers\Admin\DashboardController;
+use App\Http\Controllers\Admin\StaffController;
+use App\Http\Controllers\Admin\StudentController;
 use App\Http\Controllers\Admin\VoucherController as AdminVoucherController;
-use App\Http\Controllers\StaffController;
-use App\Http\Controllers\StudentController;
 use App\Http\Controllers\Voucher\VoucherController;
 use Illuminate\Support\Facades\Route;
 
@@ -21,9 +22,7 @@ use Illuminate\Support\Facades\Route;
 
 
 Route::middleware(['auth'])->group(function () {
-    Route::get('/dashboard', function () {
-        return view('dashboard');
-    })->name('dashboard');
+    Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
 
     Route::get('/', function () {
         return redirect()->route('dashboard');

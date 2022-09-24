@@ -116,9 +116,5 @@
             </x-card>
             @endforeach
         </div>
-
-
-
-
     </x-table-card>
 </x-app-layout>

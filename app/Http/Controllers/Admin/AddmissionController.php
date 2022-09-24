@@ -1,12 +1,12 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Admin;
 
-use App\Models\Staff;
-use App\Http\Requests\StoreStaffRequest;
-use App\Http\Requests\UpdateStaffRequest;
+use App\Http\Controllers\Controller;
+use App\Models\Addmission;
+use Illuminate\Http\Request;
 
-class StaffController extends Controller
+class AddmissionController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -15,7 +15,7 @@ class StaffController extends Controller
      */
     public function index()
     {
-        return view('admin.staffs.index');
+        return view('admin.addmissions.index');
     }
 
     /**
@@ -25,16 +25,16 @@ class StaffController extends Controller
      */
     public function create()
     {
-        //
+        return view('admin.addmissions.create');
     }
 
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \App\Http\Requests\StoreStaffRequest  $request
+     * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(StoreStaffRequest $request)
+    public function store(Request $request)
     {
         //
     }
@@ -42,21 +42,22 @@ class StaffController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\Staff  $staff
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show(Staff $staff)
+    public function show($id)
     {
-        //
+        $addmission = Addmission::findOrFail($id);
+        return view('admin.addmissions.show', compact('addmission'));
     }
 
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\Staff  $staff
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit(Staff $staff)
+    public function edit($id)
     {
         //
     }
@@ -64,11 +65,11 @@ class StaffController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \App\Http\Requests\UpdateStaffRequest  $request
-     * @param  \App\Models\Staff  $staff
+     * @param  \Illuminate\Http\Request  $request
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(UpdateStaffRequest $request, Staff $staff)
+    public function update(Request $request, $id)
     {
         //
     }
@@ -76,10 +77,10 @@ class StaffController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\Staff  $staff
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Staff $staff)
+    public function destroy($id)
     {
         //
     }

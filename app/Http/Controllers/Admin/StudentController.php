@@ -1,10 +1,12 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Admin;
 
+use App\Http\Controllers\Controller;
+use App\Models\Student;
 use Illuminate\Http\Request;
 
-class AddmissionController extends Controller
+class StudentController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -13,7 +15,7 @@ class AddmissionController extends Controller
      */
     public function index()
     {
-        return view('admin.addmissions.index');
+        return view('admin.students.index');
     }
 
     /**
@@ -23,7 +25,7 @@ class AddmissionController extends Controller
      */
     public function create()
     {
-        return view('admin.addmissions.create');
+        return view('admin.students.create');
     }
 
     /**
@@ -45,7 +47,8 @@ class AddmissionController extends Controller
      */
     public function show($id)
     {
-        //
+        $student = Student::findOrFail($id);
+        return view('admin.students.show', compact('student'));
     }
 
     /**
@@ -56,7 +59,8 @@ class AddmissionController extends Controller
      */
     public function edit($id)
     {
-        //
+        $student = Student::findOrFail($id);
+        return view('admin.students.show', compact('student'));
     }
 
     /**

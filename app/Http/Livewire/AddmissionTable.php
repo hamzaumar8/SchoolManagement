@@ -247,6 +247,10 @@ final class AddmissionTable extends PowerGridComponent
                     'addmissionId' => 'id',
                 ]),
 
+            Button::make('view', 'View')
+                ->class('px-4 py-2 bg-amber-500 border border-transparent rounded-md font-semibold text-xs text-white uppercase  cursor-pointer')
+                ->route('addmissions.show', ['addmission' => 'id']),
+
             Button::make('edit', 'Edit')
                 ->class('px-4 py-2 bg-indigo-500 border border-transparent rounded-md font-semibold text-xs text-white uppercase  cursor-pointer')
                 ->route('addmissions.edit', ['addmission' => 'id']),

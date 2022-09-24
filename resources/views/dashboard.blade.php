@@ -15,16 +15,16 @@
                             <div class="flex-none w-2/3 max-w-full px-3">
                                 <div>
                                     <p class="mb-0 font-sans font-semibold leading-normal text-sm">Students</p>
-                                    <h5 class="mb-0 font-bold">
-                                        $53,000
-                                        <span
-                                            class="leading-normal text-sm font-weight-bolder text-lime-500">+55%</span>
+                                    <h5 class="mb-0 font-bold text-xl">
+                                        {{$students}}
+                                        <!-- <span
+                                            class="leading-normal text-sm font-weight-bolder text-lime-500">+55%</span> -->
                                     </h5>
                                 </div>
                             </div>
                             <div class="px-3 text-right basis-1/3">
-                                <div class="inline-block w-12 h-12 text-center rounded-lg bg-[#2c3690]">
-                                    <i class="ni leading-none ni-money-coins text-lg relative top-3.5 text-white"></i>
+                                <div class="inline-block w-12 h-12 text-center rounded-lg bg-amber-500">
+                                    <i class="fa fa-users text-lg relative top-3.5 text-white"></i>
                                 </div>
                             </div>
                         </div>
@@ -43,7 +43,7 @@
                                     <p class="mb-0 font-sans font-semibold leading-normal text-sm">Today's Users</p>
                                     <h5 class="mb-0 font-bold">
                                         2,300
-                                        <span class="leading-normal text-sm font-weight-bolder text-lime-500">+3%</span>
+                                        <!-- <span class="leading-normal text-sm font-weight-bolder text-lime-500">+3%</span> -->
                                     </h5>
                                 </div>
                             </div>
@@ -68,7 +68,7 @@
                                     <p class="mb-0 font-sans font-semibold leading-normal text-sm">New Clients</p>
                                     <h5 class="mb-0 font-bold">
                                         +3,462
-                                        <span class="leading-normal text-red-600 text-sm font-weight-bolder">-2%</span>
+                                        <!-- <span class="leading-normal text-red-600 text-sm font-weight-bolder">-2%</span> -->
                                     </h5>
                                 </div>
                             </div>
@@ -93,7 +93,8 @@
                                     <p class="mb-0 font-sans font-semibold leading-normal text-sm">Sales</p>
                                     <h5 class="mb-0 font-bold">
                                         $103,430
-                                        <span class="leading-normal text-sm font-weight-bolder text-lime-500">+5%</span>
+                                        <!-- <span class="leading-normal text-sm font-weight-bolder text-lime-500">+5%</span>
+                                    -->
                                     </h5>
                                 </div>
                             </div>
@@ -107,8 +108,5 @@
                 </div>
             </div>
         </div>
-
-
-
     </div>
 </x-app-layout>
