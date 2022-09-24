@@ -5,18 +5,24 @@
         <span>X</span>
     </div> -->
     <div class="p-2">
-        <form wire:submt.prevent="addmit" method="POST" class="w-full">
+        <form wire:submit.prevent="addmit">
 
             <div>
-                <div class="mb-4">
-                    <label>Addmission Number</label>
+                <div class="grid grid-cols-2 gap-5">
+                    <label>Addmission Number:</label>
                     <div class="font-bold">{{$addmission->addmission_number}}</div>
-                </div>
-                <div class="mb-4">
-                    <label>Date Received / Submitted</label>
+
+                    <label>Date Received / Submitted:</label>
                     <div class="font-bold">{{$addmission->created_at}}</div>
+
+                    <label>Campus:</label>
+                    <div class="font-bold capitalize">{{$addmission->campus}}</div>
+
+                    <label>Previous Class:</label>
+                    <div class="font-bold">{{$addmission->previous_class}}</div>
                 </div>
-                <div class="mb-4">
+
+                <div class="my-4">
                     <x-input label="DATE OF ENTRANCE EXAMS" placeholder="Date of Entrance Exams" type="date"
                         class="uppercase" required wire:model.defer="date_entrance_exam" />
                 </div>
@@ -25,6 +31,18 @@
                     <x-select label="Class Approved for addmission" placeholder="Select a class"
                         :async-data="route('api.classes.index')" option-label="name" class="uppercase" option-value="id"
                         wire:model.defer="class_approved" required />
+                </div>
+
+                <div class="mb-4">
+                    <x-native-select label="Class Type" placeholder="Select a clas type" :options=" [
+                    ['value' => 'A', 'name' => 'A'],
+                    ['value' => 'B', 'name' => 'B'],
+                    ['value' => 'C', 'name' => 'C'],
+                    ['value' => 'D', 'name' => 'D'],
+                    ['value' => 'E', 'name' => 'E'],
+                    ['value' => 'F', 'name' => 'F'],
+                    ]" option-label="name" option-value="value" class="uppercase" wire:model.defer="class_type"
+                        required />
                 </div>
 
                 <div class="mb-4">

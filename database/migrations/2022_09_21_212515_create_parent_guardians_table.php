@@ -21,7 +21,7 @@ return new class extends Migration
             $table->string('phone_number');
             $table->string('occupation')->nullable();
             $table->string('home_digital_address')->nullable();
-            $table->enum('relation', ['uncle', 'aunty', 'sibling', 'guardian', 'other']);
+            $table->enum('relation', ['father', 'mother', 'uncle', 'aunty', 'sibling', 'guardian', 'other']);
             $table->timestamps();
         });
     }

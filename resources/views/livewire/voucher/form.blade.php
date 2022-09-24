@@ -151,7 +151,7 @@
                 <x-input label="Father's Full Name" placeholder="Father's Name" class="uppercase"
                     wire:model.defer="father_name" required />
 
-                <x-input label="Father's Eamil" placeholder="Father's Eamil" class="uppercase"
+                <x-input label="Father's Eamil" placeholder="Father's Eamil" class="uppercase" type="email"
                     wire:model.defer="father_email" required />
 
                 <x-inputs.maskable label="Father's Phone Number"
@@ -168,7 +168,7 @@
                 <x-input label="Mother's Full Name" placeholder="Mother's Name" class="uppercase"
                     wire:model.defer="mother_name" required />
 
-                <x-input label="Mother's Eamil" placeholder="Mother's Eamil" class="uppercase"
+                <x-input label="Mother's Eamil" placeholder="Mother's Eamil" class="uppercase" type="email"
                     wire:model.defer="mother_email" required />
 
                 <x-inputs.maskable label="Mother's Phone Number"

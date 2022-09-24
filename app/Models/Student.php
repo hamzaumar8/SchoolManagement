@@ -11,33 +11,48 @@ class Student extends Model
     use HasFactory;
 
     protected $fillable = [
-        'last_name',
+        'addmission_number',
+        'index_number',
+        'first_name',
         'surname',
         'other_name',
         'gender',
         'birthdate',
-        'birthplace',
-        'religion',
-        'nationality',
-        'home_town',
-        'home_digital_address',
-        'postal_address',
-        'first_language',
-        'previous_school',
-        'email',
-        'class_id',
         'class_type',
-        'term',
-        'accomodation_type',
-        'phone',
-        'date_admitted',
-        'picture',
-        'hpa',
+        'campus',
     ];
+
+    // public static function booted()
+    // {
+    //     static::creating(function ($model) {
+
+    //         $model->index_number = 'PRT';
+    //     });
+    // }
 
 
     public function class(): BelongsTo
     {
         return $this->belongsTo(Classes::class);
+    }
+
+    public function addmission()
+    {
+        return $this->belongsTo(Addmission::class);
+    }
+
+    public function health()
+    {
+        return $this->hasOne(HealthStatus::class);
+    }
+
+    public function parentguardian()
+    {
+        return $this->hasMany(ParentGuardian::class);
+    }
+
+    public function emergencycontact()
+    {
+        return $this->hasMany(ParentGuardian::class);
     }
 }

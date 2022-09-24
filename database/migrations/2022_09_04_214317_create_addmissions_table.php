@@ -28,7 +28,7 @@ return new class extends Migration
             $table->string('first_language')->nullable();
             $table->string('previous_school')->nullable();
             $table->string('previous_class')->nullable();
-            $table->unsignedBigInteger('class_id')->nullable();
+            $table->string('class_approved')->nullable();
             $table->enum('class_type', ['A', 'B', 'C', 'D', 'E', 'F'])->nullable();
             $table->enum('term', [1, 2, 3])->nullable();
             $table->enum('accomodation_type', ['day', 'boarding'])->default('day');
@@ -98,7 +98,6 @@ return new class extends Migration
             $table->enum('friendliness', ['A', 'B', 'C'])->nullable();
             $table->enum('work_habits', ['A', 'B', 'C'])->nullable();
 
-            $table->foreign('class_id')->references('id')->on('classes')->onDelete('set null');
             $table->timestamps();
         });
     }

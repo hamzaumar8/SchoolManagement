@@ -3,3 +3,9 @@ Addmission Voucher
 
 
 -- Wire Ui alert on error Voucher Form
+
+-- take out the hospital reports out (base on what is determine)
+
+-- Addmission Form (Voucher)
+    may be change the dropdown (select) for nationality and previous class
+    

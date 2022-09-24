@@ -19,7 +19,7 @@ return new class extends Migration
             $table->string('index_number')->unique();
             $table->string('first_name');
             $table->string('surname');
-            $table->string('other_name');
+            $table->string('other_name')->nullable();
             $table->enum('gender', ['male', 'female']);
             $table->date('birthdate');
             $table->enum('class_type', ['A', 'B', 'C', 'D', 'E', 'F'])->nullable();

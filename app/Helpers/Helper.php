@@ -2,6 +2,7 @@
 
 namespace APP\Helpers;
 
+use App\Models\Student;
 use Carbon\Carbon;
 
 class Helper
@@ -10,8 +11,6 @@ class Helper
 
     public static function ADMGenerator($model, $trow, $prefix, $length = 6)
     {
-        // $startOfYear = Carbon::now()->startOfYear();
-        // $endOfYear = Carbon::now()->endOfYear();
         $currYear = Carbon::now()->year;
         $prefix = $prefix . $currYear;
         $data = $model::orderBy('id', 'desc')->first();
@@ -31,5 +30,21 @@ class Helper
             $zeros .= "0";
         }
         return $prefix . $zeros . $last_number;
+    }
+
+    public static function IndexNumberGenerator()
+    {
+
+        // $startOfYear = Carbon::now()->startOfYear();
+        // $endOfYear = Carbon::now()->endOfYear();
+        // $currYear = Carbon::now()->format('y');
+        // $std = Student::where('created_at', '>', $startOfYear)->where('created_at', '<', $endOfYear)->count();
+
+        // $prfx = 'UBS';
+        // if ($addmission->campus === 'north') {
+        //     $prfx .= 'A';
+        // }
+
+        // return $prfx . '/' . $currYear . '/' . str_pad($std + 1, 5, '0', STR_PAD_LEFT);
     }
 }

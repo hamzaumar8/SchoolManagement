@@ -451,34 +451,35 @@ class Form extends Component
     // Submit and save
     public function submit()
     {
-        // validate fields
-        $this->validate();
-        // validate the staff information
-        if ($this->parent_staff == 'staff') {
-            $this->validate([
-                'personnel_number' => 'required|string|max:10',
-                'unit_section_department' => 'required|string|max:255',
-                'registered_biological_ward' => 'required|string|max:255',
-                'registered_ward' => 'required|string|max:255',
-                'registered_ward_explain' => 'nullable|string|max:255',
-            ]);
-        }
-        if ($this->chronic_health_problem == 'yes') {
-            $this->validate([
-                'chp_report' => 'required|mimes:webp,jpeg,jpg,png,pdf',
-            ]);
-        }
-        if ($this->diagnose_physical_challenge == 'yes') {
-            $this->validate([
-                'dpc_report' => 'required|mimes:webp,jpeg,jpg,png,pdf',
-            ]);
-        }
-        if (!$this->saved_passport_picture) {
-            $this->validate([
-                'passport_picture' => 'required|mimes:webp,jpeg,jpg,png,pdf',
-            ]);
-        }
         try {
+            // validate fields
+            $this->validate();
+            // validate the staff information
+            if ($this->parent_staff == 'staff') {
+                $this->validate([
+                    'personnel_number' => 'required|string|max:10',
+                    'unit_section_department' => 'required|string|max:255',
+                    'registered_biological_ward' => 'required|string|max:255',
+                    'registered_ward' => 'required|string|max:255',
+                    'registered_ward_explain' => 'nullable|string|max:255',
+                ]);
+            }
+            if ($this->chronic_health_problem == 'yes') {
+                $this->validate([
+                    'chp_report' => 'required|mimes:webp,jpeg,jpg,png,pdf',
+                ]);
+            }
+            if ($this->diagnose_physical_challenge == 'yes') {
+                $this->validate([
+                    'dpc_report' => 'required|mimes:webp,jpeg,jpg,png,pdf',
+                ]);
+            }
+            if (!$this->saved_passport_picture) {
+                $this->validate([
+                    'passport_picture' => 'required|mimes:webp,jpeg,jpg,png,pdf',
+                ]);
+            }
+
 
             $passport_picture_name = $this->saved_passport_picture;
             if ($this->passport_picture) {
