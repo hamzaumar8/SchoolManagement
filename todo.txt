@@ -7,5 +7,7 @@ Addmission Voucher
 -- take out the hospital reports out (base on what is determine)
 
 -- Addmission Form (Voucher)
+    may be change the dropdown (select) for nationality and previous classission Form (Voucher)
+    may be change the dropdown (select) for nationality and previous classission Form (Voucher)
     may be change the dropdown (select) for nationality and previous class
     

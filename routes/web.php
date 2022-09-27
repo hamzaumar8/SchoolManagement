@@ -1,11 +1,13 @@
 <?php
 
 use App\Http\Controllers\Admin\AddmissionController;
+use App\Http\Controllers\Admin\ClassesController;
 use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\StaffController;
 use App\Http\Controllers\Admin\StudentController;
 use App\Http\Controllers\Admin\VoucherController as AdminVoucherController;
 use App\Http\Controllers\Voucher\VoucherController;
+use App\Models\Classes;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -36,6 +38,7 @@ Route::middleware(['auth'])->group(function () {
         Route::resource('staffs', StaffController::class);
         Route::resource('addmissions', AddmissionController::class);
         Route::resource('vouchers', AdminVoucherController::class);
+        Route::resource('classes', ClassesController::class);
     });
 });
 

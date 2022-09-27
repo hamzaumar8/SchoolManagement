@@ -17,8 +17,8 @@
                                     <p class="mb-0 font-sans font-semibold leading-normal text-sm">Students</p>
                                     <h5 class="mb-0 font-bold text-xl">
                                         {{$students}}
-                                        <!-- <span
-                                            class="leading-normal text-sm font-weight-bolder text-lime-500">+55%</span> -->
+                                        <span
+                                            class="leading-normal text-sm font-weight-bolder text-lime-500">+55%</span>
                                     </h5>
                                 </div>
                             </div>
