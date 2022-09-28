@@ -171,17 +171,21 @@ class Addmit extends ModalComponent
                 $contact2->save();
             }
 
-            session()->flash('success', 'Student was addmitted successfully');
+            // session()->flash('success', 'Student was addmitted successfully');
 
-            if ($this->routeId === 'show') {
-                return redirect()->route('addmissions.show', $this->addmissionId);
-            }
-            return redirect()->route('students.index');
+            // if ($this->routeId === 'show') {
+            //     return redirect()->route('addmissions.show', $this->addmissionId);
+            // }
+            // return redirect()->route('students.index');
 
-            // $this->closeModalWithEvents([
-            //     'pg:eventRefresh-default',
-            // ]);
+            $this->closeModalWithEvents([
+                'pg:eventRefresh-default',
+            ]);
 
+            $this->notification()->success(
+                'Success !!!',
+                'Student was addmitted successfully',
+            );
         } catch (Exception $e) {
             $message = $e->getMessage();
             $this->addError('Exception Message: ', $message);
