@@ -31,6 +31,18 @@ class Student extends Model
     // }
 
 
+    public function fullname()
+    {
+        // TODO: Ask for the full name other man 
+        $fullname =
+            $this->first_name . ' ' . $this->surname;
+        if ($this->other_name) {
+            $fullname =
+                $this->first_name . ' ' . $this->other_name . ' ' . $this->surname;
+        }
+        return $fullname;
+    }
+
     public function class(): BelongsTo
     {
         return $this->belongsTo(Classes::class);

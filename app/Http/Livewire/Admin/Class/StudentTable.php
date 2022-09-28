@@ -2,17 +2,18 @@
 
 namespace App\Http\Livewire\Admin\Class;
 
-use App\Models\Classes;
+use App\Models\Student;
 use Illuminate\Support\Carbon;
 use Illuminate\Database\Eloquent\Builder;
 use PowerComponents\LivewirePowerGrid\Rules\{Rule, RuleActions};
 use PowerComponents\LivewirePowerGrid\Traits\ActionButton;
 use PowerComponents\LivewirePowerGrid\{Button, Column, Exportable, Footer, Header, PowerGrid, PowerGridComponent, PowerGridEloquent};
 
-final class Table extends PowerGridComponent
+final class StudentTable extends PowerGridComponent
 {
     use ActionButton;
 
+    public $classId;
     /*
     |--------------------------------------------------------------------------
     |  Features Setup
@@ -29,9 +30,9 @@ final class Table extends PowerGridComponent
                 ->striped()
                 ->type(Exportable::TYPE_XLS, Exportable::TYPE_CSV),
             Header::make()->showSearchInput(),
-            // Footer::make()
-            //     ->showPerPage()
-            //     ->showRecordCount(),
+            Footer::make()
+                ->showPerPage()
+                ->showRecordCount(),
         ];
     }
 
@@ -46,11 +47,11 @@ final class Table extends PowerGridComponent
     /**
      * PowerGrid datasource.
      *
-     * @return Builder<\App\Models\Classes>
+     * @return Builder<\App\Models\Student>
      */
     public function datasource(): Builder
     {
-        return Classes::query();
+        return Student::query()->where('class_id', $this->classId);
     }
 
     /*
@@ -68,9 +69,7 @@ final class Table extends PowerGridComponent
      */
     public function relationSearch(): array
     {
-        return [
-            'students'
-        ];
+        return [];
     }
 
     /*
@@ -85,10 +84,19 @@ final class Table extends PowerGridComponent
     {
         return PowerGrid::eloquent()
             ->addColumn('id')
-            ->addColumn('name')
-            ->addColumn('created_at_formatted', fn (Classes $model) => Carbon::parse($model->created_at)->format('d/m/Y H:i:s'))
-
-            ->addColumn('no_of_student', fn (Classes $model) => $model->students->count());
+            ->addColumn('passport_picture', function (Student $model) {
+                $path = asset("assets/img/addmission/" . $model->addmission->passport_picture);
+                return '<img class="h-20" src="' . $path . '" />';
+            })
+            ->addColumn('index_number')
+            ->addColumn('first_name')
+            ->addColumn('surname')
+            ->addColumn('other_name')
+            ->addColumn('fullname', fn (Student $model) => $model->fullname())
+            ->addColumn('gender')
+            ->addColumn('birthdate_formatted', fn (Student $model) => Carbon::parse($model->birthdate)->format('d/m/Y'))
+            ->addColumn('class_type')
+            ->addColumn('campus');
     }
 
     /*
@@ -108,22 +116,36 @@ final class Table extends PowerGridComponent
     public function columns(): array
     {
         return [
-            // Column::make('ID', 'id')
-            //     ->makeInputRange(),
+            // Column::make('', 'passport_picture'),
 
-            Column::make('CLASS', 'name',)
+            Column::make('INDEX NUMBER', 'index_number')
+                ->sortable()
+                ->searchable(),
+            // ->makeInputText(),
+
+            Column::make('FULL NAME', 'fullname')
+                ->sortable()
+                ->searchable(),
+
+            Column::make('GENDER', 'gender')
+                ->sortable()
+                ->searchable(),
+            // ->makeInputText(),
+
+            Column::make('CLASS TYPE', 'class_type')
+                ->sortable()
+                ->searchable(),
+            // ->makeInputText(),
+
+            Column::make('CAMPUS', 'campus')
+                ->sortable()
+                ->searchable(),
+            // ->makeInputText(),
+
+            Column::make('BIRTHDATE', 'birthdate_formatted', 'birthdate')
                 ->searchable()
                 ->sortable(),
-
-            Column::make('NO. OF STUDENTS', 'no_of_student', 'students.count')
-                ->sortable(),
-
-            // Column::make('CREATED AT', 'created_at_formatted', 'created_at')
-            //     ->searchable()
-            //     ->sortable(),
-
-
-
+            // ->makeInputDatePicker(),
         ];
     }
 
@@ -136,7 +158,7 @@ final class Table extends PowerGridComponent
     */
 
     /**
-     * PowerGrid Classes Action Buttons.
+     * PowerGrid Student Action Buttons.
      *
      * @return array<int, Button>
      */
@@ -145,14 +167,18 @@ final class Table extends PowerGridComponent
     public function actions(): array
     {
         return [
+            //    Button::make('edit', 'Edit')
+            //        ->class('bg-indigo-500 cursor-pointer text-white px-3 py-2.5 m-1 rounded text-sm')
+            //        ->route('student.edit', ['student' => 'id']),
+
+            //    Button::make('destroy', 'Delete')
+            //        ->class('bg-red-500 cursor-pointer text-white px-3 py-2 m-1 rounded text-sm')
+            //        ->route('student.destroy', ['student' => 'id'])
+            //        ->method('delete')
+
             Button::make('details', 'View')
                 ->class('px-4 py-2 text-xs font-bold uppercase cursor-pointer outline-none inline-flex justify-center items-center group transition-all ease-in duration-150 focus:ring-2 focus:ring-offset-2 hover:shadow-sm rounded-md gap-x-2 ring-red-500 text-red-500 border border-red-500 hover:bg-red-50')
-                ->route('classes.show', ['class' => 'id']),
-
-            // Button::make('destroy', 'Delete')
-            //     ->class('bg-red-500 cursor-pointer text-white px-3 py-2 m-1 rounded text-sm')
-            //     ->route('classes.destroy', ['classes' => 'id'])
-            //     ->method('delete')
+                ->route('students.show', ['student' => 'id']),
         ];
     }
 
@@ -166,7 +192,7 @@ final class Table extends PowerGridComponent
     */
 
     /**
-     * PowerGrid Classes Action Rules.
+     * PowerGrid Student Action Rules.
      *
      * @return array<int, RuleActions>
      */
@@ -178,7 +204,7 @@ final class Table extends PowerGridComponent
 
            //Hide button edit for ID 1
             Rule::button('edit')
-                ->when(fn($classes) => $classes->id === 1)
+                ->when(fn($student) => $student->id === 1)
                 ->hide(),
         ];
     }

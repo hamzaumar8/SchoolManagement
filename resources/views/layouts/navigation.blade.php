@@ -1,5 +1,5 @@
 <!-- Navbar -->
-<nav class="relative flex flex-wrap items-center justify-between px-0 py-2 my-4 mx-6 transition-all  duration-250 ease-soft-in rounded-2xl lg:flex-nowrap lg:justify-start bg-white"
+<nav class="relative flex flex-wrap items-center justify-between px-0 py-2 mx-6 transition-all  duration-250 ease-soft-in rounded-2xl lg:flex-nowrap lg:justify-start bg-white"
     navbar-main navbar-scroll="false">
     <div class="flex items-center justify-between w-full px-6 py-3 mx-auto flex-wrap-inherit">
         <nav>

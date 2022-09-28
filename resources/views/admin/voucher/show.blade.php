@@ -7,7 +7,11 @@
                 <x-application-logo class="h-20" />
             </div>
             <div class="col-span-2 text-center uppercase">
-                <h6 class="font-bold">University of Cape Coast Basic Junior High School
+                <h6 class="font-bold">UCC BASIC SCHOOL<br>
+                    UNIVERSITY BASIC SCHOOL<br>
+                    UNIVERSITY OF CAPE COAST<br>
+                    PRIVATE MAIL BAG<br>
+                    UCC CAPE COAST<br>
                 </h6>
                 <h6 class="underline font-bold">Admission Voucher
                 </h6>

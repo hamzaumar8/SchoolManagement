@@ -3,10 +3,9 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
-use App\Models\Classes;
 use Illuminate\Http\Request;
 
-class ClassesController extends Controller
+class SubjectController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -15,7 +14,7 @@ class ClassesController extends Controller
      */
     public function index()
     {
-        return view('admin.classes.index');
+        return view('admin.subject.index');
     }
 
     /**
@@ -47,8 +46,7 @@ class ClassesController extends Controller
      */
     public function show($id)
     {
-        $class = Classes::findOrFail($id);
-        return view('admin.classes.show', compact('class'));
+        //
     }
 
     /**

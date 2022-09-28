@@ -98,6 +98,7 @@ final class Table extends PowerGridComponent
             ->addColumn('first_name')
             ->addColumn('surname')
             ->addColumn('other_name')
+            ->addColumn('fullname', fn (Student $model) => $model->fullname())
             ->addColumn('gender')
             ->addColumn('birthdate_formatted', fn (Student $model) => Carbon::parse($model->birthdate)->format('d/m/Y'))
 
@@ -139,17 +140,8 @@ final class Table extends PowerGridComponent
                 ->searchable(),
             // ->makeInputText(),
 
-            Column::make('FIRST NAME', 'first_name')
-                ->sortable()
-                ->searchable(),
-            // ->makeInputText(),
 
-            Column::make('SURNAME', 'surname')
-                ->sortable()
-                ->searchable(),
-            // ->makeInputText(),
-
-            Column::make('OTHER NAME', 'other_name')
+            Column::make('FULL NAME', 'fullname', 'student.fullname()')
                 ->sortable()
                 ->searchable(),
             // ->makeInputText(),

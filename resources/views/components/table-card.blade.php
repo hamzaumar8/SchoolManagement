@@ -14,7 +14,7 @@
                     <div class="grid grid-cols-2 gap-5 w-full px-3">
                         <div class="flex items-center flex-none">
                             @isset($header)
-                            <h6 class="mb-0 font-bold capitalize">{{ $header }}</h6>
+                            <h6 class="mb-0 font-bold uppercase text-lg">{{ $header }}</h6>
                             @endisset
                         </div>
                         <div class="flex justify-end text-right">
