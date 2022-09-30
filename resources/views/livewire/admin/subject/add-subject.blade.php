@@ -2,7 +2,7 @@
     <div class="font-semibold font-gray-700 text-lg">Add Subject</div>
 
     <div class="py-2">
-        <form wire:submit.prevent="editSubject">
+        <form wire:submit.prevent="addSubject">
             <div class="font-normal text-gray-600">
                 <div class="my-4">
                     <x-input label="Subject Name" placeholder="Subject Name" type="text" required

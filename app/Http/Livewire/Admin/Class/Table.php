@@ -69,7 +69,8 @@ final class Table extends PowerGridComponent
     public function relationSearch(): array
     {
         return [
-            'students'
+            'students',
+            'subjects'
         ];
     }
 
@@ -86,9 +87,8 @@ final class Table extends PowerGridComponent
         return PowerGrid::eloquent()
             ->addColumn('id')
             ->addColumn('name')
-            ->addColumn('created_at_formatted', fn (Classes $model) => Carbon::parse($model->created_at)->format('d/m/Y H:i:s'))
-
-            ->addColumn('no_of_student', fn (Classes $model) => $model->students->count());
+            ->addColumn('no_of_student', fn (Classes $model) => $model->students->count())
+            ->addColumn('no_of_subject', fn (Classes $model) => $model->subjects->count());
     }
 
     /*
@@ -116,6 +116,11 @@ final class Table extends PowerGridComponent
                 ->sortable(),
 
             Column::make('NO. OF STUDENTS', 'no_of_student', 'students.count')
+                ->searchable()
+                ->sortable(),
+
+            Column::make('NO. OF SUBJECTS', 'no_of_subject', 'students.count')
+                ->searchable()
                 ->sortable(),
 
             // Column::make('CREATED AT', 'created_at_formatted', 'created_at')
