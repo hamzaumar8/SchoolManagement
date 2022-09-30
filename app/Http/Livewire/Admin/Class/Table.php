@@ -146,8 +146,12 @@ final class Table extends PowerGridComponent
     {
         return [
             Button::make('details', 'View')
-                ->class('px-4 py-2 text-xs font-bold uppercase cursor-pointer outline-none inline-flex justify-center items-center group transition-all ease-in duration-150 focus:ring-2 focus:ring-offset-2 hover:shadow-sm rounded-md gap-x-2 ring-red-500 text-red-500 border border-red-500 hover:bg-red-50')
+                ->class('px-4 py-2 text-xs font-bold uppercase cursor-pointer outline-none inline-flex justify-center items-center group transition-all ease-in duration-150 focus:ring-2 focus:ring-offset-2 hover:shadow-sm rounded-md gap-x-2 ring-blue-500 text-blue-500 border border-blue-500 hover:bg-blue-500')
                 ->route('classes.show', ['class' => 'id']),
+
+            Button::make('add-subject', 'Add Subjects')
+                ->class('px-4 py-2 text-xs font-bold uppercase cursor-pointer outline-none inline-flex justify-center items-center group transition-all ease-in duration-150 focus:ring-2 focus:ring-offset-2 hover:shadow-sm rounded-md gap-x-2 ring-green-500 text-green-500 border border-green-500 hover:bg-green-500')
+                ->route('classes.add-subject', ['class' => 'id']),
 
             // Button::make('destroy', 'Delete')
             //     ->class('bg-red-500 cursor-pointer text-white px-3 py-2 m-1 rounded text-sm')

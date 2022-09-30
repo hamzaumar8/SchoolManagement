@@ -62,6 +62,18 @@ class ClassesController extends Controller
         //
     }
 
+
+    /**
+     * Show the form for editing the specified resource.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function addSubject($id)
+    {
+        $class = Classes::findOrFail($id);
+        return view('admin.classes.add-subject', compact('class'));
+    }
     /**
      * Update the specified resource in storage.
      *

@@ -40,6 +40,7 @@ Route::middleware(['auth'])->group(function () {
         Route::resource('addmissions', AddmissionController::class);
         Route::resource('vouchers', AdminVoucherController::class);
         Route::resource('classes', ClassesController::class);
+        Route::get('classes/{class}/add-subjects', [ClassesController::class, 'addSubject'])->name('classes.add-subject');
         Route::resource('subjects', SubjectController::class);
     });
 });

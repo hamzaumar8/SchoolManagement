@@ -8,4 +8,9 @@ use Illuminate\Database\Eloquent\Model;
 class ClassesSubject extends Model
 {
     use HasFactory;
+
+
+    protected $table = 'classes_subjects';
+
+    protected $guarded = [];
 }

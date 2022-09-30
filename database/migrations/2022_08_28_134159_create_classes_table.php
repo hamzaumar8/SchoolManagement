@@ -17,6 +17,7 @@ return new class extends Migration
             $table->id();
             $table->string('name');
             $table->string('code')->nullable();
+            $table->enum('code', ['A', 'B', 'C', 'D', 'E'])->nullable();
             $table->enum('category', ['nusery', 'basic school', 'lower primary', 'upper primary', 'junior high'])->nullable();
             $table->timestamps();
         });

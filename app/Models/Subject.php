@@ -14,4 +14,10 @@ class Subject extends Model
         'code',
         'description',
     ];
+
+
+    public function classes()
+    {
+        return $this->belongsToMany(Classes::class, 'classes_subjects', 'subject_id', 'class_id');
+    }
 }
