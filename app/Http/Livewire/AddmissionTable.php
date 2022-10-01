@@ -180,9 +180,9 @@ final class AddmissionTable extends PowerGridComponent
                 ->searchable()
                 ->sortable(),
 
-            Column::make('BIRTHPLACE', 'birthplace')
-                ->sortable()
-                ->searchable(),
+            // Column::make('BIRTHPLACE', 'birthplace')
+            //     ->sortable()
+            //     ->searchable(),
 
             Column::make('RELIGION', 'religion')
                 ->sortable()
@@ -192,15 +192,15 @@ final class AddmissionTable extends PowerGridComponent
                 ->sortable()
                 ->searchable(),
 
-            Column::make('FIRST LANGUAGE', 'first_language')
-                ->sortable()
-                ->searchable(),
+            // Column::make('FIRST LANGUAGE', 'first_language')
+            //     ->sortable()
+            //     ->searchable(),
 
-            Column::make('PREVIOUS SCHOOL', 'previous_school')
-                ->sortable()
-                ->searchable(),
+            // Column::make('PREVIOUS SCHOOL', 'previous_school')
+            //     ->sortable()
+            //     ->searchable(),
 
-            Column::make('CREATED AT', 'created_at_formatted', 'created_at')
+            Column::make('SUBMITTED AT', 'created_at_formatted', 'created_at')
                 ->searchable()
                 ->sortable(),
 
