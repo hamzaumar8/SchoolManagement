@@ -40,15 +40,15 @@
                         <div class="flex flex-row -mx-3">
                             <div class="flex-none w-2/3 max-w-full px-3">
                                 <div>
-                                    <p class="mb-0 font-sans font-semibold leading-normal text-sm">Today's Users</p>
+                                    <p class="mb-0 font-sans font-semibold leading-normal text-sm">Staffs</p>
                                     <h5 class="mb-0 font-bold">
-                                        2,300
+                                        {{$staffs}}
                                         <!-- <span class="leading-normal text-sm font-weight-bolder text-lime-500">+3%</span> -->
                                     </h5>
                                 </div>
                             </div>
                             <div class="px-3 text-right basis-1/3">
-                                <div class="inline-block w-12 h-12 text-center rounded-lg bg-[#2c3690]">
+                                <div class="inline-block w-12 h-12 text-center rounded-lg bg-lime-500">
                                     <i class="ni leading-none ni-world text-lg relative top-3.5 text-white"></i>
                                 </div>
                             </div>
@@ -65,15 +65,15 @@
                         <div class="flex flex-row -mx-3">
                             <div class="flex-none w-2/3 max-w-full px-3">
                                 <div>
-                                    <p class="mb-0 font-sans font-semibold leading-normal text-sm">New Clients</p>
+                                    <p class="mb-0 font-sans font-semibold leading-normal text-sm">Classes</p>
                                     <h5 class="mb-0 font-bold">
-                                        +3,462
+                                        {{$classes}}
                                         <!-- <span class="leading-normal text-red-600 text-sm font-weight-bolder">-2%</span> -->
                                     </h5>
                                 </div>
                             </div>
                             <div class="px-3 text-right basis-1/3">
-                                <div class="inline-block w-12 h-12 text-center rounded-lg bg-[#2c3690]">
+                                <div class="inline-block w-12 h-12 text-center rounded-lg bg-red-600">
                                     <i class="ni leading-none ni-paper-diploma text-lg relative top-3.5 text-white"></i>
                                 </div>
                             </div>

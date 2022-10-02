@@ -153,30 +153,30 @@ final class Table extends PowerGridComponent
                 ->searchable(),
             // ->makeInputText(),
 
-            Column::make('PHONE2', 'phone2')
-                ->sortable()
-                ->searchable(),
-            // ->makeInputText(),
+            // Column::make('PHONE2', 'phone2')
+            //     ->sortable()
+            //     ->searchable(),
+            // // ->makeInputText(),
 
-            Column::make('RESIDENTIAL ADDRESS', 'residential_address')
-                ->sortable()
-                ->searchable(),
-            // ->makeInputText(),
+            // Column::make('RESIDENTIAL ADDRESS', 'residential_address')
+            //     ->sortable()
+            //     ->searchable(),
+            // // ->makeInputText(),
 
-            Column::make('BIRTHDATE', 'birthdate_formatted', 'birthdate')
-                ->sortable()
-                ->searchable(),
-            // ->makeInputDatePicker(),
+            // Column::make('BIRTHDATE', 'birthdate_formatted', 'birthdate')
+            //     ->sortable()
+            //     ->searchable(),
+            // // ->makeInputDatePicker(),
 
-            Column::make('MARITAL STATUS', 'marital_status')
-                ->sortable()
-                ->searchable(),
-            // ->makeInputText(),
+            // Column::make('MARITAL STATUS', 'marital_status')
+            //     ->sortable()
+            //     ->searchable(),
+            // // ->makeInputText(),
 
             // Column::make('PASSPORT PICTURE', 'passport_picture'),
             // ->searchable(),
 
-            Column::make('CREATED AT', 'created_at_formatted', 'created_at')
+            Column::make('ADDED AT', 'created_at_formatted', 'created_at')
                 ->sortable()
                 ->searchable(),
             // ->makeInputDatePicker(),
