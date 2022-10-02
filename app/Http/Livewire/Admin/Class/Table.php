@@ -87,6 +87,9 @@ final class Table extends PowerGridComponent
         return PowerGrid::eloquent()
             ->addColumn('id')
             ->addColumn('name')
+            ->addColumn('house_name')
+            ->addColumn('class_type')
+            ->addColumn('campus')
             ->addColumn('no_of_student', fn (Classes $model) => $model->students->count())
             ->addColumn('no_of_subject', fn (Classes $model) => $model->subjects->count());
     }
@@ -111,7 +114,15 @@ final class Table extends PowerGridComponent
             // Column::make('ID', 'id')
             //     ->makeInputRange(),
 
-            Column::make('CLASS', 'name',)
+            Column::make('CLASS NAME', 'name')
+                ->searchable()
+                ->sortable(),
+
+            Column::make('HOUSE NAME', 'house_name')
+                ->searchable()
+                ->sortable(),
+
+            Column::make('CAMPUS', 'campus')
                 ->searchable()
                 ->sortable(),
 
@@ -151,17 +162,27 @@ final class Table extends PowerGridComponent
     {
         return [
             Button::make('details', 'View')
-                ->class('px-4 py-2 text-xs font-bold uppercase cursor-pointer outline-none inline-flex justify-center items-center group transition-all ease-in duration-150 focus:ring-2 focus:ring-offset-2 hover:shadow-sm rounded-md gap-x-2 ring-blue-500 text-blue-500 border border-blue-500 hover:bg-blue-50')
+                ->class('px-4 py-2 text-xs font-bold uppercase cursor-pointer outline-none inline-flex justify-center items-center group transition-all ease-in duration-150 focus:ring-2 focus:ring-offset-2 hover:shadow-sm rounded-md gap-x-2 ring-yellow-500 text-yellow-500 border border-yellow-500 hover:bg-yellow-50')
                 ->route('classes.show', ['class' => 'id']),
 
             Button::make('add-subject', 'Add Subjects')
                 ->class('px-4 py-2 text-xs font-bold uppercase cursor-pointer outline-none inline-flex justify-center items-center group transition-all ease-in duration-150 focus:ring-2 focus:ring-offset-2 hover:shadow-sm rounded-md gap-x-2 ring-green-500 text-green-500 border border-green-500 hover:bg-green-50')
                 ->route('classes.add-subject', ['class' => 'id']),
 
-            // Button::make('destroy', 'Delete')
-            //     ->class('bg-red-500 cursor-pointer text-white px-3 py-2 m-1 rounded text-sm')
-            //     ->route('classes.destroy', ['classes' => 'id'])
-            //     ->method('delete')
+            Button::make('edit', 'Edit')
+                ->class('px-4 py-2 text-xs font-bold uppercase cursor-pointer outline-none inline-flex justify-center items-center group transition-all ease-in duration-150 focus:ring-2 focus:ring-offset-2 hover:shadow-sm rounded-md gap-x-2 ring-blue-500 text-blue-500 border border-blue-500 hover:bg-blue-50')
+                ->openModal('admin.classes.edit-action', [
+                    'classId' => 'id',
+                    'name' => 'name',
+                    'house_name' => 'house_name',
+                    'class_type' => 'class_type',
+                    'campus' => 'campus',
+                ]),
+            Button::make('destroy', 'Delete')
+                ->class('px-4 py-2 text-xs font-bold uppercase cursor-pointer outline-none inline-flex justify-center items-center group transition-all ease-in duration-150 focus:ring-2 focus:ring-offset-2 hover:shadow-sm rounded-md gap-x-2 ring-red-500 text-red-500 border border-red-500 hover:bg-red-500')
+                ->openModal('admin.classes.delete-action', [
+                    'classId' => 'id',
+                ]),
         ];
     }
 

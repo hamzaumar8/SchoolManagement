@@ -10,6 +10,13 @@ class Classes extends Model
 {
     use HasFactory;
 
+    protected $fillable = [
+        'name',
+        'house_name',
+        'class_type',
+        'campus',
+    ];
+
     public function students(): HasMany
     {
         return $this->hasMany(Student::class, "class_id");

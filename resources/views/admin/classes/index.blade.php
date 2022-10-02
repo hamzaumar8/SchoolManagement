@@ -1,7 +1,7 @@
 <x-app-layout>
     <x-table-card header="Class List">
         <x-slot name="headerActions">
-            <x-button blue onclick="Livewire.emit('openModal', 'admin.subject.add-subject')"
+            <x-button blue spinner="openModal" onclick=" Livewire.emit('openModal', 'admin.classes.add-class' )"
                 class="uppercase text-xs font-bold rounded-md">Add
                 Class</x-button>
         </x-slot>

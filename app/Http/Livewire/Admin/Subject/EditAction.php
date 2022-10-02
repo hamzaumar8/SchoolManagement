@@ -52,6 +52,7 @@ class EditAction extends ModalComponent
         if ($this->subjectId) {
             Subject::query()->find($this->subjectId)->update([
                 'name' => $this->name,
+                'code' => $this->code,
             ]);
         }
 
@@ -66,9 +67,6 @@ class EditAction extends ModalComponent
     }
     public function render()
     {
-        $subject = Subject::find($this->subjectId);
-        $this->name = $subject->name;
-        $this->code = $subject->code;
-        return view('livewire.admin.subject.edit-action', compact('subject'));
+        return view('livewire.admin.subject.edit-action');
     }
 }

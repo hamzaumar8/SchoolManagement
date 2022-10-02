@@ -16,9 +16,9 @@ return new class extends Migration
         Schema::create('classes', function (Blueprint $table) {
             $table->id();
             $table->string('name');
-            $table->string('code')->nullable();
-            $table->enum('code', ['A', 'B', 'C', 'D', 'E'])->nullable();
-            $table->enum('category', ['nusery', 'basic school', 'lower primary', 'upper primary', 'junior high'])->nullable();
+            $table->string('house_name')->nullable();
+            $table->enum('class_type', ['basic school', 'lower primary', 'upper primary', 'junior high'])->nullable();
+            $table->enum('campus', ['north', 'south'])->nullable();
             $table->timestamps();
         });
     }

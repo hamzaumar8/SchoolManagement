@@ -3,14 +3,15 @@
 namespace App\Http\Livewire\Admin\Classes;
 
 use App\Models\Classes;
-use Exception;
+use Livewire\Component;
 use LivewireUI\Modal\ModalComponent;
 use WireUi\Traits\Actions;
 
-class AddClass extends ModalComponent
+class EditAction extends ModalComponent
 {
     use Actions;
 
+    public $classId;
     public $name, $house_name, $class_type, $campus;
 
 
@@ -45,37 +46,30 @@ class AddClass extends ModalComponent
     }
 
 
-    public function addClass()
+    public function editClass()
     {
         $this->validate();
-        try {
-            Classes::create([
+
+        if ($this->classId) {
+            Classes::query()->find($this->classId)->update([
                 'name' => $this->name,
                 'house_name' => $this->house_name,
                 'class_type' => $this->class_type,
                 'campus' => $this->campus,
             ]);
-
-            $this->closeModalWithEvents([
-                'pg:eventRefresh-default',
-            ]);
-
-            $this->notification()->success(
-                'Success !!!',
-                'Subject was added successfully',
-            );
-        } catch (Exception $e) {
-            $message = $e->getMessage();
-            $this->addError('Exception Message: ', $message);
-            $this->notification()->error(
-                'Error !!!',
-                'Exception Message: ' . $message,
-            );
         }
-    }
 
+        $this->closeModalWithEvents([
+            'pg:eventRefresh-default',
+        ]);
+
+        $this->notification()->success(
+            'Success !!!',
+            'Class was editted successfully',
+        );
+    }
     public function render()
     {
-        return view('livewire.admin.classes.add-class');
+        return view('livewire.admin.classes.edit-action');
     }
 }
