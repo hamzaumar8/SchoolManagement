@@ -451,9 +451,9 @@ class Form extends Component
     // Submit and save
     public function submit()
     {
+        // validate fields
+        $this->validate();
         try {
-            // validate fields
-            $this->validate();
             // validate the staff information
             if ($this->parent_staff == 'staff') {
                 $this->validate([

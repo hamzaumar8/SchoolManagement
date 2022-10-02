@@ -29,9 +29,10 @@ return new class extends Migration
             $table->string('postal_address')->nullable();
             $table->string('residential_address')->nullable();
             $table->date('birthdate')->nullable();
-            $table->string('nationality')->nullable();
-            $table->enum('marital_status', ['Single', 'married', 'seperated', 'divorced', 'widow'])->nullable();
+            $table->string('religion')->nullable();
+            $table->enum('marital_status', ['single', 'married', 'separated', 'divorced', 'widow'])->nullable();
             $table->text('passport_picture')->nullable();
+            $table->enum('campus', ['north', 'south'])->nullable();
             $table->foreign('user_id')->references('id')->on('users')->onDelete('set null');
             $table->timestamps();
         });

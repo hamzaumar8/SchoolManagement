@@ -44,10 +44,10 @@ final class Table extends PowerGridComponent
     */
 
     /**
-    * PowerGrid datasource.
-    *
-    * @return Builder<\App\Models\Staff>
-    */
+     * PowerGrid datasource.
+     *
+     * @return Builder<\App\Models\Staff>
+     */
     public function datasource(): Builder
     {
         return Staff::query();
@@ -110,7 +110,7 @@ final class Table extends PowerGridComponent
     |
     */
 
-     /**
+    /**
      * PowerGrid Columns.
      *
      * @return array<int, Column>
@@ -118,90 +118,70 @@ final class Table extends PowerGridComponent
     public function columns(): array
     {
         return [
-            Column::make('ID', 'id')
-                ->makeInputRange(),
-
             Column::make('STAFF NUMBER', 'staff_number')
                 ->sortable()
-                ->searchable()
-                ->makeInputText(),
+                ->searchable(),
+            // ->makeInputText(),
 
             Column::make('STAFF TYPE', 'staff_type')
                 ->sortable()
-                ->searchable()
-                ->makeInputText(),
+                ->searchable(),
+            // ->makeInputText(),
 
             Column::make('TITLE', 'title')
                 ->sortable()
-                ->searchable()
-                ->makeInputText(),
+                ->searchable(),
+            // ->makeInputText(),
 
             Column::make('FULL NAME', 'full_name')
                 ->sortable()
-                ->searchable()
-                ->makeInputText(),
+                ->searchable(),
+            // ->makeInputText(),
 
             Column::make('GENDER', 'gender')
                 ->sortable()
-                ->searchable()
-                ->makeInputText(),
+                ->searchable(),
+            // ->makeInputText(),
 
             Column::make('EMAIL', 'email')
                 ->sortable()
-                ->searchable()
-                ->makeInputText(),
+                ->searchable(),
+            // ->makeInputText(),
 
             Column::make('PHONE1', 'phone1')
                 ->sortable()
-                ->searchable()
-                ->makeInputText(),
+                ->searchable(),
+            // ->makeInputText(),
 
             Column::make('PHONE2', 'phone2')
                 ->sortable()
-                ->searchable()
-                ->makeInputText(),
-
-            Column::make('POSTAL ADDRESS', 'postal_address')
-                ->sortable()
-                ->searchable()
-                ->makeInputText(),
+                ->searchable(),
+            // ->makeInputText(),
 
             Column::make('RESIDENTIAL ADDRESS', 'residential_address')
                 ->sortable()
-                ->searchable()
-                ->makeInputText(),
+                ->searchable(),
+            // ->makeInputText(),
 
             Column::make('BIRTHDATE', 'birthdate_formatted', 'birthdate')
-                ->searchable()
                 ->sortable()
-                ->makeInputDatePicker(),
-
-            Column::make('NATIONALITY', 'nationality')
-                ->sortable()
-                ->searchable()
-                ->makeInputText(),
+                ->searchable(),
+            // ->makeInputDatePicker(),
 
             Column::make('MARITAL STATUS', 'marital_status')
                 ->sortable()
-                ->searchable()
-                ->makeInputText(),
-
-            Column::make('PASSPORT PICTURE', 'passport_picture')
-                ->sortable()
                 ->searchable(),
+            // ->makeInputText(),
+
+            // Column::make('PASSPORT PICTURE', 'passport_picture'),
+            // ->searchable(),
 
             Column::make('CREATED AT', 'created_at_formatted', 'created_at')
-                ->searchable()
                 ->sortable()
-                ->makeInputDatePicker(),
+                ->searchable(),
+            // ->makeInputDatePicker(),
 
-            Column::make('UPDATED AT', 'updated_at_formatted', 'updated_at')
-                ->searchable()
-                ->sortable()
-                ->makeInputDatePicker(),
-
-        ]
-;
+        ];
     }
 
     /*
@@ -212,7 +192,7 @@ final class Table extends PowerGridComponent
     |
     */
 
-     /**
+    /**
      * PowerGrid Staff Action Buttons.
      *
      * @return array<int, Button>
@@ -242,7 +222,7 @@ final class Table extends PowerGridComponent
     |
     */
 
-     /**
+    /**
      * PowerGrid Staff Action Rules.
      *
      * @return array<int, RuleActions>
