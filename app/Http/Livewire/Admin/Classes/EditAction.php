@@ -52,13 +52,13 @@ class EditAction extends ModalComponent
         $this->validate();
 
         if ($this->classId) {
-            Classes::query()->find($this->classId)->update([
-                'name' => $this->name,
-                'house_name' => $this->house_name,
-                'class_type' => $this->class_type,
-                'campus' => $this->campus,
-                'staff_name' => $this->staff_name,
-            ]);
+            $classes = Classes::find($this->classId);
+            $classes->name = $this->name;
+            $classes->house_name = $this->house_name;
+            $classes->class_type = $this->class_type;
+            $classes->campus = $this->campus;
+            $classes->staff_id = $this->staff_name;
+            $classes->save();
         }
 
         $this->closeModalWithEvents([
