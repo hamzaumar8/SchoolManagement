@@ -12,7 +12,7 @@ class EditAction extends ModalComponent
     use Actions;
 
     public $classId;
-    public $name, $house_name, $class_type, $campus;
+    public $name, $house_name, $class_type, $campus, $staff_name;
 
 
     public static function modalMaxWidth(): string
@@ -42,6 +42,7 @@ class EditAction extends ModalComponent
             'house_name' => 'nullable|string|max:255',
             'class_type' => 'required|string|max:255',
             'campus' => 'required|string|max:255',
+            'staff_name' => 'required|exists:staff,id',
         ];
     }
 
@@ -56,6 +57,7 @@ class EditAction extends ModalComponent
                 'house_name' => $this->house_name,
                 'class_type' => $this->class_type,
                 'campus' => $this->campus,
+                'staff_name' => $this->staff_name,
             ]);
         }
 

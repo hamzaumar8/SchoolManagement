@@ -189,6 +189,7 @@ final class Table extends PowerGridComponent
                     'house_name' => 'house_name',
                     'class_type' => 'class_type',
                     'campus' => 'campus',
+                    'staff_name' => 'staff_id',
                 ]),
             Button::make('destroy', 'Delete')
                 ->class('px-4 py-2 text-xs font-bold uppercase cursor-pointer outline-none inline-flex justify-center items-center group transition-all ease-in duration-150 focus:ring-2 focus:ring-offset-2 hover:shadow-sm rounded-md gap-x-2 ring-red-500 text-red-500 border border-red-500 hover:bg-red-500')

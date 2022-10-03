@@ -2,6 +2,7 @@
 
 use App\Models\Classes;
 use App\Models\Nationality;
+use App\Models\Staff;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Contracts\Database\Eloquent\Builder;
@@ -26,7 +27,7 @@ Route::name('api.')->prefix('api')->group(function () {
             ->when(
                 $request->exists('selected'),
                 fn (Builder $query) => $query->whereIn('id', $request->input('selected', [])),
-                fn (Builder $query) => $query->limit(10)
+                // fn (Builder $query) => $query->limit(10)
             )
             ->get();
     })->name('classes.index');
@@ -48,4 +49,25 @@ Route::name('api.')->prefix('api')->group(function () {
             )
             ->get();
     })->name('nationality.index');
+
+
+
+    // classe Api
+    Route::get('staffs', function (Request $request) {
+        return Staff::query()
+            ->where('staff_type', '!=', 'non-teaching')
+            ->select('id', 'full_name',)
+            ->orderBy('id')
+            ->when(
+                $request->search,
+                fn (Builder $query) => $query
+                    ->where('full_name', 'like', "%{$request->search}%")
+            )
+            ->when(
+                $request->exists('selected'),
+                fn (Builder $query) => $query->whereIn('id', $request->input('selected', [])),
+                fn (Builder $query) => $query->limit(10)
+            )
+            ->get();
+    })->name('staffs');
 });

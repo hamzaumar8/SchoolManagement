@@ -11,7 +11,7 @@ class AddClass extends ModalComponent
 {
     use Actions;
 
-    public $name, $house_name, $class_type, $campus;
+    public $name, $house_name, $class_type, $campus, $staff_name;
 
 
     public static function modalMaxWidth(): string
@@ -41,6 +41,7 @@ class AddClass extends ModalComponent
             'house_name' => 'nullable|string|max:255',
             'class_type' => 'required|string|max:255',
             'campus' => 'required|string|max:255',
+            'staff_name' => 'required|exists:staff,id',
         ];
     }
 
@@ -49,12 +50,14 @@ class AddClass extends ModalComponent
     {
         $this->validate();
         try {
-            Classes::create([
+            $classes = Classes::make([
                 'name' => $this->name,
                 'house_name' => $this->house_name,
                 'class_type' => $this->class_type,
                 'campus' => $this->campus,
             ]);
+            $classes->staff()->associate($this->staff_name);
+            $classes->save();
 
             $this->closeModalWithEvents([
                 'pg:eventRefresh-default',

@@ -26,10 +26,16 @@
                     ['value' => 'south', 'name' => 'South'],
                     ]" option-label="name" option-value="value" class="uppercase" wire:model.defer="campus" required />
                 </div>
+
+                <div class="mb-4 z-50">
+                    <x-select label="Class Teacher" placeholder="Select class teacher" :async-data="route('api.staffs')"
+                        seleted="" option-label="full_name" class="uppercase" option-value="id"
+                        wire:model.defer="staff_name" />
+                </div>
             </div>
 
             <div class=" space-x-2 flex justify-end mt-3">
-                <x-button blue type="submit" spinner="editClass" :label="__('Submit')" />
+                <x-button blue type="submit" spinner="editClass" :label="__('Update')" />
                 <x-button outline rose wire:click="cancel" spinner="cancel" :label="__('Cancel')" />
             </div>
         </form>
