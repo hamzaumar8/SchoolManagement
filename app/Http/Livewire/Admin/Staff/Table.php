@@ -198,21 +198,24 @@ final class Table extends PowerGridComponent
      * @return array<int, Button>
      */
 
-    /*
+
     public function actions(): array
     {
-       return [
-           Button::make('edit', 'Edit')
-               ->class('bg-indigo-500 cursor-pointer text-white px-3 py-2.5 m-1 rounded text-sm')
-               ->route('staff.edit', ['staff' => 'id']),
+        return [
+            Button::make('details', 'Details')
+                ->class('px-4 py-2 text-xs font-bold uppercase cursor-pointer outline-none inline-flex justify-center items-center group transition-all ease-in duration-150 focus:ring-2 focus:ring-offset-2 hover:shadow-sm rounded-md gap-x-2 ring-yellow-500 text-yellow-500 border border-yellow-500 hover:bg-yellow-50')
+                ->route('staffs.show', ['staff' => 'id']),
+            //        Button::make('edit', 'Edit')
+            //            ->class('bg-indigo-500 cursor-pointer text-white px-3 py-2.5 m-1 rounded text-sm')
+            //            ->route('staff.edit', ['staff' => 'id']),
 
-           Button::make('destroy', 'Delete')
-               ->class('bg-red-500 cursor-pointer text-white px-3 py-2 m-1 rounded text-sm')
-               ->route('staff.destroy', ['staff' => 'id'])
-               ->method('delete')
+            //        Button::make('destroy', 'Delete')
+            //            ->class('bg-red-500 cursor-pointer text-white px-3 py-2 m-1 rounded text-sm')
+            //            ->route('staff.destroy', ['staff' => 'id'])
+            //            ->method('delete')
         ];
     }
-    */
+
 
     /*
     |--------------------------------------------------------------------------

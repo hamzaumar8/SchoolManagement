@@ -17,8 +17,8 @@
                                     <p class="mb-0 font-sans font-semibold leading-normal text-sm">Students</p>
                                     <h5 class="mb-0 font-bold text-xl">
                                         {{$students}}
-                                        <span
-                                            class="leading-normal text-sm font-weight-bolder text-lime-500">+55%</span>
+                                        <!-- <span
+                                            class="leading-normal text-sm font-weight-bolder text-lime-500">+55%</span> -->
                                     </h5>
                                 </div>
                             </div>
@@ -41,7 +41,7 @@
                             <div class="flex-none w-2/3 max-w-full px-3">
                                 <div>
                                     <p class="mb-0 font-sans font-semibold leading-normal text-sm">Staffs</p>
-                                    <h5 class="mb-0 font-bold">
+                                    <h5 class="mb-0 font-bold  text-xl">
                                         {{$staffs}}
                                         <!-- <span class="leading-normal text-sm font-weight-bolder text-lime-500">+3%</span> -->
                                     </h5>
@@ -66,7 +66,7 @@
                             <div class="flex-none w-2/3 max-w-full px-3">
                                 <div>
                                     <p class="mb-0 font-sans font-semibold leading-normal text-sm">Classes</p>
-                                    <h5 class="mb-0 font-bold">
+                                    <h5 class="mb-0 font-bold  text-xl">
                                         {{$classes}}
                                         <!-- <span class="leading-normal text-red-600 text-sm font-weight-bolder">-2%</span> -->
                                     </h5>
@@ -91,7 +91,7 @@
                             <div class="flex-none w-2/3 max-w-full px-3">
                                 <div>
                                     <p class="mb-0 font-sans font-semibold leading-normal text-sm">Sales</p>
-                                    <h5 class="mb-0 font-bold">
+                                    <h5 class="mb-0 font-bold  text-xl">
                                         $103,430
                                         <!-- <span class="leading-normal text-sm font-weight-bolder text-lime-500">+5%</span>
                                     -->

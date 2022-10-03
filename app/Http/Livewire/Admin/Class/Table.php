@@ -50,6 +50,7 @@ final class Table extends PowerGridComponent
      */
     public function datasource(): Builder
     {
+
         return Classes::query();
     }
 
@@ -70,7 +71,10 @@ final class Table extends PowerGridComponent
     {
         return [
             'students',
-            'subjects'
+            'subjects',
+            'staff' => [
+                'full_name'
+            ]
         ];
     }
 
@@ -91,7 +95,11 @@ final class Table extends PowerGridComponent
             ->addColumn('class_type')
             ->addColumn('campus')
             ->addColumn('no_of_student', fn (Classes $model) => $model->students->count())
-            ->addColumn('no_of_subject', fn (Classes $model) => $model->subjects->count());
+            ->addColumn('no_of_subject', fn (Classes $model) => $model->subjects->count())
+            ->addColumn('staff_id')
+            ->addColumn('staff_name', function (Classes $model) {
+                return $model->staff ? $model->staff->full_name : "";
+            });
     }
 
     /*
@@ -132,6 +140,10 @@ final class Table extends PowerGridComponent
 
             Column::make('NO. OF SUBJECTS', 'no_of_subject', 'students.count')
                 // ->searchable()
+                ->sortable(),
+
+            Column::make('CLASS TEACHER', 'staff_name', 'staff_name')
+                ->searchable()
                 ->sortable(),
 
             // Column::make('CREATED AT', 'created_at_formatted', 'created_at')

@@ -16,20 +16,20 @@ class ClassesSeeder extends Seeder
     public function run()
     {
         Classes::insert([
-            ['name' => 'Creche', 'code' => 'Creche', 'category' => 'nusery'],
-            ['name' => 'Nursery One', 'code' => 'Nurs 1', 'category' => 'nusery'],
-            ['name' => 'Nursery Two', 'code' => 'Nurs 2', 'category' => 'nusery'],
-            ['name' => 'Kindergarten One', 'code' => 'KG One', 'category' => 'basic_school'],
-            ['name' => 'Kindergarten Two', 'code' => 'KG Two', 'category' => 'basic_school'],
-            ['name' => 'Primary One', 'code' => 'P 1', 'category' => 'upper primary'],
-            ['name' => 'Primary Two', 'code' => 'P 2', 'category' => 'upper primary'],
-            ['name' => 'Primary Three', 'code' => 'P 3', 'category' => 'upper primary'],
-            ['name' => 'Primary Four', 'code' => 'P 4', 'category' => 'upper primary'],
-            ['name' => 'Primary Five', 'code' => 'P 5', 'category' => 'upper primary'],
-            ['name' => 'Primary Six', 'code' => 'P 6', 'category' => 'upper primary'],
-            ['name' => 'Junior High School One', 'code' => 'JHS 1', 'category' => 'junior high'],
-            ['name' => 'Junior High School Two', 'code' => 'JHS 2', 'category' => 'junior high'],
-            ['name' => 'Junior High School Three', 'code' => 'JHS 3', 'category' => 'junior high'],
+            ['name' => 'Creche', 'house_name' => 'Naana', 'class_type' => 'basic school', 'campus' => 'north'],
+            ['name' => 'Nursery One', 'house_name' => 'Nurs 1', 'class_type' => 'basic school', 'campus' => 'north'],
+            ['name' => 'Nursery Two', 'house_name' => 'Nurs 2', 'class_type' => 'basic school', 'campus' => 'north'],
+            ['name' => 'Kindergarten One', 'house_name' => 'KG One', 'class_type' => 'basic school', 'campus' => 'north'],
+            ['name' => 'Kindergarten Two', 'house_name' => 'KG Two', 'class_type' => 'basic school', 'campus' => 'north'],
+            ['name' => 'Primary One', 'house_name' => 'Naana', 'class_type' => 'upper primary', 'campus' => 'north'],
+            ['name' => 'Primary Two', 'house_name' => 'Naana', 'class_type' => 'upper primary', 'campus' => 'north'],
+            ['name' => 'Primary Three', 'house_name' => 'P 3', 'class_type' => 'upper primary', 'campus' => 'north'],
+            ['name' => 'Primary Four', 'house_name' => 'P 4', 'class_type' => 'upper primary', 'campus' => 'south'],
+            ['name' => 'Primary Five', 'house_name' => 'Naana', 'class_type' => 'upper primary', 'campus' => 'south'],
+            ['name' => 'Primary Six', 'house_name' => 'Naana', 'class_type' => 'upper primary', 'campus' => 'south'],
+            ['name' => 'Junior High School One', 'house_name' => 'JHS 1', 'class_type' => 'junior high', 'campus' => 'south'],
+            ['name' => 'Junior High School Two', 'house_name' => 'JHS 2', 'class_type' => 'junior high', 'campus' => 'south'],
+            ['name' => 'Junior High School Three', 'house_name' => 'JHS 3', 'class_type' => 'junior high', 'campus' => 'south'],
         ]);
     }
 }
