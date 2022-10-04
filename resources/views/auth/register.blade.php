@@ -1,19 +1,24 @@
 <x-guest-layout>
     <x-auth-card>
 
-
+        <h3 class="mb-4 pt-2 text-center text-2xl font-bold text-gray-700">
+            {{ __('Set Your Password') }}
+        </h3>
         <!-- Validation Errors -->
         <x-auth-validation-errors class="mb-4" :errors="$errors" />
 
-        <form method="POST" action="{{ route('register') }}">
+        <form method="POST" action="{{ route('staff.register') }}">
             @csrf
+
+            <!-- Register Token -->
+            <input type="hidden" name="id" value="{{ $staff->id }}">
 
             <!-- Name -->
             <div>
                 <x-auth-label for="name" :value="__('Name')" />
 
                 <x-auth-input id="name" class="block mt-1 w-full" type="text" name="name" :value="old('name')" required
-                    autofocus />
+                    autofocus value="{{$staff->full_name}}" />
             </div>
 
             <!-- Email Address -->
@@ -21,7 +26,7 @@
                 <x-auth-label for="email" :value="__('Email')" />
 
                 <x-auth-input id="email" class="block mt-1 w-full" type="email" name="email" :value="old('email')"
-                    required />
+                    value="{{$staff->email}}" required readonly disabled />
             </div>
 
             <!-- Password -->

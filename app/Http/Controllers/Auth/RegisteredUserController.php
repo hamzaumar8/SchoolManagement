@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
+use App\Models\Staff;
 use App\Models\User;
 use App\Providers\RouteServiceProvider;
 use Illuminate\Auth\Events\Registered;
@@ -18,9 +19,13 @@ class RegisteredUserController extends Controller
      *
      * @return \Illuminate\View\View
      */
-    public function create()
+    public function create($uuid, $token)
     {
-        return view('auth.register');
+        $staff = Staff::where('uuid', $uuid)->where('token', $token)->first();
+        if (!$staff) {
+            abort(404);
+        }
+        return view('auth.register', compact('staff'));
     }
 
     /**
@@ -35,15 +40,21 @@ class RegisteredUserController extends Controller
     {
         $request->validate([
             'name' => ['required', 'string', 'max:255'],
-            'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
+            // 'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
             'password' => ['required', 'confirmed', Rules\Password::defaults()],
         ]);
 
+        $staff = Staff::findOrFail($request->id);
+
         $user = User::create([
             'name' => $request->name,
-            'email' => $request->email,
+            'email' => $staff->email,
             'password' => Hash::make($request->password),
         ]);
+
+        $staff->full_name = $request->name;
+        $staff->user_id = $user->id;
+        $staff->save();
 
         event(new Registered($user));
 
