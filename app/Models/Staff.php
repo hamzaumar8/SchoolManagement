@@ -5,6 +5,7 @@ namespace App\Models;
 use Illuminate\Support\Str;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class Staff extends Model
 {
@@ -40,5 +41,15 @@ class Staff extends Model
     public function user()
     {
         return $this->belongsTo(User::class);
+    }
+
+    public function classes(): HasMany
+    {
+        return $this->hasMany(Classes::class);
+    }
+
+    public function class_subject(): HasMany
+    {
+        return $this->hasMany(ClassesSubject::class);
     }
 }

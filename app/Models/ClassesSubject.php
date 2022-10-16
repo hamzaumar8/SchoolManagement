@@ -13,4 +13,20 @@ class ClassesSubject extends Model
     protected $table = 'classes_subjects';
 
     protected $guarded = [];
+
+
+    public function staff()
+    {
+        return $this->belongsTo(Staff::class);
+    }
+
+    public function class()
+    {
+        return $this->belongsTo(Classes::class);
+    }
+
+    public function subject()
+    {
+        return $this->belongsTo(Subject::class);
+    }
 }

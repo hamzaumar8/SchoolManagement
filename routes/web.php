@@ -7,6 +7,7 @@ use App\Http\Controllers\Admin\StaffController;
 use App\Http\Controllers\Admin\StudentController;
 use App\Http\Controllers\Admin\SubjectController;
 use App\Http\Controllers\Admin\VoucherController as AdminVoucherController;
+use App\Http\Controllers\Staff\DashboardController as StaffDashboardController;
 use App\Http\Controllers\Voucher\VoucherController;
 use App\Models\Classes;
 use Illuminate\Support\Facades\Route;
@@ -22,18 +23,13 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-
-
-Route::middleware(['auth'])->group(function () {
+// Admin Routes 
+Route::middleware(['auth', 'auth-admin'])->group(function () {
     Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
 
     Route::get('/', function () {
         return redirect()->route('dashboard');
     });
-});
-
-// Admin Routes 
-Route::middleware(['auth'])->group(function () {
     Route::group(['prefix' => 'admin'], function () {
         Route::resource('students', StudentController::class);
         Route::resource('staffs', StaffController::class);
@@ -61,3 +57,11 @@ Route::middleware(['auth-voucher'])->group(function () {
 });
 
 require __DIR__ . '/auth.php';
+
+
+
+
+
+Route::middleware(['auth'])->name('staff.')->prefix('staff')->group(function () {
+    Route::get('/dashboard', [StaffDashboardController::class, 'index'])->name('dashboard');
+});
