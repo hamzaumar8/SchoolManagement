@@ -261,7 +261,6 @@ class Form extends Component
             'work_habits' => 'nullable',
         ]);
 
-
         try {
             $passport_picture_name = $this->saved_passport_picture;
             if ($this->passport_picture) {
@@ -451,6 +450,7 @@ class Form extends Component
     // Submit and save
     public function submit()
     {
+
         // validate fields
         $this->validate();
         try {

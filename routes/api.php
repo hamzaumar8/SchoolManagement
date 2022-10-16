@@ -12,17 +12,17 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 });
 
 
-Route::name('api.')->prefix('api')->group(function () {
+Route::name('api.')->group(function () {
     // classe Api
     Route::get('classes', function (Request $request) {
         return Classes::query()
-            ->select('id', 'name', 'code')
+            ->select('id', 'name', 'house_name')
             ->orderBy('id')
             ->when(
                 $request->search,
                 fn (Builder $query) => $query
                     ->where('name', 'like', "%{$request->search}%")
-                    ->orWhere('code', 'like', "%{$request->search}%")
+                    ->orWhere('house_name', 'like', "%{$request->search}%")
             )
             ->when(
                 $request->exists('selected'),

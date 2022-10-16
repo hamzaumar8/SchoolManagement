@@ -7,6 +7,7 @@ use App\Http\Controllers\Admin\StaffController;
 use App\Http\Controllers\Admin\StudentController;
 use App\Http\Controllers\Admin\SubjectController;
 use App\Http\Controllers\Admin\VoucherController as AdminVoucherController;
+use App\Http\Controllers\Staff\Attendance as StaffAttendance;
 use App\Http\Controllers\Staff\DashboardController as StaffDashboardController;
 use App\Http\Controllers\Voucher\VoucherController;
 use App\Models\Classes;
@@ -64,4 +65,6 @@ require __DIR__ . '/auth.php';
 
 Route::middleware(['auth'])->name('staff.')->prefix('staff')->group(function () {
     Route::get('/dashboard', [StaffDashboardController::class, 'index'])->name('dashboard');
+
+    Route::resource('attendance', StaffAttendance::class);
 });

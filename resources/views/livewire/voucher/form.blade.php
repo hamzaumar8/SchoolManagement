@@ -12,14 +12,13 @@
         border: 1px solid #000;
     }
     </style>
-
     <form wire:submit.prevent="submit" enctype="multipart/form-data">
-        <div>
+        <div class="text-slate-600">
             <div class="my-4 text-xl font-bold text-indigo-900 border-b dark:border-0 py-2.5">
                 {{ __('1. STUDENT\'S DETAILS') }}
             </div>
             <div class="grid grid-cols-3 gap-5">
-                <div class="col-span-2">
+                <div class=" col-span-2">
                     <div class="grid grid-cols-2 gap-5">
 
                         <div class="mb-4">
@@ -83,10 +82,23 @@
                                 wire:model.defer="previous_school" required />
                         </div>
 
-                        <!-- TODO:check selected for nationality and class -->
-                        <x-select label="Previous Class" wire:model.defer="previous_class"
-                            placeholder="Select Previous class" :async-data="route('api.classes.index')"
-                            option-label="name" class="uppercase" option-value="name" required />
+                        <x-native-select label="Previous Class" placeholder="Select Previous class" :options=" [
+                            ['value' => 'Creche','name' => 'Creche'],
+            ['value' => 'Nursery One','name' => 'Nursery One'],
+            ['value' => 'Nursery Two','name' => 'Nursery Two'],
+            ['value' => 'Kindergarten One','name' => 'Kindergarten One'],
+            ['value' => 'Kindergarten Two','name' => 'Kindergarten Two'],
+            ['value' => 'Primary One','name' => 'Primary One'],
+            ['value' => 'Primary Two','name' => 'Primary Two'],
+            ['value' => 'Primary Three','name' => 'Primary Three'],
+            ['value' => 'Primary Four','name' => 'Primary Four'],
+            ['value' => 'Primary Five','name' => 'Primary Five'],
+            ['value' => 'Primary Six','name' => 'Primary Six'],
+            ['value' => 'Junior High School One','name' => 'Junior High School One'],
+            ['value' => 'Junior High School Two','name' => 'Junior High School Two'],
+            ['value' => 'Junior High School Three','name' => 'Junior High School Three'],
+                    ]" option-label="name" option-value="value" class="uppercase" wire:model.defer="previous_class"
+                            required />
                     </div>
                 </div>
                 <div class="">
@@ -492,7 +504,7 @@
         </div>
 
 
-        <div class="py-5">r
+        <div class="py-5">
             <div class="my-4 text-xl font-bold text-indigo-900 border-b dark:border-0 py-2.5 uppercase">
                 {{ __('7. Emergency Information (Who To Contact In Case Of Emergency)') }}
             </div>
