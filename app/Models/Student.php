@@ -67,4 +67,9 @@ class Student extends Model
     {
         return $this->hasMany(EmergencyContact::class);
     }
+
+    public function attendances()
+    {
+        return $this->belongsToMany(Attendance::class);
+    }
 }
