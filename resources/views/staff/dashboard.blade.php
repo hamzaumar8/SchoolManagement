@@ -31,7 +31,6 @@
                     </div>
                 </div>
             </div>
-            {{$staff->class_subject}}
 
             <div class="flex justify-center">
 
@@ -44,30 +43,26 @@
                             </div>
 
                         </li>
-                        @foreach ($staff->class_subject as $subject)
-
+                        @foreach ($staff->class_subject->groupBy('subject_id') as $subjects)
                         <li class="relative border-b border-gray-200" x-data="{subject:null}">
-
                             <button type="button" class="w-full px-8 py-6 text-left"
-                                @click="subject !== {{$subject->id}} ? subject = {{$subject->id}} : subject = null">
+                                @click="subject !== {{$subjects[0]->subject->id}} ? subject = {{$subjects[0]->subject->id}} : subject = null">
                                 <div class="flex items-center justify-between">
-                                    <span class="capitalize"> {{$subject->class->name}} </span>
+                                    <span class="capitalize"> {{$subjects[0]->subject->name}} </span>
                                     <span class=" ico-plus"></span>
                                 </div>
                             </button>
-
-                            <div class="relative overflow-hidden transition-all max-h-0 duration-700" style=""
-                                x-ref="containersub{{$subject->id}}"
-                                x-bind:style="subject == {{$subject->id}} ? 'max-height: ' + $refs.containersub{{$subject->id}}.scrollHeight + 'px' : ''">
+                            <br>
+                            @foreach ($subjects as $subject)
+                            <div class="relative overflow-hidden transition-all max-h-0 duration-700"
+                                x-ref="containersub{{$subjects[0]->subject->id}}"
+                                x-bind:style="subject == {{$subjects[0]->subject->id}} ? 'max-height: ' + $refs.containersub{{$subjects[0]->subject->id}}.scrollHeight + 'px' : ''">
                                 <div class="p-6">
-                                    <p>To do this, load the v3 site key as documented, and then explicitly render v2
-                                        using grecaptcha.render.</p>
-                                    <p>After that, apply the same to everywhere else that uses
-                                        "www.google.com/recaptcha/" on your site.</p>
-                                    {{$subject}}
+                                    {{$subject->class->name}}
                                 </div>
                             </div>
 
+                            @endforeach
                         </li>
                         @endforeach
 

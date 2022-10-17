@@ -16,7 +16,7 @@ class SubjectSeeder extends Seeder
     public function run()
     {
         Subject::insert([
-            ['name' => 'MATHEMATICS', 'code' => ''],
+            // ['name' => 'MATHEMATICS', 'code' => ''],
             ['name' => 'ENGLISH', 'code' => ''],
             ['name' => 'SCIENCE', 'code' => ''],
             ['name' => 'SOCIAL STUDIES', 'code' => ''],
