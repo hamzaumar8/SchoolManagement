@@ -63,7 +63,8 @@ require __DIR__ . '/auth.php';
 
 
 
-Route::middleware(['auth'])->name('staff.')->prefix('staff')->group(function () {
+Route::middleware(['auth', 'term-set'])->name('staff.')->prefix('staff')->group(function () {
+
     Route::get('/dashboard', [StaffDashboardController::class, 'index'])->name('dashboard');
 
     Route::resource('attendance', StaffAttendance::class);

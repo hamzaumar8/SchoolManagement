@@ -19,6 +19,7 @@
 
                 @endforeach
 
+
                 <table
                     class="table power-grid-table rounded-lg min-w-full border border-slate-200 dark:bg-slate-600 dark:border-slate-500">
                     <thead

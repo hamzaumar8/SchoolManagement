@@ -2,6 +2,7 @@
 
 namespace App\Http\Middleware;
 
+use App\Models\Term;
 use Illuminate\Auth\Middleware\Authenticate as Middleware;
 
 class Authenticate extends Middleware
@@ -14,7 +15,14 @@ class Authenticate extends Middleware
      */
     protected function redirectTo($request)
     {
-        if (! $request->expectsJson()) {
+        $currDate = now()->format('Y-m-d');
+        $term = Term::orderBy('created_at', 'DESC')->first();
+        session(['Term' => $term]);
+        if ($currDate <= $term->end_date) {
+            // dd($term->end_date, $currDate);
+            session(['CurrTerm' => $term]);
+        }
+        if (!$request->expectsJson()) {
             return route('login');
         }
     }

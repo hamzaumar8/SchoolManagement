@@ -13,13 +13,12 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('attendances', function (Blueprint $table) {
+        Schema::create('terms', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('term_id')->constrained()->onDelete('cascade');
-            $table->foreignId('class_id')->constrained()->onDelete('cascade');
-            $table->unsignedBigInteger('staff_id')->nullable();
-            $table->date('date');
-            $table->foreign('staff_id')->references('id')->on('staff')->onDelete('set null');
+            $table->enum('term', ['1', '2', '3']);
+            $table->string('academic_year', 12);
+            $table->date('start_date');
+            $table->date('end_date');
             $table->timestamps();
         });
     }
@@ -31,6 +30,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('attendances');
+        Schema::dropIfExists('terms');
     }
 };

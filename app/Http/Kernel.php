@@ -54,6 +54,7 @@ class Kernel extends HttpKernel
      */
     protected $routeMiddleware = [
         'auth-admin' => \App\Http\Middleware\AuthAdmin::class,
+        'term-set' => \App\Http\Middleware\TermSet::class,
         'auth-voucher-submit' => \App\Http\Middleware\AuthVoucherSubmit::class,
         'auth-voucher' => \App\Http\Middleware\AuthVoucher::class,
         'auth' => \App\Http\Middleware\Authenticate::class,
