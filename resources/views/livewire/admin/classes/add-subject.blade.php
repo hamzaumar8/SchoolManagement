@@ -1,7 +1,7 @@
 <div>
     <div class=" grid grid-cols-4 gap-5">
         @foreach ($subjects as $subject)
-        <div class="relaative">
+        <div class="relative">
             <input type="checkbox" name="" wire:model="checkboxes.{{ $subject->id }}" />
             <div>{{$subject->name}}</div>
         </div>

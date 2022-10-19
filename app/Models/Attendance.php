@@ -9,6 +9,7 @@ class Attendance extends Model
 {
     use HasFactory;
 
+    protected $guarded = [];
 
     public function students()
     {
