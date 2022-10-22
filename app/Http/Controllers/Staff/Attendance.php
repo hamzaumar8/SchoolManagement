@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Staff;
 
 use App\Http\Controllers\Controller;
+use App\Models\Classes;
 use Illuminate\Http\Request;
 
 class Attendance extends Controller
@@ -46,7 +47,8 @@ class Attendance extends Controller
      */
     public function show($id)
     {
-        //
+        $classes = Classes::findOrFail($id);
+        return view('staff.attendance.show', compact('classes'));
     }
 
     /**
@@ -57,7 +59,8 @@ class Attendance extends Controller
      */
     public function edit($id)
     {
-        //
+        $classes = Classes::findOrFail($id);
+        return view('staff.attendance.edit', compact('classes'));
     }
 
     /**

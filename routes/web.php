@@ -67,7 +67,7 @@ Route::middleware(['auth'])->name('staff.')->prefix('staff')->group(function () 
 
     Route::get('/dashboard', [StaffDashboardController::class, 'index'])->name('dashboard');
 
-    Route::middleware(['auth'])->group(function () {
+    Route::middleware(['term-set'])->group(function () {
         Route::resource('attendance', StaffAttendance::class);
     });
 });
