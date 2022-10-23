@@ -36,16 +36,18 @@
                 </label>
             </div>
 
-            <div class="flex items-center justify-end mt-4">
+            <div class="mt-4">
+                <x-auth-button class="w-full flex items-center justify-center">
+                    {{ __('Log in') }}
+                </x-auth-button>
+            </div>
+            <div class="text-center mt-4">
                 @if (Route::has('password.request'))
-                <a class="underline text-sm text-gray-600 hover:text-gray-900" href="{{ route('password.request') }}">
+                <a class="underline text-sm uppercase text-gray-600 hover:text-gray-900"
+                    href="{{ route('password.request') }}">
                     {{ __('Forgot your password?') }}
                 </a>
                 @endif
-
-                <x-auth-button class="ml-3">
-                    {{ __('Log in') }}
-                </x-auth-button>
             </div>
         </form>
     </x-auth-card>
