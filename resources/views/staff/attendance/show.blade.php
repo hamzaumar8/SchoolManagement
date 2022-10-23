@@ -1,5 +1,6 @@
 <x-app-layout>
-    <x-table-card header="Summary for  {{$classes->name}}">
+    <x-table-card
+        header="Attendance Summary for  {{$classes->name}} Term {{Session::get('CurrTerm')['term']}} ({{Session::get('CurrTerm')['academic_year']}})">
 
         <div>
             <table
@@ -29,13 +30,13 @@
                         <th class="font-semibold px-2 pr-4 py-3 text-left text-xs text-slate-700 tracking-wider whitespace-nowrap dark:text-slate-300 "
                             style="width: max-content;  cursor:pointer;">
                             <div class="uppercase">
-                                <span>NO. Of Present</span>
+                                <span>Days Present</span>
                             </div>
                         </th>
                         <th class="font-semibold px-2 pr-4 py-3 text-left text-xs text-slate-700 tracking-wider whitespace-nowrap dark:text-slate-300 "
                             style="width: max-content;  cursor:pointer;">
                             <div class="uppercase">
-                                <span>No. Of Absent</span>
+                                <span>Days Absent</span>
                             </div>
                         </th>
                     </tr>
