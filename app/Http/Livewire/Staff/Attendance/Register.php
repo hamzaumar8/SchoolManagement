@@ -19,29 +19,31 @@ class Register extends Component
     public Classes $classes;
     public array $checkboxes;
     public $attendance;
-    public $atdate;
+    public $attendance_date;
 
 
-    public function mount(AttendanceStudent $model)
+    public function mount()
     {
-        $attendance_date = now()->format('Y-m-d');
-        if (request()->token) {
-            $attendance_date = request()->token;
-        }
+        $this->hattendance();
+    }
+
+
+    public function hattendance()
+    {
         $term = session()->get('CurrTerm');
         $staff = Auth::user()->staff;
         try {
             $this->attendance = Attendance::where('term_id', $term->id)
                 ->where('class_id', $this->classes->id)
                 ->where('staff_id', $staff->id)
-                ->where('date', $attendance_date)->first();
+                ->where('date', $this->attendance_date)->first();
             if (!$this->attendance) {
 
                 $this->attendance = Attendance::create([
                     "term_id" => $term->id,
                     "class_id" => $this->classes->id,
                     "staff_id" => $staff->id,
-                    "date" => $attendance_date,
+                    "date" => $this->attendance_date,
                 ]);
             }
         } catch (Exception $e) {
@@ -54,13 +56,12 @@ class Register extends Component
         }
 
         // get an array of ids
-        $setOfIds = $model::where('attendance_id', $this->attendance->id)->where('status', 1)->pluck('student_id')->toArray();
+        $setOfIds = AttendanceStudent::where('attendance_id', $this->attendance->id)->where('status', 1)->pluck('student_id')->toArray();
         $this->checkboxes = array_fill_keys($setOfIds, true);
     }
-
-
     public function addAttendance($attendance_id)
     {
+        // dd($this->checkboxes);
         try {
             if (!empty($this->checkboxes)) {
                 foreach ($this->checkboxes as $student_id => $value) {
@@ -82,8 +83,6 @@ class Register extends Component
                     }
                 }
             }
-
-            $this->emit('refreshComponent');
             $this->notification()->success(
                 'Success !!!',
                 'Attendance has been saved successfully! ',
@@ -98,9 +97,13 @@ class Register extends Component
         }
     }
 
-    public function updatedAtdate($field)
+    public function updatedAttendanceDate($field)
     {
-        return redirect()->to(route('staff.attendance.edit', $this->attendance->id) . '?token=' . $field);
+        $this->attendance_date = $field;
+        // dd($field);
+        $this->hattendance();
+        $this->emit('refreshComponent');
+        // return redirect()->to(route('staff.attendance.edit', $this->attendance->id) . '?token=' . $field);
     }
 
     public function render()
