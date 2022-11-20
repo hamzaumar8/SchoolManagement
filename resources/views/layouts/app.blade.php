@@ -8,6 +8,14 @@
 
     <title>{{ config('app.name', 'Laravel') }}</title>
 
+
+    <link rel="apple-touch-icon" sizes="180x180" href="/sites/default/files/favicons/apple-touch-icon.png" />
+    <link rel="icon" type="image/png" sizes="32x32" href="/sites/default/files/favicons/favicon-32x32.png" />
+    <link rel="icon" type="image/png" sizes="16x16" href="/sites/default/files/favicons/favicon-16x16.png" />
+    <link rel="manifest" href="/sites/default/files/favicons/site.webmanifest" />
+    <meta name="msapplication-TileColor" content="#da532c" />
+    <meta name="theme-color" content="#ffffff" />
+    <link rel="shortcut icon" href="https://ucc.edu.gh/sites/default/files/favicon_2.png" type="image/png" />
     <!-- Font Awesome Icons -->
     <script src="https://kit.fontawesome.com/c814aab068.js" crossorigin="anonymous"></script>
 

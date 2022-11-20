@@ -47,4 +47,32 @@ class Helper
 
         // return $prfx . '/' . $currYear . '/' . str_pad($std + 1, 5, '0', STR_PAD_LEFT);
     }
+
+
+    public static function grade_no($total)
+    {
+        // if ($this->continious_assesment() == 'IC') {
+        //     $remark = 'IC';
+        // } else
+        if ($total >= 70) {
+            $remark = '1';
+        } elseif ($total >= 75) {
+            $remark = '2';
+        } elseif ($total >= 70) {
+            $remark = '3';
+        } elseif ($total >= 65) {
+            $remark = '4';
+        } elseif ($total >= 60) {
+            $remark = '5';
+        } elseif ($total >= 55) {
+            $remark = '6';
+        } elseif ($total >= 50) {
+            $remark = '7';
+        } elseif ($total >= 40) {
+            $remark = '8';
+        } else {
+            $remark = '9';
+        }
+        return $remark;
+    }
 }

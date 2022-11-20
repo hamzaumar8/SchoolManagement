@@ -17,7 +17,7 @@ return new class extends Migration
             $table->id();
             $table->string('name');
             $table->string('house_name')->nullable();
-            $table->enum('class_type', ['basic school', 'lower primary', 'upper primary', 'junior high'])->nullable();
+            $table->enum('class_type', ['creche', 'nursery', 'kg', 'basic school', 'junior high'])->nullable();
             $table->enum('campus', ['north', 'south'])->nullable();
             $table->unsignedBigInteger('staff_id')->nullable();
             $table->foreign('staff_id')->references('id')->on('staff')->onDelete('set null');

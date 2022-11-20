@@ -188,7 +188,7 @@
                     x-bind:style="subject == {{$subjects[0]->subject->id}} ? 'max-height: ' + $refs.containersub{{$subjects[0]->subject->id}}.scrollHeight + 'px' : ''">
                     <div class="p-6  border-t">
                         <a
-                            href="{{ route('staff.grade.class_subject', [$subjects[0]->subject->id,$subject->id]) }}">{{$subject->class->name}}</a>
+                            href="{{ route('staff.grade.class_subject', [$subject->class_id,$subject->subject_id]) }}">{{$subject->class->name}}</a>
                     </div>
                 </div>
 

@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use APP\Helpers\Helper;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
@@ -21,6 +22,12 @@ class Grade extends Model
         'grade',
     ];
 
+    public static function booted()
+    {
+        static::creating(function ($model) {
+            $model->grade = Helper::grade_no($model->total);
+        });
+    }
 
     public function gradesystem()
     {
@@ -34,7 +41,12 @@ class Grade extends Model
 
     public function continious_assesment()
     {
-        return ($this->cat1 + $this->gw + $this->cat2);
+        if ($this->cat1 == 0 || $this->gw == 0 || $this->cat2 == 0) {
+            $cat  = 'IC';
+        } else {
+            $cat = ($this->cat1 + $this->gw + $this->cat2);
+        }
+        return $cat;
     }
 
     // =IF(W96="IC","IC",
@@ -50,4 +62,28 @@ class Grade extends Model
     // IF(W96>=49.45,"D",
     // "E"
 
+
+    public function grade_remark()
+    {
+        if ($this->continious_assesment() == 'IC') {
+            $remark = 'IC';
+        } elseif ($this->total >= 70) {
+            $remark = 'EXCELLENT';
+        } elseif ($this->total >= 75) {
+            $remark = 'VERY GOOD';
+        } elseif ($this->total >= 70) {
+            $remark = 'GOOD';
+        } elseif ($this->total >= 60) {
+            $remark = 'AVERAGE';
+        } elseif ($this->total >= 55) {
+            $remark = 'BELOW AVERAGE';
+        } elseif ($this->total >= 50) {
+            $remark = 'PASS';
+        } elseif ($this->total >= 40) {
+            $remark = 'WEAK PASS';
+        } else {
+            $remark = 'FAIL';
+        }
+        return $remark;
+    }
 }
