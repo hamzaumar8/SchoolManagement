@@ -17,10 +17,10 @@ class BasicSchool extends Component
     public array $checkboxes;
 
     protected $rules = [
-        'grades.*.cat1' => 'required|numeric',
-        'grades.*.gw' => 'required|numeric',
-        'grades.*.cat2' => 'required|numeric',
-        'grades.*.exam' => 'required|numeric',
+        'grades.*.cat1' => 'required|numeric|between:0,20',
+        'grades.*.gw' => 'required|numeric|between:0,10',
+        'grades.*.cat2' => 'required|numeric|between:0,20',
+        'grades.*.exam' => 'required|numeric|between:0,100',
     ];
 
     public function mount()
