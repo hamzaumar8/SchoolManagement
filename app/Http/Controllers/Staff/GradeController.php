@@ -90,7 +90,7 @@ class GradeController extends Controller
                 }
             }
         }
-        return view('staff.grade.subject_class', compact('gradesystem', 'classes'));
+        return view('staff.grade.subject_class', compact('gradesystem', 'classes', 'subject'));
     }
 
     /**

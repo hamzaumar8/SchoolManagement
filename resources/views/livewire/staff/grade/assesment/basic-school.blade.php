@@ -185,7 +185,7 @@
                 </tr>
                 @empty
                 <tr>
-                    <td colspan="5" class=" text-center uppercase px-3 py-2 whitespace-nowrap text-red-500 font-bold">
+                    <td colspan="12" class=" text-center uppercase px-3 py-2 whitespace-nowrap text-red-500 font-bold">
                         <span class="">
                             <div>
                                 no student in this class
@@ -200,8 +200,7 @@
 
     </div>
     <div>
-
-
+        @if($grades->count() > 0)
         <div class="flex items-center justify-between mt-4 space-x-5">
             <x-button blue wire:click.prevent="save" spinner="save" :label="__('Save and Continue later')"
                 class="w-1/2 uppercase font-bold" />
@@ -209,5 +208,6 @@
             <x-button rose wire:click.prevent="submit" spinner="submit" :label="__('Save and Submit')"
                 class="w-1/2 uppercase font-bold" />
         </div>
+        @endif
     </div>
 </div>
