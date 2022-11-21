@@ -3,7 +3,7 @@
     table.table input {
         border: 1px solid;
         padding: 2px 5px;
-        width: 60%;
+        width: 70px;
     }
     </style>
     <x-table-card header="Assesment Sheet For {{$classes->class_type}}">
