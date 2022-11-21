@@ -1,11 +1,4 @@
 <x-app-layout>
-    <style>
-    table.table input {
-        border: 1px solid;
-        padding: 2px 5px;
-        width: 70px;
-    }
-    </style>
     <x-table-card header="Assesment Sheet For {{$classes->class_type}}">
         @if($classes->class_type == 'creche')
         <h1>{{$classes->class_type}}</h1>

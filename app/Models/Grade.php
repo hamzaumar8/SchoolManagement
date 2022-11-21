@@ -22,12 +22,12 @@ class Grade extends Model
         'grade',
     ];
 
-    public static function booted()
-    {
-        static::creating(function ($model) {
-            $model->grade = Helper::grade_no($model->total);
-        });
-    }
+    // public static function booted()
+    // {
+    //     static::creating(function ($model) {
+    //         $model->grade = Helper::grade_no($model->total);
+    //     });
+    // }
 
     public function gradesystem()
     {
@@ -43,24 +43,13 @@ class Grade extends Model
     {
         if ($this->cat1 == 0 || $this->gw == 0 || $this->cat2 == 0) {
             $cat  = 'IC';
-        } else {
+        } elseif (is_numeric($this->cat1) && is_numeric($this->gw) && is_numeric($this->cat2)) {
             $cat = ($this->cat1 + $this->gw + $this->cat2);
+        } else {
+            $cat = 'IC';
         }
         return $cat;
     }
-
-    // =IF(W96="IC","IC",
-    // IF(W96>=79.45,"A",
-    // IF(W96>=74.45,"B+",
-    // IF(W96>=69.45,"B",
-    // IF(W96>=64.45,
-    // "C+",
-    // IF(W96>=59.45,
-    // "C",
-    // IF(W96>=54.45,
-    // "D+",
-    // IF(W96>=49.45,"D",
-    // "E"
 
 
     public function grade_remark()
