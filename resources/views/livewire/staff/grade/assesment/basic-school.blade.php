@@ -112,7 +112,7 @@
                         <span class="">
                             <div>
                                 <input type="" wire:model="grades.{{ $index }}.cat1"
-                                    class="w-[70px] py-1 px-2 bg-gray-50 border @error('grades.' .$index. '.cat1') border-red-500 @enderror text-slate-900 rounded-md focus:ring-blue-500 focus:border-blue-500" />
+                                    class="w-[80px] py-1 px-2 bg-gray-50 border @error('grades.' .$index. '.cat1') border-red-500 @enderror text-slate-900 rounded-md focus:ring-blue-500 focus:border-blue-500" />
                             </div>
                         </span>
                     </td>
@@ -120,7 +120,7 @@
                         <span class="">
                             <div>
                                 <input type="" wire:model="grades.{{ $index }}.gw"
-                                    class="w-[70px] py-1 px-2 bg-gray-50 border @error('grades.' .$index. '.gw') border-red-500 @enderror text-slate-900 rounded-md focus:ring-blue-500 focus:border-blue-500" />
+                                    class="w-[80px] py-1 px-2 bg-gray-50 border @error('grades.' .$index. '.gw') border-red-500 @enderror text-slate-900 rounded-md focus:ring-blue-500 focus:border-blue-500" />
                             </div>
                         </span>
                     </td>
@@ -128,7 +128,7 @@
                         <span class="">
                             <div>
                                 <input type="" wire:model="grades.{{ $index }}.cat2"
-                                    class="w-[70px] py-1 px-2 bg-gray-50 border @error('grades.' .$index. '.cat2') border-red-500 @enderror text-slate-900 rounded-md focus:ring-blue-500 focus:border-blue-500" />
+                                    class="w-[80px] py-1 px-2 bg-gray-50 border @error('grades.' .$index. '.cat2') border-red-500 @enderror text-slate-900 rounded-md focus:ring-blue-500 focus:border-blue-500" />
                             </div>
                         </span>
                     </td>
@@ -144,7 +144,7 @@
                         <span class="">
                             <div>
                                 <input type="" wire:model="grades.{{ $index }}.exam"
-                                    class="w-[70px] py-1 px-2 bg-gray-50 border @error('grades.' .$index. '.exam') border-red-500 @enderror text-slate-900 rounded-md focus:ring-blue-500 focus:border-blue-500" />
+                                    class="w-[80px] py-1 px-2 bg-gray-50 border @error('grades.' .$index. '.exam') border-red-500 @enderror text-slate-900 rounded-md focus:ring-blue-500 focus:border-blue-500" />
                             </div>
                         </span>
                     </td>
@@ -165,7 +165,11 @@
                     <td class=" capitalize px-3 py-2 whitespace-nowrap dark:text-slate-200 font-bold">
                         <span class="">
                             <div>
+                                @if($grade->grade == 9)
+                                <span class="text-red-700">{{$grade->grade}}</span>
+                                @else
                                 {{$grade->grade}}
+                                @endif
                             </div>
                         </span>
                     </td>
@@ -184,7 +188,7 @@
                     <td colspan="5" class=" text-center uppercase px-3 py-2 whitespace-nowrap text-red-500 font-bold">
                         <span class="">
                             <div>
-
+                                no student in this class
                             </div>
                         </span>
                     </td>
@@ -196,6 +200,14 @@
 
     </div>
     <div>
-        <x-button blue spinner="save" wire:click="save" :label="__('save')" />
+
+
+        <div class="flex items-center justify-between mt-4 space-x-5">
+            <x-button blue wire:click.prevent="save" spinner="save" :label="__('Save and Continue later')"
+                class="w-1/2 uppercase font-bold" />
+
+            <x-button rose wire:click.prevent="submit" spinner="submit" :label="__('Save and Submit')"
+                class="w-1/2 uppercase font-bold" />
+        </div>
     </div>
 </div>

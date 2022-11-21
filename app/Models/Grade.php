@@ -41,9 +41,10 @@ class Grade extends Model
 
     public function continious_assesment()
     {
-        if ($this->cat1 == 0 || $this->gw == 0 || $this->cat2 == 0) {
-            $cat  = 'IC';
-        } elseif (is_numeric($this->cat1) && is_numeric($this->gw) && is_numeric($this->cat2)) {
+        // if ($this->cat1 == 0 || $this->gw == 0 || $this->cat2 == 0) {
+        //     $cat  = 'IC';
+        // } else
+        if (is_numeric($this->cat1) && is_numeric($this->gw) && is_numeric($this->cat2)) {
             $cat = ($this->cat1 + $this->gw + $this->cat2);
         } else {
             $cat = 'IC';
