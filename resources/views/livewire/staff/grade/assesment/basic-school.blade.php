@@ -20,10 +20,12 @@
                         </div>
                     </th>
                     <th class="font-semibold px-2 pr-4 py-3 text-left text-xs text-slate-700 tracking-wider whitespace-nowrap dark:text-slate-300 "
-                        style="width: max-content;  cursor:pointer;" colspan="2">
+                        style="width: max-content;  cursor:pointer;">
                         <div class="uppercase">
                             <span>Index Number</span>
                         </div>
+                    </th>
+                    <th class="block !w-[100px] ">
                     </th>
 
                     <th class="font-semibold px-2 pr-4 py-3 text-left text-xs text-slate-700 tracking-wider whitespace-nowrap dark:text-slate-300 "
@@ -101,18 +103,20 @@
                             </div>
                         </span>
                     </td>
-                    <td class=" capitalize px-3 py-2 whitespace-nowrap dark:text-slate-200" colspan="2">
+                    <td class=" capitalize px-3 py-2 whitespace-nowrap dark:text-slate-200">
                         <span class="">
                             <div>
                                 {{$grade->student->fullname()}}
                             </div>
                         </span>
                     </td>
+                    <td class="block !w-[100px] ">
+                    </td>
                     <td class=" capitalize px-3 py-2 whitespace-nowrap dark:text-slate-200">
                         <span class="">
                             <div>
                                 <input type="" wire:model="grades.{{ $index }}.cat1"
-                                    class="w-[80px] py-1 px-2 bg-gray-50 border @error('grades.' .$index. '.cat1') border-red-500 @enderror text-slate-900 rounded-md focus:ring-blue-500 focus:border-blue-500" />
+                                    class="w-[80px] py-1 px-2 bg-gray-50 border-2 @error('grades.' .$index. '.cat1') border-red-500 @enderror text-slate-900 rounded-md focus:ring-blue-500 focus:border-blue-500" />
                             </div>
                         </span>
                     </td>
@@ -120,7 +124,7 @@
                         <span class="">
                             <div>
                                 <input type="" wire:model="grades.{{ $index }}.gw"
-                                    class="w-[80px] py-1 px-2 bg-gray-50 border @error('grades.' .$index. '.gw') border-red-500 @enderror text-slate-900 rounded-md focus:ring-blue-500 focus:border-blue-500" />
+                                    class="w-[80px] py-1 px-2 bg-gray-50 border-2 @error('grades.' .$index. '.gw') border-red-500 @enderror text-slate-900 rounded-md focus:ring-blue-500 focus:border-blue-500" />
                             </div>
                         </span>
                     </td>
@@ -128,7 +132,7 @@
                         <span class="">
                             <div>
                                 <input type="" wire:model="grades.{{ $index }}.cat2"
-                                    class="w-[80px] py-1 px-2 bg-gray-50 border @error('grades.' .$index. '.cat2') border-red-500 @enderror text-slate-900 rounded-md focus:ring-blue-500 focus:border-blue-500" />
+                                    class="w-[80px] py-1 px-2 bg-gray-50 border-2  @error('grades.' .$index. '.cat2') border-red-500 @enderror text-slate-900 rounded-md focus:ring-blue-500 focus:border-blue-500" />
                             </div>
                         </span>
                     </td>
@@ -144,7 +148,7 @@
                         <span class="">
                             <div>
                                 <input type="" wire:model="grades.{{ $index }}.exam"
-                                    class="w-[80px] py-1 px-2 bg-gray-50 border @error('grades.' .$index. '.exam') border-red-500 @enderror text-slate-900 rounded-md focus:ring-blue-500 focus:border-blue-500" />
+                                    class="w-[80px] py-1 px-2 bg-gray-50 border-2 @error('grades.' .$index. '.exam') border-red-500 @enderror text-slate-900 rounded-md focus:ring-blue-500 focus:border-blue-500" />
                             </div>
                         </span>
                     </td>
