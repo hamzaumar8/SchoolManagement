@@ -16,8 +16,9 @@ return new class extends Migration
         Schema::create('classes_subjects', function (Blueprint $table) {
             $table->id();
             $table->foreignId('class_id')->constrained()->onDelete('cascade');
-            $table->foreignId('subject_id')->constrained()->onDelete('cascade');
+            $table->unsignedBigInteger('subject_id')->nullable();
             $table->unsignedBigInteger('staff_id')->nullable();
+            $table->foreign('subject_id')->references('id')->on('subject')->onDelete('set null');
             $table->foreign('staff_id')->references('id')->on('staff')->onDelete('set null');
             $table->timestamps();
         });
