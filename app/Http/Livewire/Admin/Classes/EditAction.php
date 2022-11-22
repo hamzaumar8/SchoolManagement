@@ -3,6 +3,8 @@
 namespace App\Http\Livewire\Admin\Classes;
 
 use App\Models\Classes;
+use App\Models\ClassesSubject;
+use App\Models\Subject;
 use Livewire\Component;
 use LivewireUI\Modal\ModalComponent;
 use WireUi\Traits\Actions;
@@ -59,6 +61,23 @@ class EditAction extends ModalComponent
             $classes->campus = $this->campus;
             $classes->staff_id = $this->staff_name;
             $classes->save();
+
+            if ($this->class_type == 'creche' || $this->class_type == 'nursery' || $this->class_type == 'kg') {
+                $subject = Subject::where('name', 'LIKE', 'all subject')->first();
+                if ($subject) {
+                    $cls = ClassesSubject::where('class_id', $classes->id)->where('subject_id', $subject->id)->first();
+                    if ($cls) {
+                        $cls->staff_id = $this->staff_name;
+                        $cls->save();
+                    } else {
+                        ClassesSubject::create([
+                            'class_id' => $classes->id,
+                            'subject_id' => $subject->id,
+                            'staff_id' => $this->staff_name
+                        ]);
+                    }
+                }
+            }
         }
 
         $this->closeModalWithEvents([

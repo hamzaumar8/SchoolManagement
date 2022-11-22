@@ -21,9 +21,10 @@
 
                 <div class="mb-4">
                     <x-native-select label="Class Type" placeholder="Select one" :options=" [
+                    ['value' => 'creche', 'name' => 'Creche'],
+                    ['value' => 'nursery', 'name' => 'Nursery'],
+                    ['value' => 'kg', 'name' => 'KG'],
                     ['value' => 'basic school', 'name' => 'Basic School'],
-                    ['value' => 'lower primary', 'name' => 'Lower Primary'],
-                    ['value' => 'upper primary', 'name' => 'Upper Primary'],
                     ['value' => 'junior high', 'name' => 'Junior High'],
                     ]" option-label="name" option-value="value" class="uppercase" wire:model.defer="class_type"
                         required />

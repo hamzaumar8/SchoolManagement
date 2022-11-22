@@ -214,16 +214,15 @@ final class Table extends PowerGridComponent
      * @return array<int, RuleActions>
      */
 
-    /*
+
     public function actionRules(): array
     {
-       return [
+        return [
 
-           //Hide button edit for ID 1
-            Rule::button('edit')
-                ->when(fn($classes) => $classes->id === 1)
-                ->hide(),
+            //Hide button edit for ID 1
+            // Rule::button('add-subject')
+            //     ->when(fn ($classes) => $classes->class_type === 'creche' || $classes->class_type === 'nursery' || $classes->class_type === 'kg')
+            //     ->hide(),
         ];
     }
-    */
 }

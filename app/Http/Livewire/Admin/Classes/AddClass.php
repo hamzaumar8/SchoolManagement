@@ -3,6 +3,8 @@
 namespace App\Http\Livewire\Admin\Classes;
 
 use App\Models\Classes;
+use App\Models\ClassesSubject;
+use App\Models\Subject;
 use Exception;
 use LivewireUI\Modal\ModalComponent;
 use WireUi\Traits\Actions;
@@ -50,6 +52,8 @@ class AddClass extends ModalComponent
     {
         $this->validate();
         try {
+
+            // dd($this->class_type);
             $classes = Classes::make([
                 'name' => $this->name,
                 'house_name' => $this->house_name,
@@ -57,8 +61,18 @@ class AddClass extends ModalComponent
                 'campus' => $this->campus,
             ]);
             $classes->staff()->associate($this->staff_name);
-            $classes->save();
 
+            $classes->save();
+            if ($this->class_type == 'creche' || $this->class_type == 'nursery' || $this->class_type == 'kg') {
+                $subject = Subject::where('name', 'LIKE', 'all subject')->first();
+                if ($subject) {
+                    ClassesSubject::create([
+                        'class_id' => $classes->id,
+                        'subject_id' => $subject->id,
+                        'staff_id' => $this->staff_name
+                    ]);
+                }
+            }
             $this->closeModalWithEvents([
                 'pg:eventRefresh-default',
             ]);
