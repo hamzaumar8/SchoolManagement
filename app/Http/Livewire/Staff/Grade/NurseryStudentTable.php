@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Livewire\Admin\Class;
+namespace App\Http\Livewire\Staff\Grade;
 
 use App\Models\Student;
 use Illuminate\Support\Carbon;
@@ -9,11 +9,10 @@ use PowerComponents\LivewirePowerGrid\Rules\{Rule, RuleActions};
 use PowerComponents\LivewirePowerGrid\Traits\ActionButton;
 use PowerComponents\LivewirePowerGrid\{Button, Column, Exportable, Footer, Header, PowerGrid, PowerGridComponent, PowerGridEloquent};
 
-final class StudentTable extends PowerGridComponent
+final class NurseryStudentTable extends PowerGridComponent
 {
     use ActionButton;
 
-    public $classId;
     /*
     |--------------------------------------------------------------------------
     |  Features Setup
@@ -45,13 +44,13 @@ final class StudentTable extends PowerGridComponent
     */
 
     /**
-     * PowerGrid datasource.
-     *
-     * @return Builder<\App\Models\Student>
-     */
+    * PowerGrid datasource.
+    *
+    * @return Builder<\App\Models\Student>
+    */
     public function datasource(): Builder
     {
-        return Student::query()->where('class_id', $this->classId);
+        return Student::query();
     }
 
     /*
@@ -84,19 +83,17 @@ final class StudentTable extends PowerGridComponent
     {
         return PowerGrid::eloquent()
             ->addColumn('id')
-            ->addColumn('passport_picture', function (Student $model) {
-                $path = asset("assets/img/addmission/" . $model->addmission->passport_picture);
-                return '<img class="h-20" src="' . $path . '" />';
-            })
+            ->addColumn('addmission_number')
             ->addColumn('index_number')
             ->addColumn('first_name')
             ->addColumn('surname')
             ->addColumn('other_name')
-            ->addColumn('fullname', fn (Student $model) => $model->fullname())
             ->addColumn('gender')
             ->addColumn('birthdate_formatted', fn (Student $model) => Carbon::parse($model->birthdate)->format('d/m/Y'))
             ->addColumn('class_type')
-            ->addColumn('campus');
+            ->addColumn('campus')
+            ->addColumn('created_at_formatted', fn (Student $model) => Carbon::parse($model->created_at)->format('d/m/Y H:i:s'))
+            ->addColumn('updated_at_formatted', fn (Student $model) => Carbon::parse($model->updated_at)->format('d/m/Y H:i:s'));
     }
 
     /*
@@ -108,7 +105,7 @@ final class StudentTable extends PowerGridComponent
     |
     */
 
-    /**
+     /**
      * PowerGrid Columns.
      *
      * @return array<int, Column>
@@ -116,37 +113,66 @@ final class StudentTable extends PowerGridComponent
     public function columns(): array
     {
         return [
-            // Column::make('', 'passport_picture'),
+            Column::make('ID', 'id')
+                ->makeInputRange(),
+
+            Column::make('ADDMISSION NUMBER', 'addmission_number')
+                ->sortable()
+                ->searchable()
+                ->makeInputText(),
 
             Column::make('INDEX NUMBER', 'index_number')
                 ->sortable()
-                ->searchable(),
-            // ->makeInputText(),
+                ->searchable()
+                ->makeInputText(),
 
-            Column::make('FULL NAME', 'fullname')
+            Column::make('FIRST NAME', 'first_name')
                 ->sortable()
-                ->searchable(),
+                ->searchable()
+                ->makeInputText(),
+
+            Column::make('SURNAME', 'surname')
+                ->sortable()
+                ->searchable()
+                ->makeInputText(),
+
+            Column::make('OTHER NAME', 'other_name')
+                ->sortable()
+                ->searchable()
+                ->makeInputText(),
 
             Column::make('GENDER', 'gender')
                 ->sortable()
-                ->searchable(),
-            // ->makeInputText(),
-
-            // Column::make('CLASS TYPE', 'class_type')
-            //     ->sortable()
-            //     ->searchable(),
-            // // ->makeInputText(),
-
-            Column::make('CAMPUS', 'campus')
-                ->sortable()
-                ->searchable(),
-            // ->makeInputText(),
+                ->searchable()
+                ->makeInputText(),
 
             Column::make('BIRTHDATE', 'birthdate_formatted', 'birthdate')
                 ->searchable()
-                ->sortable(),
-            // ->makeInputDatePicker(),
-        ];
+                ->sortable()
+                ->makeInputDatePicker(),
+
+            Column::make('CLASS TYPE', 'class_type')
+                ->sortable()
+                ->searchable()
+                ->makeInputText(),
+
+            Column::make('CAMPUS', 'campus')
+                ->sortable()
+                ->searchable()
+                ->makeInputText(),
+
+            Column::make('CREATED AT', 'created_at_formatted', 'created_at')
+                ->searchable()
+                ->sortable()
+                ->makeInputDatePicker(),
+
+            Column::make('UPDATED AT', 'updated_at_formatted', 'updated_at')
+                ->searchable()
+                ->sortable()
+                ->makeInputDatePicker(),
+
+        ]
+;
     }
 
     /*
@@ -157,31 +183,27 @@ final class StudentTable extends PowerGridComponent
     |
     */
 
-    /**
+     /**
      * PowerGrid Student Action Buttons.
      *
      * @return array<int, Button>
      */
 
-
+    /*
     public function actions(): array
     {
-        return [
-            //    Button::make('edit', 'Edit')
-            //        ->class('bg-indigo-500 cursor-pointer text-white px-3 py-2.5 m-1 rounded text-sm')
-            //        ->route('student.edit', ['student' => 'id']),
+       return [
+           Button::make('edit', 'Edit')
+               ->class('bg-indigo-500 cursor-pointer text-white px-3 py-2.5 m-1 rounded text-sm')
+               ->route('student.edit', ['student' => 'id']),
 
-            //    Button::make('destroy', 'Delete')
-            //        ->class('bg-red-500 cursor-pointer text-white px-3 py-2 m-1 rounded text-sm')
-            //        ->route('student.destroy', ['student' => 'id'])
-            //        ->method('delete')
-
-            Button::make('details', 'View')
-                ->class('px-4 py-2 text-xs font-bold uppercase cursor-pointer outline-none inline-flex justify-center items-center group transition-all ease-in duration-150 focus:ring-2 focus:ring-offset-2 hover:shadow-sm rounded-md gap-x-2 ring-red-500 text-red-500 border border-red-500 hover:bg-red-50')
-                ->route('students.show', ['student' => 'id']),
+           Button::make('destroy', 'Delete')
+               ->class('bg-red-500 cursor-pointer text-white px-3 py-2 m-1 rounded text-sm')
+               ->route('student.destroy', ['student' => 'id'])
+               ->method('delete')
         ];
     }
-
+    */
 
     /*
     |--------------------------------------------------------------------------
@@ -191,7 +213,7 @@ final class StudentTable extends PowerGridComponent
     |
     */
 
-    /**
+     /**
      * PowerGrid Student Action Rules.
      *
      * @return array<int, RuleActions>

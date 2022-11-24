@@ -18,7 +18,7 @@ return new class extends Migration
             $table->foreignId('class_id')->constrained()->onDelete('cascade');
             $table->unsignedBigInteger('subject_id')->nullable();
             $table->unsignedBigInteger('staff_id')->nullable();
-            $table->foreign('subject_id')->references('id')->on('subject')->onDelete('set null');
+            $table->foreign('subject_id')->references('id')->on('subjects')->onDelete('set null');
             $table->foreign('staff_id')->references('id')->on('staff')->onDelete('set null');
             $table->timestamps();
         });
