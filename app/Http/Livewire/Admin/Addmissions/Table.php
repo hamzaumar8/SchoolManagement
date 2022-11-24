@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Livewire;
+namespace App\Http\Livewire\Admin\Addmissions;
 
 use App\Models\Addmission;
 use Illuminate\Support\Carbon;
@@ -9,12 +9,9 @@ use PowerComponents\LivewirePowerGrid\Rules\{Rule, RuleActions};
 use PowerComponents\LivewirePowerGrid\Traits\ActionButton;
 use PowerComponents\LivewirePowerGrid\{Button, Column, Exportable, Footer, Header, PowerGrid, PowerGridComponent, PowerGridEloquent};
 
-final class AddmissionTable extends PowerGridComponent
+final class Table extends PowerGridComponent
 {
     use ActionButton;
-
-    //Table sort field
-    public string $sortField = 'addmissions.id';
 
 
     /*
@@ -47,8 +44,6 @@ final class AddmissionTable extends PowerGridComponent
             'confirmationDescription' => 'Are you sure you want to delete this addmission?',
         ]);
     }
-
-
     /*
     |--------------------------------------------------------------------------
     |  Features Setup
@@ -180,10 +175,6 @@ final class AddmissionTable extends PowerGridComponent
                 ->searchable()
                 ->sortable(),
 
-            // Column::make('BIRTHPLACE', 'birthplace')
-            //     ->sortable()
-            //     ->searchable(),
-
             Column::make('RELIGION', 'religion')
                 ->sortable()
                 ->searchable(),
@@ -191,14 +182,6 @@ final class AddmissionTable extends PowerGridComponent
             Column::make('NATIONALITY', 'nationality')
                 ->sortable()
                 ->searchable(),
-
-            // Column::make('FIRST LANGUAGE', 'first_language')
-            //     ->sortable()
-            //     ->searchable(),
-
-            // Column::make('PREVIOUS SCHOOL', 'previous_school')
-            //     ->sortable()
-            //     ->searchable(),
 
             Column::make('SUBMITTED AT', 'created_at_formatted', 'created_at')
                 ->searchable()

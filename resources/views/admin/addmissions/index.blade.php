@@ -3,6 +3,6 @@
         <x-slot name="headerActions">
             <x-link href=" {{ route('vouchers.create') }}">Generate admission token</x-link>
         </x-slot>
-        <livewire:addmission-table />
+        <livewire:admin.addmissions.table />
     </x-table-card>
 </x-app-layout>

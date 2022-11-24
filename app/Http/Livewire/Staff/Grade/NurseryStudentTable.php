@@ -13,6 +13,8 @@ final class NurseryStudentTable extends PowerGridComponent
 {
     use ActionButton;
 
+    public $classId;
+
     /*
     |--------------------------------------------------------------------------
     |  Features Setup
@@ -44,13 +46,13 @@ final class NurseryStudentTable extends PowerGridComponent
     */
 
     /**
-    * PowerGrid datasource.
-    *
-    * @return Builder<\App\Models\Student>
-    */
+     * PowerGrid datasource.
+     *
+     * @return Builder<\App\Models\Student>
+     */
     public function datasource(): Builder
     {
-        return Student::query();
+        return Student::query()->where('class_id', $this->classId);
     }
 
     /*
@@ -105,7 +107,7 @@ final class NurseryStudentTable extends PowerGridComponent
     |
     */
 
-     /**
+    /**
      * PowerGrid Columns.
      *
      * @return array<int, Column>
@@ -171,8 +173,7 @@ final class NurseryStudentTable extends PowerGridComponent
                 ->sortable()
                 ->makeInputDatePicker(),
 
-        ]
-;
+        ];
     }
 
     /*
@@ -183,7 +184,7 @@ final class NurseryStudentTable extends PowerGridComponent
     |
     */
 
-     /**
+    /**
      * PowerGrid Student Action Buttons.
      *
      * @return array<int, Button>
@@ -213,7 +214,7 @@ final class NurseryStudentTable extends PowerGridComponent
     |
     */
 
-     /**
+    /**
      * PowerGrid Student Action Rules.
      *
      * @return array<int, RuleActions>

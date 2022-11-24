@@ -1,15 +1,15 @@
 <?php
 
-namespace App\Http\Livewire;
+namespace App\Http\Livewire\Addmissions;
 
-use App\Models\Student;
+use App\Models\Addmission;
 use Illuminate\Support\Carbon;
 use Illuminate\Database\Eloquent\Builder;
 use PowerComponents\LivewirePowerGrid\Rules\{Rule, RuleActions};
 use PowerComponents\LivewirePowerGrid\Traits\ActionButton;
 use PowerComponents\LivewirePowerGrid\{Button, Column, Exportable, Footer, Header, PowerGrid, PowerGridComponent, PowerGridEloquent};
 
-final class PowerGridTable extends PowerGridComponent
+final class Table extends PowerGridComponent
 {
     use ActionButton;
 
@@ -46,11 +46,11 @@ final class PowerGridTable extends PowerGridComponent
     /**
     * PowerGrid datasource.
     *
-    * @return Builder<\App\Models\Student>
+    * @return Builder<\App\Models\Addmission>
     */
     public function datasource(): Builder
     {
-        return Student::query();
+        return Addmission::query();
     }
 
     /*
@@ -83,17 +83,8 @@ final class PowerGridTable extends PowerGridComponent
     {
         return PowerGrid::eloquent()
             ->addColumn('id')
-            ->addColumn('addmission_number')
-            ->addColumn('index_number')
-            ->addColumn('first_name')
-            ->addColumn('surname')
-            ->addColumn('other_name')
-            ->addColumn('gender')
-            ->addColumn('birthdate_formatted', fn (Student $model) => Carbon::parse($model->birthdate)->format('d/m/Y'))
-            ->addColumn('class_type')
-            ->addColumn('campus')
-            ->addColumn('created_at_formatted', fn (Student $model) => Carbon::parse($model->created_at)->format('d/m/Y H:i:s'))
-            ->addColumn('updated_at_formatted', fn (Student $model) => Carbon::parse($model->updated_at)->format('d/m/Y H:i:s'));
+            ->addColumn('created_at_formatted', fn (Addmission $model) => Carbon::parse($model->created_at)->format('d/m/Y H:i:s'))
+            ->addColumn('updated_at_formatted', fn (Addmission $model) => Carbon::parse($model->updated_at)->format('d/m/Y H:i:s'));
     }
 
     /*
@@ -115,51 +106,6 @@ final class PowerGridTable extends PowerGridComponent
         return [
             Column::make('ID', 'id')
                 ->makeInputRange(),
-
-            Column::make('ADDMISSION NUMBER', 'addmission_number')
-                ->sortable()
-                ->searchable()
-                ->makeInputText(),
-
-            Column::make('INDEX NUMBER', 'index_number')
-                ->sortable()
-                ->searchable()
-                ->makeInputText(),
-
-            Column::make('FIRST NAME', 'first_name')
-                ->sortable()
-                ->searchable()
-                ->makeInputText(),
-
-            Column::make('SURNAME', 'surname')
-                ->sortable()
-                ->searchable()
-                ->makeInputText(),
-
-            Column::make('OTHER NAME', 'other_name')
-                ->sortable()
-                ->searchable()
-                ->makeInputText(),
-
-            Column::make('GENDER', 'gender')
-                ->sortable()
-                ->searchable()
-                ->makeInputText(),
-
-            Column::make('BIRTHDATE', 'birthdate_formatted', 'birthdate')
-                ->searchable()
-                ->sortable()
-                ->makeInputDatePicker(),
-
-            Column::make('CLASS TYPE', 'class_type')
-                ->sortable()
-                ->searchable()
-                ->makeInputText(),
-
-            Column::make('CAMPUS', 'campus')
-                ->sortable()
-                ->searchable()
-                ->makeInputText(),
 
             Column::make('CREATED AT', 'created_at_formatted', 'created_at')
                 ->searchable()
@@ -184,7 +130,7 @@ final class PowerGridTable extends PowerGridComponent
     */
 
      /**
-     * PowerGrid Student Action Buttons.
+     * PowerGrid Addmission Action Buttons.
      *
      * @return array<int, Button>
      */
@@ -195,11 +141,11 @@ final class PowerGridTable extends PowerGridComponent
        return [
            Button::make('edit', 'Edit')
                ->class('bg-indigo-500 cursor-pointer text-white px-3 py-2.5 m-1 rounded text-sm')
-               ->route('student.edit', ['student' => 'id']),
+               ->route('addmission.edit', ['addmission' => 'id']),
 
            Button::make('destroy', 'Delete')
                ->class('bg-red-500 cursor-pointer text-white px-3 py-2 m-1 rounded text-sm')
-               ->route('student.destroy', ['student' => 'id'])
+               ->route('addmission.destroy', ['addmission' => 'id'])
                ->method('delete')
         ];
     }
@@ -214,7 +160,7 @@ final class PowerGridTable extends PowerGridComponent
     */
 
      /**
-     * PowerGrid Student Action Rules.
+     * PowerGrid Addmission Action Rules.
      *
      * @return array<int, RuleActions>
      */
@@ -226,7 +172,7 @@ final class PowerGridTable extends PowerGridComponent
 
            //Hide button edit for ID 1
             Rule::button('edit')
-                ->when(fn($student) => $student->id === 1)
+                ->when(fn($addmission) => $addmission->id === 1)
                 ->hide(),
         ];
     }
