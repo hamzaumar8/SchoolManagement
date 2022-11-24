@@ -147,7 +147,7 @@
             </div>
         </div>
         <div class="flex justify-end">
-            <x-button blue type="submit" spinner="submit" :label="__('Save and Submit')" class="uppercase" />
+            <x-button blue type="submit" spinner="submit" :label="__('Add Staff')" class="uppercase" />
         </div>
     </form>
 </div>

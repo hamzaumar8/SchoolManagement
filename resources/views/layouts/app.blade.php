@@ -31,6 +31,12 @@
 
     @vite(['resources/css/app.css', 'resources/js/app.js'])
 
+    <style>
+    #modal-container {
+        overflow: unset !important;
+    }
+    </style>
+
 </head>
 
 <body class="m-0 font-sans antialiased font-normal text-base leading-default bg-gray-50 text-slate-500">

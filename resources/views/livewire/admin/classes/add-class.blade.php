@@ -1,9 +1,5 @@
 <div class="p-4">
-    <style>
-    #modal-container {
-        overflow: unset !important;
-    }
-    </style>
+
     <div class="font-semibold font-gray-700 text-lg">Add Class</div>
 
     <div class="py-2">
