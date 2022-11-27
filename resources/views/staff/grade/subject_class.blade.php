@@ -13,7 +13,7 @@
         <!-- Kindergaten -->
         @elseif($classes->class_type == 'nursery')
 
-        <livewire:staff.grade.nursery-student-table :classId="$classes->id" />
+        <livewire:staff.grade.nursery-student-table :classes="$classes" :subject="$subject" />
 
         <!-- Kindergaten -->
         @elseif($classes->class_type == 'kg')

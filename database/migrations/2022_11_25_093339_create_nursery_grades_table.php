@@ -13,7 +13,7 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('pre_grades', function (Blueprint $table) {
+        Schema::create('nursery_grades', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('grade_id')->nullable();
             $table->unsignedBigInteger('student_id')->nullable();
@@ -45,7 +45,7 @@ return new class extends Migration
             $table->enum('mac_dance', ['E', 'G', 'A', 'N'])->nullable();
 
             $table->enum('neatness', ['very neat', 'neat', 'quite neat'])->nullable();
-            $table->enum('conduct', ['sociable', 'firendly', 'respectful', 'helpful', 'resposible', 'appreciative', 'cooperative'])->nullable();
+            $table->enum('conduct', ['sociable', 'firendly', 'respectful', 'helpful', 'responsible', 'appreciative', 'cooperative'])->nullable();
 
             $table->enum('status', ['save', 'submit'])->default('save');
 
@@ -62,6 +62,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('pre_grades');
+        Schema::dropIfExists('nursery_grades');
     }
 };

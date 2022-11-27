@@ -4,13 +4,6 @@
     input[type="radio"]:checked+label:before {
         content: "\f00c";
     }
-
-    .radioBtn label {
-        display: inline-block;
-        width: 20px;
-        height: 20px;
-        border: 1px solid #000;
-    }
     </style>
     <form wire:submit.prevent="submit" enctype="multipart/form-data">
         <div class="text-slate-600">

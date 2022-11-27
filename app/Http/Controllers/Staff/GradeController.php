@@ -6,7 +6,9 @@ use App\Http\Controllers\Controller;
 use App\Models\Classes;
 use App\Models\Grade;
 use App\Models\GradeSystem;
+use App\Models\NurseryGrade;
 use App\Models\Staff;
+use App\Models\Student;
 use App\Models\Subject;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -89,8 +91,42 @@ class GradeController extends Controller
                     ]);
                 }
             }
+        } else {
+            return redirect(route('staff.dahsboard'));
         }
         return view('staff.grade.subject_class', compact('gradesystem', 'classes', 'subject'));
+    }
+
+    /**
+     * Display the specified resource.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function class_subject_preschool($class_id, $subject_id, $student_id, $class_type)
+    {
+        $staff_id = Auth::user()->staff->id;
+        $term = session()->get('CurrTerm');
+        $classes = Classes::findOrFail($class_id);
+        $subject = Subject::findOrFail($subject_id);
+        $student = Student::findOrFail($student_id);
+
+        $gradesystem = GradeSystem::where('term_id', $term->id)
+            ->where('subject_id', $subject->id)
+            ->where('staff_id', $staff_id)
+            ->where('class_id', $classes->id)
+            ->first();
+
+        // TODO: change this soon
+        if ($gradesystem) {
+            $grades = NurseryGrade::firstOrCreate(
+                ['grade_id' =>  $gradesystem->id],
+                ['student_id' => $student->id]
+            );
+        } else {
+            return redirect(route('staff.dahsboard'));
+        }
+        return view('staff.grade.subject_class_preschool', compact('gradesystem', 'grades', 'classes', 'subject', 'student'));
     }
 
     /**

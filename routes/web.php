@@ -73,5 +73,7 @@ Route::middleware(['auth'])->name('staff.')->prefix('staff')->group(function () 
 
         Route::resource('grade', GradeController::class);
         Route::get('grade/class/{class_id}/subject/{subject_id}', [GradeController::class, 'class_subject'])->name('grade.class_subject');
+        // 
+        Route::get('grade/class/{class_id}/subject/{subject_id}/student/{student_id}/{class_type}', [GradeController::class, 'class_subject_preschool'])->name('grade.class_subject_preschool');
     });
 });
