@@ -8,7 +8,7 @@
         <!-- Crech -->
         @if($classes->class_type == 'creche')
 
-        <h1>{{$classes->class_type}}</h1>jm
+        <h1>{{$classes->class_type}}</h1>
 
         <!-- Kindergaten -->
         @elseif($classes->class_type == 'nursery')
@@ -18,7 +18,7 @@
         <!-- Kindergaten -->
         @elseif($classes->class_type == 'kg')
 
-        <livewire:staff.grade.assesment.junior-high-school :gradesystem="$gradesystem" />
+        <livewire:staff.grade.kg-student-table :classes="$classes" :subject="$subject" />
 
         @elseif($classes->class_type == 'basic school' || $classes->class_type == 'junior high')
         <livewire:staff.grade.assesment.basic-school :gradesystem="$gradesystem" />

@@ -64,7 +64,7 @@ class AddClass extends ModalComponent
 
             $classes->save();
             if ($this->class_type == 'creche' || $this->class_type == 'nursery' || $this->class_type == 'kg') {
-                $subject = Subject::where('name', 'LIKE', 'all subject')->first();
+                $subject = Subject::where('name', 'LIKE', '%all%')->orWhere('name', 'LIKE', '%all subjects%')->orWhere('name', 'LIKE', '%all subject%')->first();
                 if ($subject) {
                     ClassesSubject::create([
                         'class_id' => $classes->id,

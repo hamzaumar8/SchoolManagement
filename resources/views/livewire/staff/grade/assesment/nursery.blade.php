@@ -199,7 +199,7 @@
                             <div class="radioBtn">
                                 <input type="radio" id="radio-ms_physical-n" class="hidden" name="ms_physical" value="N"
                                     wire:model.defer="ms_physical">
-                                <label class="fa @error('ms_can_throw') !border-red-500 @enderror"
+                                <label class="fa @error('ms_physical') !border-red-500 @enderror"
                                     for="radio-ms_physical-n"></label>
                             </div>
                         </td>
@@ -1125,7 +1125,7 @@
                         <td class="px-3 py-2 whitespace-nowrap dark:text-slate-200">
                             <span class="">
                                 <div>
-                                    Neatnes
+                                    Neatness
                                 </div>
                             </span>
                         </td>

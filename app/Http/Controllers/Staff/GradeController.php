@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Classes;
 use App\Models\Grade;
 use App\Models\GradeSystem;
+use App\Models\KGrade;
 use App\Models\NurseryGrade;
 use App\Models\Staff;
 use App\Models\Student;
@@ -73,7 +74,6 @@ class GradeController extends Controller
         $term = session()->get('CurrTerm');
         $classes = Classes::findOrFail($class_id);
         $subject = Subject::findOrFail($subject_id);
-
         $gradesystem = GradeSystem::where('term_id', $term->id)
             ->where('subject_id', $subject->id)
             ->where('staff_id', $staff_id)
@@ -92,7 +92,7 @@ class GradeController extends Controller
                 }
             }
         } else {
-            return redirect(route('staff.dahsboard'));
+            return redirect(route('staff.dashboard'));
         }
         return view('staff.grade.subject_class', compact('gradesystem', 'classes', 'subject'));
     }
@@ -119,15 +119,27 @@ class GradeController extends Controller
 
         // TODO: change this soon
         if ($gradesystem) {
-            $grades = NurseryGrade::firstOrCreate(
-                ['grade_id' =>  $gradesystem->id],
-                ['student_id' => $student->id]
-            );
+            if ($class_type == 'kg') {
+                $grades = KGrade::firstOrCreate(
+                    ['grade_id' =>  $gradesystem->id],
+                    ['student_id' => $student->id]
+                );
+            } elseif ($class_type == 'nursery') {
+                $grades = NurseryGrade::firstOrCreate(
+                    ['grade_id' =>  $gradesystem->id],
+                    ['student_id' => $student->id]
+                );
+            } else {
+                return redirect(route('staff.dashboard'));
+            }
         } else {
-            return redirect(route('staff.dahsboard'));
+            return redirect(route('staff.dashboard'));
         }
         return view('staff.grade.subject_class_preschool', compact('gradesystem', 'grades', 'classes', 'subject', 'student'));
     }
+
+
+
 
     /**
      * Show the form for editing the specified resource.

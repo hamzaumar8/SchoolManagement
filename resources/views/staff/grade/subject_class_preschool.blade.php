@@ -28,7 +28,8 @@
 
         <!-- Kindergaten -->
         @elseif($classes->class_type == 'kg')
-        Kindergaten
+        KG
+        <livewire:staff.grade.assesment.kg :classes="$classes" :subject="$subject" :grades="$grades" />
 
         @endif
     </x-table-card>
