@@ -18,28 +18,28 @@ return new class extends Migration
             $table->unsignedBigInteger('grade_id')->nullable();
             $table->unsignedBigInteger('student_id')->nullable();
 
-            // motor skills
-            $table->enum('talk_living', ['E', 'G', 'A', 'N'])->nullable();
-            $table->enum('identify_group', ['E', 'G', 'A', 'N'])->nullable();
-            $table->enum('talk_compare', ['E', 'G', 'A', 'N'])->nullable();
-            $table->enum('blend_letter', ['E', 'G', 'A', 'N'])->nullable();
-            $table->enum('talk_other_living', ['E', 'G', 'A', 'N'])->nullable();
-            $table->enum('arrange_object', ['E', 'G', 'A', 'N'])->nullable();
-            $table->enum('identify_domestic', ['E', 'G', 'A', 'N'])->nullable();
-            $table->enum('talk_sources', ['E', 'G', 'A', 'N'])->nullable();
-            $table->enum('identify_beginning_sound', ['E', 'G', 'A', 'N'])->nullable();
-            $table->enum('draw_four_source', ['E', 'G', 'A', 'N'])->nullable();
-            $table->enum('describe_position_motion', ['E', 'G', 'A', 'N'])->nullable();
-            $table->enum('identify_position_target', ['E', 'G', 'A', 'N'])->nullable();
-            $table->enum('talk_presence', ['E', 'G', 'A', 'N'])->nullable();
-            $table->enum('talk_types_soil', ['E', 'G', 'A', 'N'])->nullable();
-            $table->enum('identify_plants', ['E', 'G', 'A', 'N'])->nullable();
-            $table->enum('identify_match_farm', ['E', 'G', 'A', 'N'])->nullable();
-            $table->enum('identify_talk_natural', ['E', 'G', 'A', 'N'])->nullable();
-            $table->enum('identify_main_weather', ['E', 'G', 'A', 'N'])->nullable();
-            $table->enum('mention_clothing', ['E', 'G', 'A', 'N'])->nullable();
-            $table->enum('talk_various', ['E', 'G', 'A', 'N'])->nullable();
-            $table->enum('mention_draw', ['E', 'G', 'A', 'N'])->nullable();
+
+            $table->enum('talk_living', ['A+', 'A', 'D', 'N'])->nullable();
+            $table->enum('identify_group', ['A+', 'A', 'D', 'N'])->nullable();
+            $table->enum('talk_compare', ['A+', 'A', 'D', 'N'])->nullable();
+            $table->enum('blend_letter', ['A+', 'A', 'D', 'N'])->nullable();
+            $table->enum('talk_other_living', ['A+', 'A', 'D', 'N'])->nullable();
+            $table->enum('arrange_object', ['A+', 'A', 'D', 'N'])->nullable();
+            $table->enum('identify_domestic', ['A+', 'A', 'D', 'N'])->nullable();
+            $table->enum('talk_sources', ['A+', 'A', 'D', 'N'])->nullable();
+            $table->enum('identify_beginning_sound', ['A+', 'A', 'D', 'N'])->nullable();
+            $table->enum('draw_four_source', ['A+', 'A', 'D', 'N'])->nullable();
+            $table->enum('describe_position_motion', ['A+', 'A', 'D', 'N'])->nullable();
+            $table->enum('identify_position_target', ['A+', 'A', 'D', 'N'])->nullable();
+            $table->enum('talk_presence', ['A+', 'A', 'D', 'N'])->nullable();
+            $table->enum('talk_types_soil', ['A+', 'A', 'D', 'N'])->nullable();
+            $table->enum('identify_plants', ['A+', 'A', 'D', 'N'])->nullable();
+            $table->enum('identify_match_farm', ['A+', 'A', 'D', 'N'])->nullable();
+            $table->enum('identify_talk_natural', ['A+', 'A', 'D', 'N'])->nullable();
+            $table->enum('identify_main_weather', ['A+', 'A', 'D', 'N'])->nullable();
+            $table->enum('mention_clothing', ['A+', 'A', 'D', 'N'])->nullable();
+            $table->enum('talk_various', ['A+', 'A', 'D', 'N'])->nullable();
+            $table->enum('mention_draw', ['A+', 'A', 'D', 'N'])->nullable();
 
 
             $table->enum('neatness', ['very neat', 'neat', 'quite neat'])->nullable();

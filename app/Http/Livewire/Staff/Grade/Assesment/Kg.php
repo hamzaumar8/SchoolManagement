@@ -12,7 +12,7 @@ class Kg extends Component
     use Actions;
     public KGrade $grades;
 
-    public $talk_living, $identify_group, $talk_compare, $blend_letter, $talk_other_living, $arrange_object, $identify_domestic, $talk_sources, $identify_beginning_sound, $draw_four_source, $describe_position_motion, $identify_position_target, $talk_presence, $talk_types_soil, $identify_plants, $identify_match_farm, $identify_talk_natural, $identify_main_weather, $mention_clothing, $talk_various, $mention_draw, $neatness, $status;
+    public $talk_living, $identify_group, $talk_compare, $blend_letter, $talk_other_living, $arrange_object, $identify_domestic, $talk_sources, $identify_beginning_sound, $draw_four_source, $describe_position_motion, $identify_position_target, $talk_presence, $talk_types_soil, $identify_plants, $identify_match_farm, $identify_talk_natural, $identify_main_weather, $mention_clothing, $talk_various, $mention_draw, $neatness, $conduct, $status;
 
 
     public function mount()
@@ -71,7 +71,8 @@ class Kg extends Component
         ];
     }
 
-    public function save()
+
+    public function process($status)
     {
         try {
             $this->grades->ms_can_throw = $this->ms_can_throw;
@@ -98,6 +99,9 @@ class Kg extends Component
             $this->grades->mention_draw = $this->mention_draw;
             $this->grades->neatness = $this->neatness;
             $this->grades->conduct = $this->conduct;
+            if ($status === 'status') {
+                $this->grades->status = 'submit';
+            }
             $this->grades->save();
         } catch (Exception $e) {
             $message = $e->getMessage();
@@ -107,51 +111,20 @@ class Kg extends Component
                 'Exception Message: ' . $message,
             );
         }
-
+    }
+    public function save()
+    {
+        $this->process('save');
         $this->notification()->success(
             'Success !!!',
             'Grade was updated succesfully',
         );
     }
+
     public function submit()
     {
         $this->validate();
-        try {
-            $this->grades->ms_can_throw = $this->ms_can_throw;
-            $this->grades->talk_living = $this->talk_living;
-            $this->grades->identify_group = $this->identify_group;
-            $this->grades->talk_compare = $this->talk_compare;
-            $this->grades->blend_letter = $this->blend_letter;
-            $this->grades->talk_other_living = $this->talk_other_living;
-            $this->grades->arrange_object = $this->arrange_object;
-            $this->grades->identify_domestic = $this->identify_domestic;
-            $this->grades->talk_sources = $this->talk_sources;
-            $this->grades->identify_beginning_sound = $this->identify_beginning_sound;
-            $this->grades->draw_four_source = $this->draw_four_source;
-            $this->grades->describe_position_motion = $this->describe_position_motion;
-            $this->grades->identify_position_target = $this->identify_position_target;
-            $this->grades->talk_presence = $this->talk_presence;
-            $this->grades->talk_types_soil = $this->talk_types_soil;
-            $this->grades->identify_plants = $this->identify_plants;
-            $this->grades->identify_match_farm = $this->identify_match_farm;
-            $this->grades->identify_talk_natural = $this->identify_talk_natural;
-            $this->grades->identify_main_weather = $this->identify_main_weather;
-            $this->grades->mention_clothing = $this->mention_clothing;
-            $this->grades->talk_various = $this->talk_various;
-            $this->grades->mention_draw = $this->mention_draw;
-            $this->grades->neatness = $this->neatness;
-            $this->grades->conduct = $this->conduct;
-            $this->grades->status = 'submit';
-            $this->grades->save();
-        } catch (Exception $e) {
-            $message = $e->getMessage();
-            $this->addError('Exception Message: ', $message);
-            $this->notification()->error(
-                'Error !!!',
-                'Exception Message: ' . $message,
-            );
-        }
-
+        $this->process('submit');
         $this->notification()->success(
             'Success !!!',
             'Grade was updated succesfully',

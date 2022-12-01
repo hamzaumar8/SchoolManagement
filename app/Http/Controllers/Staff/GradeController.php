@@ -7,6 +7,7 @@ use App\Models\Classes;
 use App\Models\Grade;
 use App\Models\GradeSystem;
 use App\Models\KGrade;
+use App\Models\KTGrade;
 use App\Models\NurseryGrade;
 use App\Models\Staff;
 use App\Models\Student;
@@ -118,12 +119,21 @@ class GradeController extends Controller
             ->first();
 
         // TODO: change this soon
+        $check = [];
         if ($gradesystem) {
             if ($class_type == 'kg') {
-                $grades = KGrade::firstOrCreate(
-                    ['grade_id' =>  $gradesystem->id],
-                    ['student_id' => $student->id]
-                );
+                $check = Classes::where('name', 'like', '%kindergarten two%')->orWhere('name', 'like', '%kindergarten 2%')->first();
+                if ($check->name === $classes->name) {
+                    $grades = KTGrade::firstOrCreate(
+                        ['grade_id' =>  $gradesystem->id],
+                        ['student_id' => $student->id]
+                    );
+                } else {
+                    $grades = KGrade::firstOrCreate(
+                        ['grade_id' =>  $gradesystem->id],
+                        ['student_id' => $student->id]
+                    );
+                }
             } elseif ($class_type == 'nursery') {
                 $grades = NurseryGrade::firstOrCreate(
                     ['grade_id' =>  $gradesystem->id],
@@ -135,7 +145,7 @@ class GradeController extends Controller
         } else {
             return redirect(route('staff.dashboard'));
         }
-        return view('staff.grade.subject_class_preschool', compact('gradesystem', 'grades', 'classes', 'subject', 'student'));
+        return view('staff.grade.subject_class_preschool', compact('gradesystem', 'grades', 'classes', 'subject', 'student', 'check'));
     }
 
 
