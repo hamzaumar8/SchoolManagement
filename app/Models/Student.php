@@ -75,31 +75,31 @@ class Student extends Model
     public function attendanceCount()
     {
         $term = session()->get('CurrTerm');
-        return $this->belongsToMany(Attendance::class)->where('term_id', $term->id)->count();
+        return $this->belongsToMany(Attendance::class)->where('term_id', $term->id)->where('class_id', $this->class->id)->count();
     }
 
     // TODO: find a better way to go about this
     public function studentAttendancePrsesnt()
     {
         $term = session()->get('CurrTerm');
-        $ttht = $this->belongsToMany(Attendance::class)->where('term_id', $term->id)->get();
+        $ttht = $this->belongsToMany(Attendance::class)->where('term_id', $term->id)->where('class_id', $this->class->id)->get();
         $count = 0;
         foreach ($ttht as $th) {
             $count += $this->hasMany(AttendanceStudent::class)->where('attendance_id', $th->id)->where('status', 1)->count();
         }
         return $count;
-        // return $this->hasMany(AttendanceStudent::class)->count();
     }
+
     public function studentAttendanceAdsent()
     {
         $term = session()->get('CurrTerm');
-        $ttht = $this->belongsToMany(Attendance::class)->where('term_id', $term->id)->get();
+        $ttht =
+            $this->belongsToMany(Attendance::class)->where('term_id', $term->id)->where('class_id', $this->class->id)->get();
         $count = 0;
         foreach ($ttht as $th) {
             $count += $this->hasMany(AttendanceStudent::class)->where('attendance_id', $th->id)->where('status', 0)->count();
         }
         return $count;
-        // return $this->hasMany(AttendanceStudent::class)->count();
     }
 
 
