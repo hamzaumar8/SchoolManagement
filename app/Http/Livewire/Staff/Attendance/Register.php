@@ -5,6 +5,7 @@ namespace App\Http\Livewire\Staff\Attendance;
 use App\Models\Attendance;
 use App\Models\AttendanceStudent;
 use App\Models\Classes;
+use App\Models\Student;
 use Exception;
 use Illuminate\Auth\Access\AuthorizationException;
 use Illuminate\Support\Facades\Auth;
@@ -46,6 +47,18 @@ class Register extends Component
                     "date" => $this->attendance_date,
                 ]);
             }
+
+            $classStudent = Student::where('class_id', $this->classes->id)->get();
+            // dd($classStudent);
+            foreach ($classStudent as $student) {
+                $check = AttendanceStudent::where('attendance_id', $this->attendance->id)->where('student_id', $student->id)->first();
+                if (!$check) {
+                    AttendanceStudent::create([
+                        'attendance_id' => $this->attendance->id,
+                        'student_id' => $student->id,
+                    ]);
+                }
+            }
         } catch (Exception $e) {
             $message = $e->getMessage();
             $this->addError('Exception Message: ', $message);
@@ -67,19 +80,9 @@ class Register extends Component
                 foreach ($this->checkboxes as $student_id => $value) {
                     $student = AttendanceStudent::where('attendance_id', $attendance_id)->where('student_id', $student_id)->first();
                     if ($value) {
-                        if (!$student) {
-                            AttendanceStudent::create([
-                                'attendance_id' => $attendance_id,
-                                'student_id' => $student_id,
-                                'status' => 1,
-                            ]);
-                        } else {
-                            $student->update(['status' => 1]);
-                        }
+                        $student->update(['status' => 1]);
                     } else {
-                        if ($student) {
-                            $student->update(['status' => 0]);
-                        }
+                        $student->update(['status' => 0]);
                     }
                 }
             }

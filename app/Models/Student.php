@@ -93,8 +93,7 @@ class Student extends Model
     public function studentAttendanceAdsent()
     {
         $term = session()->get('CurrTerm');
-        $ttht =
-            $this->belongsToMany(Attendance::class)->where('term_id', $term->id)->where('class_id', $this->class->id)->get();
+        $ttht = $this->belongsToMany(Attendance::class)->where('term_id', $term->id)->where('class_id', $this->class->id)->get();
         $count = 0;
         foreach ($ttht as $th) {
             $count += $this->hasMany(AttendanceStudent::class)->where('attendance_id', $th->id)->where('status', 0)->count();

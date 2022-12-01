@@ -9,16 +9,9 @@ class Attendance extends Model
 {
     use HasFactory;
 
+    protected $casts = [
+        'date' => 'datetime'
+    ];
+
     protected $guarded = [];
-
-    public function students()
-    {
-        return $this->belongsToMany(Student::class);
-    }
-
-
-    // public function attendance_student()
-    // {
-    //     return $this->belongsTo(AttendanceStudent::class);
-    // }
 }
