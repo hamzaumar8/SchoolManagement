@@ -17,7 +17,7 @@ class DashboardController extends Controller
     public function index()
     {
         $CurrTerm = session()->get('CurrTerm') ? session()->get('CurrTerm') : null;
-        $staff = Staff::where('user_id', Auth::user()->id)->first();
+        $staff = Auth::user()->staff;
         return view('staff.dashboard', compact('staff', 'CurrTerm'));
     }
 }

@@ -9,9 +9,8 @@ use App\Http\Controllers\Admin\SubjectController;
 use App\Http\Controllers\Admin\VoucherController as AdminVoucherController;
 use App\Http\Controllers\Staff\Attendance as StaffAttendance;
 use App\Http\Controllers\Staff\DashboardController as StaffDashboardController;
-use App\Http\Controllers\Staff\GradeController;
+use App\Http\Controllers\Staff\AssessmentController as StaffAssessmentController;
 use App\Http\Controllers\Voucher\VoucherController;
-use App\Models\Classes;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -71,9 +70,8 @@ Route::middleware(['auth'])->name('staff.')->prefix('staff')->group(function () 
     Route::middleware(['term-set'])->group(function () {
         Route::resource('attendance', StaffAttendance::class);
 
-        Route::resource('grade', GradeController::class);
-        Route::get('grade/class/{class_id}/subject/{subject_id}', [GradeController::class, 'class_subject'])->name('grade.class_subject');
-        // 
-        Route::get('grade/class/{class_id}/subject/{subject_id}/student/{student_id}/{class_type}', [GradeController::class, 'class_subject_preschool'])->name('grade.class_subject_preschool');
+        Route::resource('assessment', StaffAssessmentController::class);
+        Route::get('assessment/class/{class_id}/subject/{subject_id}', [StaffAssessmentController::class, 'class_subject'])->name('assessment.class_subject');
+        Route::get('assessment/class/{class_id}/subject/{subject_id}/student/{student_id}/{class_type}', [StaffAssessmentController::class, 'class_subject_preschool'])->name('assessment.class_subject_preschool');
     });
 });

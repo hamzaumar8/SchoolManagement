@@ -74,7 +74,6 @@ class Register extends Component
     }
     public function addAttendance($attendance_id)
     {
-        // dd($this->checkboxes);
         try {
             if (!empty($this->checkboxes)) {
                 foreach ($this->checkboxes as $student_id => $value) {

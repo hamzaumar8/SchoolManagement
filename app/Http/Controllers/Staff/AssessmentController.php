@@ -3,19 +3,18 @@
 namespace App\Http\Controllers\Staff;
 
 use App\Http\Controllers\Controller;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use App\Models\Classes;
 use App\Models\Grade;
 use App\Models\GradeSystem;
 use App\Models\KGrade;
 use App\Models\KTGrade;
 use App\Models\NurseryGrade;
-use App\Models\Staff;
 use App\Models\Student;
 use App\Models\Subject;
-use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
 
-class GradeController extends Controller
+class AssessmentController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -24,7 +23,8 @@ class GradeController extends Controller
      */
     public function index()
     {
-        return view('staff.grade.index');
+        $staff = Auth::user()->staff;
+        return view('staff.grade.index', compact('staff'));
     }
 
     /**
@@ -59,7 +59,6 @@ class GradeController extends Controller
         $staff_id = Auth::user()->staff->id;
         $term = session()->get('CurrTerm');
         $gradesystem = GradeSystem::where('term_id', $term->id)->where('subject_id', $id)->where('staff_id', $staff_id)->first();
-        dd($gradesystem);
         return view('staff.grades.class', compact('gradesystem'));
     }
 

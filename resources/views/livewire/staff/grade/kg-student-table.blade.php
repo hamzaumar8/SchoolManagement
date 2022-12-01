@@ -64,7 +64,7 @@
                         <td class=" capitalize px-3 py-2 whitespace-nowrap dark:text-slate-200">
                             <span class="">
                                 <div>
-                                    <a href="{{ route('staff.grade.class_subject_preschool', [$student->class_id,$subject->id,$student->id,$student->class->class_type]) }}" class="px-4 py-2 text-xs font-bold uppercase cursor-pointer outline-none inline-flex justify-center items-center group transition-all ease-in duration-150 focus:ring-2 focus:ring-offset-2 hover:shadow-sm rounded-md gap-x-2 ring-green-500 text-green-500 border border-green-500 hover:bg-green-50">input
+                                    <a href="{{ route('staff.assessment.class_subject_preschool', [$student->class_id,$subject->id,$student->id,$student->class->class_type]) }}" class="px-4 py-2 text-xs font-bold uppercase cursor-pointer outline-none inline-flex justify-center items-center group transition-all ease-in duration-150 focus:ring-2 focus:ring-offset-2 hover:shadow-sm rounded-md gap-x-2 ring-green-500 text-green-500 border border-green-500 hover:bg-green-50">input
                                         results</a>
                                 </div>
                             </span>
