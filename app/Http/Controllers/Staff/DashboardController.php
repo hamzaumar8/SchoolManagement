@@ -20,4 +20,9 @@ class DashboardController extends Controller
         $staff = Auth::user()->staff;
         return view('staff.dashboard', compact('staff', 'CurrTerm'));
     }
+
+    public function classesSubjects()
+    {
+        return view('staff.classes_subjects');
+    }
 }

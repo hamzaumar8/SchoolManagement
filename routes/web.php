@@ -68,6 +68,10 @@ Route::middleware(['auth'])->name('staff.')->prefix('staff')->group(function () 
     Route::get('/dashboard', [StaffDashboardController::class, 'index'])->name('dashboard');
 
     Route::middleware(['term-set'])->group(function () {
+
+        Route::get('/classes_subjects', [StaffDashboardController::class, 'classesSubjects'])->name('classes_subjects');
+
+
         Route::resource('attendance', StaffAttendance::class);
 
         Route::resource('assessment', StaffAssessmentController::class);
