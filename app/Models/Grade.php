@@ -45,13 +45,21 @@ class Grade extends Model
         //     $cat  = 'IC';
         // } else
         if (is_numeric($this->cat1) && is_numeric($this->gw) && is_numeric($this->cat2)) {
-            $cat = ($this->cat1 + $this->gw + $this->cat2);
+            $cat = (int)($this->cat1 + $this->gw + $this->cat2);
         } else {
             $cat = 'IC';
         }
         return $cat;
     }
+    public function exam_score()
+    {
+        return (int)($this->final_exam);
+    }
 
+    public function total_score()
+    {
+        return (int)($this->total);
+    }
 
     public function grade_remark()
     {

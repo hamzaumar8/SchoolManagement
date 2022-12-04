@@ -19,4 +19,7 @@
     .table-t-r {
         @apply border border-slate-100 border-y-slate-300 border-b-0  hover:bg-slate-50;
     }
+    table.printed .table-t-r {
+        @apply border-gray-700 hover:!border-gray-700 border-b;
+    }
 }

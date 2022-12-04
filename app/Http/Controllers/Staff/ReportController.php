@@ -1,8 +1,12 @@
 <?php
 
-namespace App\Http\Controllers\Status;
+namespace App\Http\Controllers\Staff;
 
 use App\Http\Controllers\Controller;
+use App\Models\Classes;
+use App\Models\Student;
+use App\Models\Term;
+use App\Models\TerminalReport;
 use Illuminate\Http\Request;
 
 class ReportController extends Controller
@@ -14,7 +18,9 @@ class ReportController extends Controller
      */
     public function index()
     {
-        //
+        $CurrTerm = session()->get('CurrTerm') ? session()->get('CurrTerm') : null;
+        $term = $CurrTerm ? Term::find($CurrTerm->id) : null;
+        return view('staff.report.index', compact('term'));
     }
 
     /**
@@ -44,9 +50,20 @@ class ReportController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show($term_id, $class_id, $student_id)
     {
-        //
+        $student =  Student::findOrFail($student_id);
+        $term =  Term::findOrFail($term_id);
+        $class =  Classes::findOrFail($class_id);
+
+        $report = TerminalReport::firstOrCreate(
+            ['term_id' =>  $term->id],
+            ['class_id' => $class->id],
+            ['student_id' => $student->id],
+        );
+
+        // dd($report);
+        return view('staff.report.show', compact('report', 'term', 'student'));
     }
 
     /**

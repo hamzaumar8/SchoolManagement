@@ -24,7 +24,7 @@ return new class extends Migration
             $table->decimal('exam', 8, 2)->default(0);
             $table->decimal('final_exam', 8, 2)->default(0);
             $table->decimal('total', 8, 2)->default(0);
-            $table->string('grade', 3)->nullable();
+            $table->string('grade', 3)->default('IC');
 
             $table->foreign('grade_id')->references('id')->on('grade_systems')->onDelete('set null');
             $table->foreign('student_id')->references('id')->on('students')->onDelete('set null');

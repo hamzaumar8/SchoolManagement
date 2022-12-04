@@ -4,25 +4,25 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
-class GradeSystem extends Model
+class TerminalReport extends Model
 {
     use HasFactory;
 
-    public function grades(): HasMany
-    {
-        return $this->hasMany(Grade::class, 'grade_id');
-    }
 
+    public function student()
+    {
+        return $this->belongsTo(Student::class);
+    }
 
     public function class()
     {
         return $this->belongsTo(Classes::class);
     }
 
-    public function staff()
+    public function term()
     {
-        return $this->belongsTo(Staff::class);
+        return $this->belongsTo(Term::class);
     }
 }

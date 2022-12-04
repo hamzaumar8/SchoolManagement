@@ -10,6 +10,7 @@ use App\Http\Controllers\Admin\VoucherController as AdminVoucherController;
 use App\Http\Controllers\Staff\Attendance as StaffAttendance;
 use App\Http\Controllers\Staff\DashboardController as StaffDashboardController;
 use App\Http\Controllers\Staff\AssessmentController as StaffAssessmentController;
+use App\Http\Controllers\Staff\ReportController as StaffReportController;
 use App\Http\Controllers\Voucher\VoucherController;
 use Illuminate\Support\Facades\Route;
 
@@ -73,6 +74,9 @@ Route::middleware(['auth'])->name('staff.')->prefix('staff')->group(function () 
 
 
         Route::resource('attendance', StaffAttendance::class);
+
+        Route::get('report', [StaffReportController::class, 'index'])->name('report.index');
+        Route::get('report/show/term/{term_id}/class/{class_id}/{student_id}', [StaffReportController::class, 'show'])->name('report.show');
 
         Route::resource('assessment', StaffAssessmentController::class);
         Route::get('assessment/class/{class_id}/subject/{subject_id}', [StaffAssessmentController::class, 'class_subject'])->name('assessment.class_subject');

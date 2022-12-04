@@ -108,4 +108,33 @@ class Student extends Model
     // {
     //     return $this->belongsTo(AttendanceStudent::class);
     // }
+
+
+
+    public function terminal_reports()
+    {
+        return $this->hasMany(TerminalReport::class);
+    }
+
+
+    public function grades()
+    {
+        return $this->hasMany(Grade::class);
+    }
+
+    public function gradesystemstudent($term_id, $subject_id, $class_id)
+    {
+        return GradeSystem::where('term_id', $term_id)->where('subject_id', $subject_id)->where('class_id', $class_id)->first();
+    }
+
+    public function gradessubjecttaff($term_id, $subject_id, $class_id)
+    {
+        return $this->gradesystemstudent($term_id, $subject_id, $class_id)->staff;
+    }
+
+    public function tgrades($term_id, $subject_id, $class_id, $student_id)
+    {
+        $gs = $this->gradesystemstudent($term_id, $subject_id, $class_id);
+        return Grade::where('grade_id', $gs->id)->where('student_id', $student_id)->first();
+    }
 }

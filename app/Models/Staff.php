@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use Database\Seeders\ClassesSeeder;
 use Illuminate\Support\Str;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;

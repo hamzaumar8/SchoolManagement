@@ -32,4 +32,10 @@ class Classes extends Model
     {
         return $this->belongsToMany(Subject::class, 'classes_subjects', 'class_id', 'subject_id');
     }
+
+
+    public function gradesystems(): HasMany
+    {
+        return $this->hasMany(GradeSystem::class, 'class_id');
+    }
 }
