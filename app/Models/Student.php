@@ -138,7 +138,7 @@ class Student extends Model
         return Grade::where('grade_id', $gs->id)->where('student_id', $student_id)->first();
     }
 
-    public function studenttoolscoregrades($term_id, $class_id, $student_id)
+    public function studentTotalScoreGrades($term_id, $class_id, $student_id)
     {
         $gs = GradeSystem::where('term_id', $term_id)->where('class_id', $class_id)->get();
 
@@ -164,5 +164,21 @@ class Student extends Model
         }
 
         return ((int)($total));
+    }
+
+
+    public function studentTotalPresentAttendanceReport($term_id, $class_id, $student_id)
+    {
+        $ttht = $this->belongsToMany(Attendance::class)->where('term_id', $term_id)->where('class_id', $class_id)->get();
+        $count = 0;
+        foreach ($ttht as $th) {
+            $count += $this->hasMany(AttendanceStudent::class)->where('attendance_id', $th->id)->where('status', 1)->count();
+        }
+        return $count;
+    }
+
+    public function studentTotalAttendanceReport($term_id, $class_id, $student_id)
+    {
+        return $this->belongsToMany(Attendance::class)->where('term_id', $term_id)->where('class_id', $class_id)->count();
     }
 }

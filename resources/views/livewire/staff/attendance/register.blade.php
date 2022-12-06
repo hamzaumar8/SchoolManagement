@@ -18,7 +18,9 @@
             </div>
         </div>
     </div>
-
+    @if($dated->format('D') == "Sat" || $dated->format('D') == "Sun")
+    <div>{{$dated->format('D')}}</div>
+    @else
     <div class="my-3 overflow-x-auto bg-white shadow-lg rounded-lg overflow-y-auto relative ps ps--active-x">
         <table
             class="table power-grid-table rounded-lg min-w-full border border-slate-200 dark:bg-slate-600 dark:border-slate-500">
@@ -90,4 +92,5 @@
             </tbody>
         </table>
     </div>
+    @endif
 </div>

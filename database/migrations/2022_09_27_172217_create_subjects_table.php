@@ -18,7 +18,6 @@ return new class extends Migration
             $table->string('name')->unique();
             $table->string('code')->nullable();
             $table->enum('type', ['core', 'other'])->default('other');
-            $table->text('description')->nullable();
             $table->timestamps();
         });
     }

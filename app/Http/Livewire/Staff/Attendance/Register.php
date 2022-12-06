@@ -6,6 +6,7 @@ use App\Models\Attendance;
 use App\Models\AttendanceStudent;
 use App\Models\Classes;
 use App\Models\Student;
+use Carbon\Carbon;
 use Exception;
 use Illuminate\Auth\Access\AuthorizationException;
 use Illuminate\Support\Facades\Auth;
@@ -20,11 +21,13 @@ class Register extends Component
     public Classes $classes;
     public array $checkboxes;
     public $attendance;
-    public $attendance_date;
+    public $attendance_date, $dated;
+
 
 
     public function mount()
     {
+        $this->dated = Carbon::parse($this->attendance_date);
         $this->hattendance();
     }
 
@@ -34,6 +37,16 @@ class Register extends Component
         $term = session()->get('CurrTerm');
         $staff = Auth::user()->staff;
         try {
+            // if (
+            //     date('l', strtotime($this->attendance_date)) == 'Sunday' || date('l', strtotime($this->attendance_date)) == 'Saturday'
+            // ) {
+            //     $this->notification()->error(
+            //         'Error !!!',
+            //         'Today\'s date falls on a weekend',
+            //     );
+            // } else {
+
+
             $this->attendance = Attendance::where('term_id', $term->id)
                 ->where('class_id', $this->classes->id)
                 ->where('staff_id', $staff->id)
@@ -59,6 +72,7 @@ class Register extends Component
                     ]);
                 }
             }
+            // }
         } catch (Exception $e) {
             $message = $e->getMessage();
             $this->addError('Exception Message: ', $message);
@@ -72,9 +86,18 @@ class Register extends Component
         $setOfIds = AttendanceStudent::where('attendance_id', $this->attendance->id)->where('status', 1)->pluck('student_id')->toArray();
         $this->checkboxes = array_fill_keys($setOfIds, true);
     }
+
     public function addAttendance($attendance_id)
     {
         try {
+            // if (
+            //     date('l', strtotime($this->attendance_date)) == 'Sunday' || date('l', strtotime($this->attendance_date)) == 'Saturday'
+            // ) {
+            //     $this->notification()->error(
+            //         'Error !!!',
+            //         'Today\'s date falls on a weekend',
+            //     );
+            // } else {
             if (!empty($this->checkboxes)) {
                 foreach ($this->checkboxes as $student_id => $value) {
                     $student = AttendanceStudent::where('attendance_id', $attendance_id)->where('student_id', $student_id)->first();
@@ -89,6 +112,7 @@ class Register extends Component
                 'Success !!!',
                 'Attendance has been saved successfully! ',
             );
+            // }
         } catch (Exception $e) {
             $message = $e->getMessage();
             $this->addError('Exception Message: ', $message);
@@ -102,10 +126,9 @@ class Register extends Component
     public function updatedAttendanceDate($field)
     {
         $this->attendance_date = $field;
-        // dd($field);
+        $this->dated = Carbon::parse($this->attendance_date);
         $this->hattendance();
         $this->emit('refreshComponent');
-        // return redirect()->to(route('staff.attendance.edit', $this->attendance->id) . '?token=' . $field);
     }
 
     public function render()
