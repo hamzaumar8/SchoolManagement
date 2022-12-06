@@ -137,4 +137,32 @@ class Student extends Model
         $gs = $this->gradesystemstudent($term_id, $subject_id, $class_id);
         return Grade::where('grade_id', $gs->id)->where('student_id', $student_id)->first();
     }
+
+    public function studenttoolscoregrades($term_id, $class_id, $student_id)
+    {
+        $gs = GradeSystem::where('term_id', $term_id)->where('class_id', $class_id)->get();
+
+        $total = 0;
+        foreach ($gs as $g) {
+            $gd = Grade::where('grade_id', $g->id)->where('student_id', $student_id)->first();
+            $total += $gd->total;
+        }
+        return ((int)($total));
+    }
+
+    public function classposition($term_id, $class_id, $student_id)
+    {
+        $students = Student::where('class_id', $class_id)->get();
+        $gs = GradeSystem::where('term_id', $term_id)->where('class_id', $class_id)->get();
+
+        foreach ($students as $stu) {
+            $total = 0;
+            foreach ($gs as $g) {
+                $gd = Grade::where('grade_id', $g->id)->where('student_id', $stu->id)->first();
+                $total += $gd->total;
+            }
+        }
+
+        return ((int)($total));
+    }
 }

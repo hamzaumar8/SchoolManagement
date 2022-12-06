@@ -1,5 +1,6 @@
 <x-app-layout>
 
+    {{$report->student->classposition($report->term->id, $report->class->id, $report->student->id)}}
     <x-table-card
         header="Attendance Summary for  Term {{Session::get('CurrTerm')['term']}} ({{Session::get('CurrTerm')['academic_year']}})">
 
@@ -450,7 +451,7 @@
                             class="text-center uppercase px-3 py-2 whitespace-nowrap border-r border-r-gray-700 font-bold">
                             <span class="">
                                 <div>
-                                    10.00
+                                    {{$report->student->studenttoolscoregrades($report->term->id, $report->class->id, $report->student->id)}}
                                 </div>
                             </span>
                         </td>
@@ -562,7 +563,7 @@
                             class="text-center uppercase px-3 py-2 whitespace-nowrap  border-r border-r-gray-700 font-bold">
                         </td>
                         <td class="text-center uppercase px-3 py-2 whitespace-nowrap  border-b-2 border-b-gray-700 font-bold"
-                            colspan="2" rowspan="4">
+                            colspan="2" rowspan="5">
                             <span class="">
                                 <div>
                                     GH&cent;
@@ -570,6 +571,7 @@
                             </span>
                         </td>
                     </tr>
+
                     <tr class="table-t-r">
                         <td class="uppercase px-3 py-2 whitespace-nowrap  border-r border-r-gray-700" colspan="2">
                             <span class="">
@@ -597,7 +599,7 @@
                         <td class="uppercase px-3 py-2 whitespace-nowrap  border-r border-r-gray-700" colspan="2">
                             <span class="">
                                 <div>
-                                    Yearly Fees
+                                    Session Fees
                                 </div>
                             </span>
                         </td>
@@ -620,7 +622,7 @@
                         <td class="uppercase px-3 py-2 whitespace-nowrap  border-r border-r-gray-700" colspan="2">
                             <span class="">
                                 <div>
-                                    Yearly Fees
+                                    Amount Paid
                                 </div>
                             </span>
                         </td>
@@ -643,7 +645,7 @@
                         <td class="uppercase px-3 py-2 whitespace-nowrap  border-r border-r-gray-700" colspan="2">
                             <span class="">
                                 <div>
-                                    Yearly Fees
+                                    Amount In Arrears
                                 </div>
                             </span>
                         </td>
@@ -666,7 +668,7 @@
                         <td class="uppercase px-3 py-2 whitespace-nowrap  border-r border-r-gray-700" colspan="2">
                             <span class="">
                                 <div>
-                                    Yearly Fees
+                                    Amount Due for Payment
                                 </div>
                             </span>
                         </td>
@@ -683,92 +685,168 @@
                         <td></td>
                         <td
                             class="text-center uppercase px-3 py-2 whitespace-nowrap  border-r border-r-gray-700 font-bold">
+                        </td>
+                        <td class="text-center uppercase px-3 py-2 whitespace-nowrap  border-r border-r-gray-700 font-bold"
+                            colspan="2">
+                            <span class="">
+                                <div>
+                                    Headteacher
+                                </div>
+                            </span>
                         </td>
                     </tr>
                     <tr class="table-t-r">
                         <td colspan="9" style="height: 41px !important;"></td>
                     </tr>
+
                     <tr class="table-t-r">
-                        <td class="uppercase px-3 py-2 whitespace-nowrap  border-r border-r-gray-700" colspan="7">
-                            <span class="">
-                                <div>
-                                    Billing
-                                </div>
-                            </span>
-                        </td>
                         <td class="uppercase px-3 py-2 whitespace-nowrap  border-r border-r-gray-700">
                             <span class="">
                                 <div>
-                                    Billing loremd
+                                    Score Range
+                                </div>
+                            </span>
+                        </td>
+                        <td class="uppercase text-center px-3 py-2 whitespace-nowrap  border-r border-r-gray-700">
+                            <span class="">
+                                <div>
+                                    80 - 100
+                                </div>
+                            </span>
+                        </td>
+                        <td class="uppercase text-center px-3 py-2 whitespace-nowrap  border-r border-r-gray-700">
+                            <span class="">
+                                <div>
+                                    75 - 79
+                                </div>
+                            </span>
+                        </td>
+                        <td class="uppercase text-center px-3 py-2 whitespace-nowrap  border-r border-r-gray-700">
+                            <span class="">
+                                <div>
+                                    70 - 74
+                                </div>
+                            </span>
+                        </td>
+                        <td class="uppercase text-center whitespace-nowrap  border-r border-r-gray-700">
+                            <div class="flex">
+                                <div class="w-1/2 px-3 py-2  border-r border-r-gray-700">
+                                    65 - 69
+                                </div>
+                                <div class="px-3 py-2">
+                                    60 - 64
+                                </div>
+                            </div>
+                        </td>
+                        <td class="uppercase text-center px-3 py-2 whitespace-nowrap  border-r border-r-gray-700">
+                            <span class="">
+                                <div>
+                                    55 - 59
+                                </div>
+                            </span>
+                        </td>
+                        <td class="uppercase text-center px-3 py-2 whitespace-nowrap  border-r border-r-gray-700">
+                            <span class="">
+                                <div>
+                                    50 - 54
+                                </div>
+                            </span>
+                        </td>
+                        <td class="uppercase text-center px-3 py-2 whitespace-nowrap  border-r border-r-gray-700">
+                            <span class="">
+                                <div>
+                                    40 - 49
+                                </div>
+                            </span>
+                        </td>
+                        <td class="uppercase text-center px-3 py-2 whitespace-nowrap  border-r border-r-gray-700">
+                            <span class="">
+                                <div>
+                                    00 - 39
                                 </div>
                             </span>
                         </td>
                     </tr>
-
                     <tr class="table-t-r">
-                        <td class="uppercase px-3 py-2 whitespace-nowrap  border-r border-r-gray-700" colspan="2">
-                            <span class="">
-                                <div>
-                                    Raw Score
-                                </div>
-                            </span>
-                        </td>
                         <td class="uppercase px-3 py-2 whitespace-nowrap  border-r border-r-gray-700">
                             <span class="">
                                 <div>
-                                    500 - 600
+                                    Grade
                                 </div>
                             </span>
                         </td>
-                        <td class="uppercase px-3 py-2 whitespace-nowrap  border-r border-r-gray-700">
+                        <td class="uppercase text-center px-3 py-2 whitespace-nowrap  border-r border-r-gray-700">
                             <span class="">
                                 <div>
-                                    450 - 499
+                                    1
                                 </div>
                             </span>
                         </td>
-                        <td class="uppercase px-3 py-2 whitespace-nowrap  border-r border-r-gray-700">
+                        <td class="uppercase text-center px-3 py-2 whitespace-nowrap  border-r border-r-gray-700">
                             <span class="">
                                 <div>
-                                    400 - 449
+                                    2
                                 </div>
                             </span>
                         </td>
-                        <td class="uppercase px-3 py-2 whitespace-nowrap  border-r border-r-gray-700">
+                        <td class="uppercase text-center px-3 py-2 whitespace-nowrap  border-r border-r-gray-700">
                             <span class="">
                                 <div>
-                                    350 - 399
+                                    3
                                 </div>
                             </span>
                         </td>
-                        <td class="uppercase px-3 py-2 whitespace-nowrap  border-r border-r-gray-700">
+                        <td class="uppercase text-center whitespace-nowrap  border-r border-r-gray-700">
+                            <div class="flex">
+                                <div class="w-1/2 px-3 py-2  border-r border-r-gray-700">
+                                    4
+                                </div>
+                                <div class="px-3 py-2">
+                                    5
+                                </div>
+                            </div>
+                        </td>
+                        <td class=" uppercase text-center px-3 py-2 whitespace-nowrap border-r border-r-gray-700">
                             <span class="">
                                 <div>
-                                    300 - 349
+                                    6
                                 </div>
                             </span>
                         </td>
-                        <td class="uppercase px-3 py-2 whitespace-nowrap  border-r border-r-gray-700">
+                        <td class="uppercase text-center px-3 py-2 whitespace-nowrap  border-r border-r-gray-700">
                             <span class="">
                                 <div>
-                                    000 - 299
+                                    7
+                                </div>
+                            </span>
+                        </td>
+                        <td class="uppercase text-center px-3 py-2 whitespace-nowrap  border-r border-r-gray-700">
+                            <span class="">
+                                <div>
+                                    8
+                                </div>
+                            </span>
+                        </td>
+                        <td class="uppercase text-center px-3 py-2 whitespace-nowrap  border-r border-r-gray-700">
+                            <span class="">
+                                <div>
+                                    9
                                 </div>
                             </span>
                         </td>
                     </tr>
-
                     <tr class="table-t-r">
-                        <td class="uppercase px-3 py-2 whitespace-nowrap  border-r border-r-gray-700" colspan="2">
+                        <td class="uppercase px-3 py-2 whitespace-nowrap  border-r border-r-gray-700">
                             <span class="">
                                 <div>
-                                    RRemarks
+                                    Remarks
                                 </div>
                             </span>
                         </td>
                         <td class="uppercase px-3 py-2 whitespace-nowrap  border-r border-r-gray-700">
                             <span class="">
                                 <div>
-                                    Excellent
+                                    Execellent
                                 </div>
                             </span>
                         </td>
@@ -786,21 +864,143 @@
                                 </div>
                             </span>
                         </td>
-                        <td class="uppercase px-3 py-2 whitespace-nowrap  border-r border-r-gray-700">
+                        <td class="uppercase text-center px-3 py-2 whitespace-nowrap  border-r border-r-gray-700">
                             <span class="">
                                 <div>
                                     Average
                                 </div>
                             </span>
                         </td>
-                        <td class="uppercase px-3 py-2 whitespace-nowrap  border-r border-r-gray-700">
+                        <td class="uppercase text-center px-3 py-2 whitespace-nowrap  border-r border-r-gray-700">
+                            <span class="">
+                                <div>
+                                    Below Average
+                                </div>
+                            </span>
+                        </td>
+                        <td class="uppercase text-center px-3 py-2 whitespace-nowrap  border-r border-r-gray-700">
                             <span class="">
                                 <div>
                                     Pass
                                 </div>
                             </span>
                         </td>
-                        <td class="uppercase px-3 py-2 whitespace-nowrap  border-r border-r-gray-700">
+                        <td class="uppercase text-center px-3 py-2 whitespace-nowrap  border-r border-r-gray-700">
+                            <span class="">
+                                <div>
+                                    Weak Pass
+                                </div>
+                            </span>
+                        </td>
+                        <td class="uppercase text-center px-3 py-2 whitespace-nowrap  border-r border-r-gray-700">
+                            <span class="">
+                                <div>
+                                    Fail
+                                </div>
+                            </span>
+                        </td>
+                    </tr>
+                    <tr class="table-t-r">
+                        <td colspan="9" style="height: 41px !important;"></td>
+                    </tr>
+                    <tr class="table-t-r">
+                        <td class="uppercase px-3 py-2 whitespace-nowrap  border-r border-r-gray-700" colspan="2">
+                            <span class="">
+                                <div>
+                                    Raw Score
+                                </div>
+                            </span>
+                        </td>
+                        <td class="uppercase text-center px-3 py-2 whitespace-nowrap  border-r border-r-gray-700">
+                            <span class="">
+                                <div>
+                                    500 - 600
+                                </div>
+                            </span>
+                        </td>
+                        <td class="uppercase text-center px-3 py-2 whitespace-nowrap  border-r border-r-gray-700">
+                            <span class="">
+                                <div>
+                                    450 - 499
+                                </div>
+                            </span>
+                        </td>
+                        <td class="uppercase text-center px-3 py-2 whitespace-nowrap  border-r border-r-gray-700">
+                            <span class="">
+                                <div>
+                                    400 - 449
+                                </div>
+                            </span>
+                        </td>
+                        <td class="uppercase text-center px-3 py-2 whitespace-nowrap  border-r border-r-gray-700">
+                            <span class="">
+                                <div>
+                                    350 - 399
+                                </div>
+                            </span>
+                        </td>
+                        <td class="uppercase text-center px-3 py-2 whitespace-nowrap  border-r border-r-gray-700">
+                            <span class="">
+                                <div>
+                                    300 - 349
+                                </div>
+                            </span>
+                        </td>
+                        <td class="uppercase text-center px-3 py-2 whitespace-nowrap  border-r border-r-gray-700"
+                            colspan="2">
+                            <span class="">
+                                <div>
+                                    000 - 299
+                                </div>
+                            </span>
+                        </td>
+                    </tr>
+
+                    <tr class="table-t-r ">
+                        <td class="uppercase px-3 py-2 whitespace-nowrap  border-r border-r-gray-700" colspan="2">
+                            <span class="">
+                                <div>
+                                    Remarks
+                                </div>
+                            </span>
+                        </td>
+                        <td class="uppercase text-center px-3 py-2 whitespace-nowrap  border-r border-r-gray-700">
+                            <span class="">
+                                <div>
+                                    Excellent
+                                </div>
+                            </span>
+                        </td>
+                        <td class="uppercase text-center px-3 py-2 whitespace-nowrap  border-r border-r-gray-700">
+                            <span class="">
+                                <div>
+                                    Very Good
+                                </div>
+                            </span>
+                        </td>
+                        <td class="uppercase text-center px-3 py-2 whitespace-nowrap  border-r border-r-gray-700">
+                            <span class="">
+                                <div>
+                                    Good
+                                </div>
+                            </span>
+                        </td>
+                        <td class="uppercase text-center px-3 py-2 whitespace-nowrap  border-r border-r-gray-700">
+                            <span class="">
+                                <div>
+                                    Average
+                                </div>
+                            </span>
+                        </td>
+                        <td class="uppercase text-center px-3 py-2 whitespace-nowrap  border-r border-r-gray-700">
+                            <span class="">
+                                <div>
+                                    Pass
+                                </div>
+                            </span>
+                        </td>
+                        <td class="uppercase text-center px-3 py-2 whitespace-nowrap  border-r border-r-gray-700"
+                            colspan="2">
                             <span class="">
                                 <div>
                                     Fail
