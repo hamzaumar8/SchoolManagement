@@ -15,11 +15,7 @@
     .radioBtn label {
         @apply flex items-center justify-center bg-gray-50 w-[25px] h-[25px] border-2 border-slate-500 text-slate-900 rounded-md;
     }
-
-    .table-t-r {
-        @apply border border-slate-100 border-y-slate-300 border-b-0  hover:bg-slate-50;
-    }
-    table.printed .table-t-r {
-        @apply border-gray-700 hover:!border-gray-700 border-b;
+    table.printed td {
+        @apply border-gray-700;
     }
 }

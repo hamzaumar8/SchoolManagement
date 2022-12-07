@@ -37,42 +37,41 @@ class Register extends Component
         $term = session()->get('CurrTerm');
         $staff = Auth::user()->staff;
         try {
-            // if (
-            //     date('l', strtotime($this->attendance_date)) == 'Sunday' || date('l', strtotime($this->attendance_date)) == 'Saturday'
-            // ) {
-            //     $this->notification()->error(
-            //         'Error !!!',
-            //         'Today\'s date falls on a weekend',
-            //     );
-            // } else {
+            if (
+                date('l', strtotime($this->attendance_date)) == 'Sunday' || date('l', strtotime($this->attendance_date)) == 'Saturday'
+            ) {
+                $this->notification()->error(
+                    'Error !!!',
+                    $this->attendance_date . ' date falls on a weekend',
+                );
+            } else {
 
+                $this->attendance = Attendance::where('term_id', $term->id)
+                    ->where('class_id', $this->classes->id)
+                    ->where('staff_id', $staff->id)
+                    ->where('date', $this->attendance_date)->first();
+                if (!$this->attendance) {
 
-            $this->attendance = Attendance::where('term_id', $term->id)
-                ->where('class_id', $this->classes->id)
-                ->where('staff_id', $staff->id)
-                ->where('date', $this->attendance_date)->first();
-            if (!$this->attendance) {
-
-                $this->attendance = Attendance::create([
-                    "term_id" => $term->id,
-                    "class_id" => $this->classes->id,
-                    "staff_id" => $staff->id,
-                    "date" => $this->attendance_date,
-                ]);
-            }
-
-            $classStudent = Student::where('class_id', $this->classes->id)->get();
-            // dd($classStudent);
-            foreach ($classStudent as $student) {
-                $check = AttendanceStudent::where('attendance_id', $this->attendance->id)->where('student_id', $student->id)->first();
-                if (!$check) {
-                    AttendanceStudent::create([
-                        'attendance_id' => $this->attendance->id,
-                        'student_id' => $student->id,
+                    $this->attendance = Attendance::create([
+                        "term_id" => $term->id,
+                        "class_id" => $this->classes->id,
+                        "staff_id" => $staff->id,
+                        "date" => $this->attendance_date,
                     ]);
                 }
+
+                $classStudent = Student::where('class_id', $this->classes->id)->get();
+                // dd($classStudent);
+                foreach ($classStudent as $student) {
+                    $check = AttendanceStudent::where('attendance_id', $this->attendance->id)->where('student_id', $student->id)->first();
+                    if (!$check) {
+                        AttendanceStudent::create([
+                            'attendance_id' => $this->attendance->id,
+                            'student_id' => $student->id,
+                        ]);
+                    }
+                }
             }
-            // }
         } catch (Exception $e) {
             $message = $e->getMessage();
             $this->addError('Exception Message: ', $message);
@@ -90,29 +89,29 @@ class Register extends Component
     public function addAttendance($attendance_id)
     {
         try {
-            // if (
-            //     date('l', strtotime($this->attendance_date)) == 'Sunday' || date('l', strtotime($this->attendance_date)) == 'Saturday'
-            // ) {
-            //     $this->notification()->error(
-            //         'Error !!!',
-            //         'Today\'s date falls on a weekend',
-            //     );
-            // } else {
-            if (!empty($this->checkboxes)) {
-                foreach ($this->checkboxes as $student_id => $value) {
-                    $student = AttendanceStudent::where('attendance_id', $attendance_id)->where('student_id', $student_id)->first();
-                    if ($value) {
-                        $student->update(['status' => 1]);
-                    } else {
-                        $student->update(['status' => 0]);
+            if (
+                date('l', strtotime($this->attendance_date)) == 'Sunday' || date('l', strtotime($this->attendance_date)) == 'Saturday'
+            ) {
+                $this->notification()->error(
+                    'Error !!!',
+                    $this->attendance_date . ' date falls on a weekend',
+                );
+            } else {
+                if (!empty($this->checkboxes)) {
+                    foreach ($this->checkboxes as $student_id => $value) {
+                        $student = AttendanceStudent::where('attendance_id', $attendance_id)->where('student_id', $student_id)->first();
+                        if ($value) {
+                            $student->update(['status' => 1]);
+                        } else {
+                            $student->update(['status' => 0]);
+                        }
                     }
                 }
+                $this->notification()->success(
+                    'Success !!!',
+                    'Attendance has been saved successfully! ',
+                );
             }
-            $this->notification()->success(
-                'Success !!!',
-                'Attendance has been saved successfully! ',
-            );
-            // }
         } catch (Exception $e) {
             $message = $e->getMessage();
             $this->addError('Exception Message: ', $message);

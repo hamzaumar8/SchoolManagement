@@ -7,12 +7,9 @@
 			document.body.innerHTML = originalContents;
 		}
 	}" x-cloak x-ref="container" class="print:text-black relative">
+    <div class="flex-auto p-6">
 
-    <div
-        class="relative flex flex-col min-w-0 mt-6 break-words bg-white border-0 border-transparent border-solid rounded-2xl bg-clip-border">
-
-        <div class="p-4 pb-0 mb-0 bg-white border-b-0 border-b-solid rounded-t-2xl border-b-transparent print:hidden">
-
+        <div class="p-4  mb-0 bg-white border-b-0 border-b-solid rounded-t-2xl border-b-transparent print:hidden">
             <div class="flex flex-wrap -mx-3">
                 <div class="grid grid-cols-2 gap-5 w-full px-3">
                     <div class="flex items-center flex-none">
@@ -30,15 +27,12 @@
             </div>
         </div>
 
-        <div class="flex-auto p-4">
+        <!--  -->
+        @if(Session::has('message'))
+        <x-alert-success>{{Session::get('message')}}</x-alert-success>
+        @endif
 
-            <!--  -->
-            @if(Session::has('message'))
-            <x-alert-success>{{Session::get('message')}}</x-alert-success>
-            @endif
+        {{ $slot }}
 
-            {{ $slot }}
-
-        </div>
     </div>
 </div>
