@@ -92,7 +92,7 @@
                                         </td>
                                         <td class="uppercase px-3 py-2 whitespace-nowrap border font-bold">
                                             <span class="">
-
+                        {{$report->student->class->students->count()}}
                                             </span>
                                         </td>
                                         <td class="uppercase px-3 py-2 whitespace-nowrap border font-bold">
@@ -129,6 +129,7 @@
                                         <td class="uppercase px-3 py-2 whitespace-nowrap border font-bold">
                                             <span class="">
 
+                        {{$report->student->classOverallEnrollmentTotal($report->class->name)}}
                                             </span>
                                         </td>
                                         <td class="uppercase px-3 py-2 whitespace-nowrap border font-bold">

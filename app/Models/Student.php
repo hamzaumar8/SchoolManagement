@@ -182,4 +182,19 @@ class Student extends Model
     {
         return $this->belongsToMany(Attendance::class)->where('term_id', $term_id)->where('class_id', $class_id)->count();
     }
+
+    public function classEnrollmentTotal($term_id, $class_id, $student_id)
+    {
+        return $this->class->students->count();
+    }
+
+    public function classOverallEnrollmentTotal($class_name)
+    {
+        $cls = Classes::where('name', $class_name)->get();
+        $total = 0;
+        foreach ($cls as $class) {
+            $total += $class->students->count();
+        }
+        return $total;
+    }
 }
