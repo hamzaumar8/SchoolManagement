@@ -71,7 +71,7 @@ class AssessmentController extends Controller
     public function class_subject($class_id, $subject_id)
     {
         $staff_id = Auth::user()->staff->id;
-        $term = session()->get('CurrTerm');
+        $term = session()->get('CurrTerm') ? session()->get('CurrTerm') : null;
         $classes = Classes::findOrFail($class_id);
         $subject = Subject::findOrFail($subject_id);
         $gradesystem = GradeSystem::where('term_id', $term->id)
@@ -80,7 +80,7 @@ class AssessmentController extends Controller
             ->where('class_id', $classes->id)
             ->first();
 
-        // TODO: change this soon
+        // TODO: change this soon Redundancy
         if ($gradesystem) {
             foreach ($classes->students as  $student) {
                 $check = Grade::where('grade_id', $gradesystem->id)->where('student_id', $student->id)->first();

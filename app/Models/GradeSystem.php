@@ -10,6 +10,8 @@ class GradeSystem extends Model
 {
     use HasFactory;
 
+    protected $guarded = [];
+
     public function grades(): HasMany
     {
         return $this->hasMany(Grade::class, 'grade_id');

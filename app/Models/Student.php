@@ -135,6 +135,7 @@ class Student extends Model
     public function tgrades($term_id, $subject_id, $class_id, $student_id)
     {
         $gs = $this->gradesystemstudent($term_id, $subject_id, $class_id);
+        // dd($gs);
         return Grade::where('grade_id', $gs->id)->where('student_id', $student_id)->first();
     }
 

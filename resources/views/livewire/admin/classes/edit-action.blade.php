@@ -4,12 +4,14 @@
     <div class="py-2">
         <form wire:submit.prevent="editClass">
             <div class="font-normal text-gray-600">
-                <div class="my-4">
-                    <x-input label="Class Name" placeholder="Class Name" type="text" required wire:model.defer="name" />
+                <div class="mb-4 z-50">
+                    <x-select label="Class Name" placeholder="Select Class Name" :async-data="route('api.classnames')"
+                        seleted="" option-label="name" class="uppercase" option-value="name"
+                        wire:model.defer="name" />
                 </div>
                 <div class="my-4">
-                    <x-input label="House Name (oprional)" placeholder="Example Yarkel Kubin" type="text"
-                        wire:model.defer="house_name" />
+                    <x-input label="House Name" placeholder="Example Yarkel Kubin" type="text"
+                        wire:model.defer="house_name" required/>
                 </div>
                 <div class="mb-4">
                     <x-native-select label="Class Type" placeholder="Select one" :options=" [
@@ -29,8 +31,7 @@
                 </div>
 
                 <div class="mb-4 z-50">
-                    <x-select label="Class Teacher" placeholder="Select class teacher" :async-data="route('api.staffs')"
-                        seleted="" option-label="full_name" class="uppercase" option-value="id"
+                    <x-select label="Class Teacher" placeholder="Select class teacher" :async-data="route('api.staffs')" option-label="full_name" class="uppercase" option-value="id"
                         wire:model.defer="staff_name" />
                 </div>
             </div>

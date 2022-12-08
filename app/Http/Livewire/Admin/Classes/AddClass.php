@@ -40,7 +40,7 @@ class AddClass extends ModalComponent
     {
         return [
             'name' => 'required|string|max:255',
-            'house_name' => 'nullable|string|max:255',
+            'house_name' => 'required|string|max:255',
             'class_type' => 'required|string|max:255',
             'campus' => 'required|string|max:255',
             'staff_name' => 'required|exists:staff,id',

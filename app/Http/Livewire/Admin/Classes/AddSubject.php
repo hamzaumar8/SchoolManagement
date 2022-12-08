@@ -4,8 +4,11 @@ namespace App\Http\Livewire\Admin\Classes;
 
 use App\Models\Classes;
 use App\Models\ClassesSubject;
+use App\Models\Grade;
+use App\Models\GradeSystem;
 use App\Models\Staff;
 use App\Models\Subject;
+use App\Models\Term;
 use Exception;
 use Livewire\Component;
 use WireUi\Traits\Actions;
@@ -44,8 +47,16 @@ class AddSubject extends Component
     public function delete($index)
     {
         try {
+            $term = session()->get('CurrTerm') ? session()->get('CurrTerm') : null;
+            $CurrTerm = $term ? Term::find($term->id) : null;
+
             $contact = $this->classsubjects[$index];
             $this->classsubjects->forget($index);
+
+            $gs = GradeSystem::where('subject_id', $contact->subject_id)->where('term_id', $CurrTerm->id)->where('staff_id', $contact->staff_id)->where('class_id', $contact->class_id)->first();
+            if ($gs) {
+                $gs->delete();
+            }
             $contact->delete();
         } catch (Exception $e) {
             $message = $e->getMessage();
@@ -64,6 +75,29 @@ class AddSubject extends Component
 
             foreach ($this->classsubjects as $class_subjects) {
                 $class_subjects->save();
+
+                $term = session()->get('CurrTerm') ? session()->get('CurrTerm') : null;
+                $gs = GradeSystem::where('subject_id', $class_subjects->subject_id)->where('term_id', $term
+                    ->id)->where('staff_id', $class_subjects->staff_id)->where('class_id', $class_subjects->class_id)->first();
+                if (!$gs) {
+                    $gs = GradeSystem::create([
+                        'subject_id' => $class_subjects->subject_id,
+                        'term_id' => $term->id,
+                        'staff_id' => $class_subjects->staff_id,
+                        'class_id' => $class_subjects->class_id,
+                    ]);
+                }
+                if ($gs) {
+                    foreach ($class_subjects->class->students as  $student) {
+                        $check = Grade::where('grade_id', $gs->id)->where('student_id', $student->id)->first();
+                        if (!$check) {
+                            Grade::create([
+                                'grade_id' => $gs->id,
+                                'student_id' => $student->id,
+                            ]);
+                        }
+                    }
+                }
             }
 
             $this->notification()->success(
