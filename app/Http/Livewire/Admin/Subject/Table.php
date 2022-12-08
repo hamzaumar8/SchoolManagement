@@ -84,6 +84,7 @@ final class Table extends PowerGridComponent
         return PowerGrid::eloquent()
             ->addColumn('id')
             ->addColumn('name')
+            ->addColumn('type')
             ->addColumn('created_at_formatted', fn (Subject $model) => Carbon::parse($model->created_at)->format('d/m/Y H:i:s'))
             ->addColumn('updated_at_formatted', fn (Subject $model) => Carbon::parse($model->updated_at)->format('d/m/Y H:i:s'));
     }
@@ -109,6 +110,9 @@ final class Table extends PowerGridComponent
             //     ->makeInputRange(),
 
             Column::make('SUBJECT NAME', 'name')
+                ->searchable()
+                ->sortable(),
+            Column::make('SUBJECT TYPE', 'type')
                 ->searchable()
                 ->sortable(),
 
@@ -144,6 +148,7 @@ final class Table extends PowerGridComponent
                 ->openModal('admin.subject.edit-action', [
                     'subjectId' => 'id',
                     'name' => 'name',
+                    'type' => 'type',
                     'code' => 'code',
                 ]),
 

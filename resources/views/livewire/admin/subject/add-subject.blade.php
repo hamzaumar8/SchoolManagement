@@ -9,6 +9,11 @@
                         wire:model.defer="name" />
                 </div>
                 <div class="my-4">
+                    <x-native-select label="Class Type" placeholder="Select class type"
+                        :options=" [['value' => 'core','name' => 'core'],['value' => 'other','name' => 'other'],]"
+                        option-label="name" option-value="value" class="uppercase" wire:model.defer="type" required />
+                </div>
+                <div class="my-4">
                     <x-input label="Subject Code (oprional)" placeholder="Example I.C.T" type="text"
                         wire:model.defer="code" />
                 </div>

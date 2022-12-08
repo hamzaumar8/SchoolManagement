@@ -10,7 +10,7 @@ class AddSubject extends ModalComponent
 {
     use Actions;
 
-    public $name, $code, $description;
+    public $name, $code, $type, $description;
 
 
     public static function modalMaxWidth(): string
@@ -37,6 +37,7 @@ class AddSubject extends ModalComponent
     {
         return [
             'name' => 'required|string|max:255',
+            'type' => 'required|string|max:255',
             'code' => 'nullable|string|max:255',
         ];
     }
@@ -48,6 +49,7 @@ class AddSubject extends ModalComponent
 
         Subject::create([
             'name' => $this->name,
+            'type' => $this->type,
             'code' => $this->code,
         ]);
 

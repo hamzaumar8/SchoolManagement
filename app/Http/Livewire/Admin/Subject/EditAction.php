@@ -11,9 +11,7 @@ class EditAction extends ModalComponent
     use Actions;
 
     public $subjectId;
-    public $name;
-    public $code;
-    public $description;
+    public $name, $type, $code, $description;
 
 
     public static function modalMaxWidth(): string
@@ -40,6 +38,7 @@ class EditAction extends ModalComponent
     {
         return [
             'name' => 'required|string|max:255',
+            'type' => 'required|string|max:255',
             'code' => 'nullable|string|max:255',
         ];
     }
@@ -52,6 +51,7 @@ class EditAction extends ModalComponent
         if ($this->subjectId) {
             Subject::query()->find($this->subjectId)->update([
                 'name' => $this->name,
+                'type' => $this->type,
                 'code' => $this->code,
             ]);
         }
