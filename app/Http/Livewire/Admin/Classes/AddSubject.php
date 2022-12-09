@@ -103,6 +103,7 @@ class AddSubject extends Component
                                 ]);
                             }
                         } elseif ($class_subjects->class->class_type == 'nursery') {
+                            dd('hamza');
                             // 
                             $check = NurseryGrade::where('grade_id', $gs->id)->where('student_id', $student->id)->first();
                             if (!$check) {
