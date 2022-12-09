@@ -102,7 +102,8 @@
                                         </td>
                                         <td class="uppercase px-3 py-2 whitespace-nowrap border">
                                             <span class="">
-                                                20
+                                                {{ $report->class_position }}
+                                              
                                             </span>
                                         </td>
                                     </tr>
@@ -137,7 +138,7 @@
                                         </td>
                                         <td class="uppercase px-3 py-2 whitespace-nowrap border">
                                             <span class="">
-                                                20
+                                                {{$report->overall_position}}
                                             </span>
                                         </td>
                                     </tr>
@@ -172,8 +173,7 @@
                                             </span>
                                         </td>
                                         <td class="uppercase px-3 py-2 whitespace-nowrap border">
-                                            <span class="">
-
+                                            <span class="">{{$report->reopen_date}}
                                             </span>
                                         </td>
                                     </tr>

@@ -151,20 +151,37 @@ class Student extends Model
         return ((int)($total));
     }
 
-    public function classposition($term_id, $class_id, $student_id)
+    public function classPosition($term_id, $class_id, $student_id)
     {
+        $studentTotal = $this->studentTotalScoreGrades($term_id, $class_id, $student_id);
         $students = Student::where('class_id', $class_id)->get();
-        $gs = GradeSystem::where('term_id', $term_id)->where('class_id', $class_id)->get();
-
+        $totals = array();
         foreach ($students as $stu) {
-            $total = 0;
-            foreach ($gs as $g) {
-                $gd = Grade::where('grade_id', $g->id)->where('student_id', $stu->id)->first();
-                $total += $gd->total;
+            $totals[] = $this->studentTotalScoreGrades($term_id, $class_id, $stu->id);
+        }
+        rsort($totals);
+        $positionKey = array_search($studentTotal, $totals);
+        $position = ((int)($positionKey + 1));
+        return $position;
+    }
+
+    public function overallClassPosition($term_id, $class_id, $student_id)
+    {
+        $class = Classes::findOrFail($class_id);
+        $studentTotal = $this->studentTotalScoreGrades($term_id, $class_id, $student_id);
+        $classes = Classes::where('name', $class->name)->get();
+        $totals = array();
+        foreach ($classes as $cls) {
+            if ($cls) {
+                foreach ($cls->students as $stu) {
+                    $totals[] = $this->studentTotalScoreGrades($term_id, $class_id, $stu->id);
+                }
             }
         }
-
-        return ((int)($total));
+        rsort($totals);
+        $positionKey = array_search($studentTotal, $totals);
+        $position = ((int)($positionKey + 1));
+        return $position;
     }
 
 

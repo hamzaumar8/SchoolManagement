@@ -47,12 +47,12 @@ class GenerateReports extends ModalComponent
         try {
             $class = Classes::findOrFail($this->classId);
             foreach ($class->students as $student) {
-
                 $overall_enrollment = $student->classOverallEnrollmentTotal($class->name);
                 $attendance_present_total = $student->studentTotalPresentAttendanceReport($this->termId, $class->id, $student->id);
                 $attendance_total = $student->studentTotalAttendanceReport($this->termId, $class->id, $student->id);
                 $class_enrollment = $student->class->students->count();
-
+                $class_position = $student->classPosition($this->termId, $class->id, $student->id);
+                $overall_position = $student->overallClassPosition($this->termId, $class->id, $student->id);
 
                 $check = TerminalReport::where('term_id', $this->termId)->where('class_id', $class->id)->where('student_id', $student->id)->first();
                 if (!$check) {
@@ -65,6 +65,8 @@ class GenerateReports extends ModalComponent
                         'attendance_present_total' => $attendance_present_total,
                         'attendance_total' => $attendance_total,
                         'class_enrollment' => $class_enrollment,
+                        'class_position' => $class_position,
+                        'overall_position' => $overall_position,
                     ]);
                 } else {
                     $check->reopen_date = $this->reopen_date;
@@ -72,9 +74,9 @@ class GenerateReports extends ModalComponent
                     $check->attendance_present_total = $attendance_present_total;
                     $check->attendance_total = $attendance_total;
                     $check->class_enrollment = $class_enrollment;
+                    $check->class_position = $class_position;
+                    $check->overall_position = $overall_position;
                     $check->save();
-                    // $table->string('class_position')->nullable();
-                    // $table->string('overall_position')->nullable();
                 }
             }
 
