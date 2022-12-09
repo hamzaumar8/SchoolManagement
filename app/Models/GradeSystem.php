@@ -17,7 +17,6 @@ class GradeSystem extends Model
         return $this->hasMany(Grade::class, 'grade_id');
     }
 
-
     public function class()
     {
         return $this->belongsTo(Classes::class);
@@ -26,5 +25,10 @@ class GradeSystem extends Model
     public function staff()
     {
         return $this->belongsTo(Staff::class);
+    }
+
+    public function subject()
+    {
+        return $this->belongsTo(Subject::class);
     }
 }

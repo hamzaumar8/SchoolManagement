@@ -13,6 +13,7 @@ use App\Models\KTGrade;
 use App\Models\NurseryGrade;
 use App\Models\Student;
 use App\Models\Subject;
+use App\Models\Term;
 
 class AssessmentController extends Controller
 {
@@ -23,8 +24,10 @@ class AssessmentController extends Controller
      */
     public function index()
     {
+        $CurrTerm = session()->get('CurrTerm') ? session()->get('CurrTerm') : null;
+        $term = $CurrTerm ? Term::find($CurrTerm->id) : null;
         $staff = Auth::user()->staff;
-        return view('staff.grade.index', compact('staff'));
+        return view('staff.grade.index', compact('staff', 'term'));
     }
 
     /**

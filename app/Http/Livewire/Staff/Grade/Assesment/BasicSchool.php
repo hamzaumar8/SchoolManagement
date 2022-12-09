@@ -54,6 +54,35 @@ class BasicSchool extends Component
             'Grade was updated succesfully',
         );
     }
+
+    public function submit()
+    {
+
+        $this->validate();
+        try {
+            foreach ($this->grades as $grade) {
+                $cat =  ($grade->cat1 + $grade->gw + $grade->cat2);
+                $grade->final_exam = ($grade->exam / 2);
+                $grade->total = ($grade->final_exam + $cat);
+                $grade->grade = Helper::grade_no($grade->total);
+                $grade->save();
+            }
+            $this->gradesystem->status = "submitted";
+            $this->gradesystem->save();
+        } catch (Exception $e) {
+            $message = $e->getMessage();
+            $this->addError('Exception Message: ', $message);
+            $this->notification()->error(
+                'Error !!!',
+                'Exception Message: ' . $message,
+            );
+        }
+
+        $this->notification()->success(
+            'Success !!!',
+            'Grade was updated succesfully',
+        );
+    }
     public function render()
     {
         // dd($this->gradesystem);

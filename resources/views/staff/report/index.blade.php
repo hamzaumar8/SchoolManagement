@@ -63,7 +63,7 @@
                         <td class=" capitalize px-3 py-2 whitespace-nowrap dark:text-slate-200">
                             <span class="">
                                 <div>
-                                    {{$class->name}}
+                                    {{$class->name}}   ({{$class->house_name}})
                                 </div>
                             </span>
                         </td>
