@@ -6,6 +6,9 @@ use App\Models\Classes;
 use App\Models\ClassesSubject;
 use App\Models\Grade;
 use App\Models\GradeSystem;
+use App\Models\KGrade;
+use App\Models\KTGrade;
+use App\Models\NurseryGrade;
 use App\Models\Staff;
 use App\Models\Subject;
 use App\Models\Term;
@@ -87,14 +90,47 @@ class AddSubject extends Component
                         'class_id' => $class_subjects->class_id,
                     ]);
                 }
+
                 if ($gs) {
                     foreach ($class_subjects->class->students as  $student) {
-                        $check = Grade::where('grade_id', $gs->id)->where('student_id', $student->id)->first();
-                        if (!$check) {
-                            Grade::create([
-                                'grade_id' => $gs->id,
-                                'student_id' => $student->id,
-                            ]);
+                        // 
+                        if ($class_subjects->class->class_type == 'basic school' || $class_subjects->class->class_type == 'junior high') {
+                            $check = Grade::where('grade_id', $gs->id)->where('student_id', $student->id)->first();
+                            if (!$check) {
+                                Grade::create([
+                                    'grade_id' => $gs->id,
+                                    'student_id' => $student->id,
+                                ]);
+                            }
+                        } elseif ($class_subjects->class->class_type == 'nursery') {
+                            // 
+                            $check = NurseryGrade::where('grade_id', $gs->id)->where('student_id', $student->id)->first();
+                            if (!$check) {
+                                NurseryGrade::create([
+                                    'grade_id' => $gs->id,
+                                    'student_id' => $student->id,
+                                ]);
+                            }
+                        } elseif ($class_subjects->class->class_type == 'kg') {
+                            // 
+                            $clsCheck = Classes::where('name', 'like', '%kindergarten two%')->orWhere('name', 'like', '%kindergarten 2%')->first();
+                            if ($clsCheck->name === $class_subjects->class->name) {
+                                $check = KTGrade::where('grade_id', $gs->id)->where('student_id', $student->id)->first();
+                                if (!$check) {
+                                    KTGrade::create([
+                                        'grade_id' => $gs->id,
+                                        'student_id' => $student->id,
+                                    ]);
+                                }
+                            } else {
+                                $check = KGrade::where('grade_id', $gs->id)->where('student_id', $student->id)->first();
+                                if (!$check) {
+                                    KGrade::create([
+                                        'grade_id' => $gs->id,
+                                        'student_id' => $student->id,
+                                    ]);
+                                }
+                            }
                         }
                     }
                 }
