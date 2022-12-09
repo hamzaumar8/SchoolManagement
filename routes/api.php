@@ -73,8 +73,8 @@ Route::name('api.')->group(function () {
     })->name('staffs');
 
     // class Names Api
+    // Staff Api
     Route::get('classnames', function (Request $request) {
-        dd($request->search);
         return ClassName::query()
             ->select('id', 'name',)
             ->orderBy('id')
@@ -89,5 +89,5 @@ Route::name('api.')->group(function () {
                 fn (Builder $query) => $query->limit(10)
             )
             ->get();
-    })->name('classnames');
+    })->name('classnames.index');
 });

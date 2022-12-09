@@ -4,6 +4,7 @@ namespace App\Http\Livewire\Admin\Classes;
 
 use App\Models\Classes;
 use App\Models\ClassesSubject;
+use App\Models\ClassName;
 use App\Models\Subject;
 use Exception;
 use LivewireUI\Modal\ModalComponent;
@@ -39,7 +40,7 @@ class AddClass extends ModalComponent
     protected function rules()
     {
         return [
-            'name' => 'required|string|max:255',
+            'name' => 'required|exists:class_names,id',
             'house_name' => 'required|string|max:255',
             'class_type' => 'required|string|max:255',
             'campus' => 'required|string|max:255',
@@ -52,14 +53,14 @@ class AddClass extends ModalComponent
     {
         $this->validate();
         try {
-
-            // dd($this->class_type);
+            $classname = ClassName::findOrFail($this->name);
             $classes = Classes::make([
-                'name' => $this->name,
+                'name' => $classname->name,
                 'house_name' => $this->house_name,
                 'class_type' => $this->class_type,
                 'campus' => $this->campus,
             ]);
+            $classes->class_name()->associate($this->name);
             $classes->staff()->associate($this->staff_name);
 
             $classes->save();

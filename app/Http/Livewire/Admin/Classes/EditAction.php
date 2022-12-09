@@ -4,6 +4,7 @@ namespace App\Http\Livewire\Admin\Classes;
 
 use App\Models\Classes;
 use App\Models\ClassesSubject;
+use App\Models\ClassName;
 use App\Models\Subject;
 use LivewireUI\Modal\ModalComponent;
 use WireUi\Traits\Actions;
@@ -39,8 +40,8 @@ class EditAction extends ModalComponent
     protected function rules()
     {
         return [
-            'name' => 'required|string|max:255',
-            'house_name' => 'nullable|string|max:255',
+            'name' => 'required|exists:class_names,id',
+            'house_name' => 'required|string|max:255',
             'class_type' => 'required|string|max:255',
             'campus' => 'required|string|max:255',
             'staff_name' => 'required|exists:staff,id',
@@ -53,8 +54,10 @@ class EditAction extends ModalComponent
         $this->validate();
 
         if ($this->classId) {
+            $class = ClassName::find($this->name);
             $classes = Classes::find($this->classId);
-            $classes->name = $this->name;
+            $classes->classname_id = $this->name;
+            $classes->name = $class->name;
             $classes->house_name = $this->house_name;
             $classes->class_type = $this->class_type;
             $classes->campus = $this->campus;

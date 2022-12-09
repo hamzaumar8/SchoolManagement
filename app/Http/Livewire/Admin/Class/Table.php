@@ -185,7 +185,7 @@ final class Table extends PowerGridComponent
                 ->class('px-4 py-2 text-xs font-bold uppercase cursor-pointer outline-none inline-flex justify-center items-center group transition-all ease-in duration-150 focus:ring-2 focus:ring-offset-2 hover:shadow-sm rounded-md gap-x-2 ring-blue-500 text-blue-500 border border-blue-500 hover:bg-blue-50')
                 ->openModal('admin.classes.edit-action', [
                     'classId' => 'id',
-                    'name' => 'name',
+                    'name' => 'classname_id',
                     'house_name' => 'house_name',
                     'class_type' => 'class_type',
                     'campus' => 'campus',

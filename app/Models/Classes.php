@@ -28,6 +28,11 @@ class Classes extends Model
         return $this->belongsTo(Staff::class, "staff_id");
     }
 
+    public function class_name(): BelongsTo
+    {
+        return $this->belongsTo(ClassName::class, "classname_id");
+    }
+
     public function subjects()
     {
         return $this->belongsToMany(Subject::class, 'classes_subjects', 'class_id', 'subject_id');

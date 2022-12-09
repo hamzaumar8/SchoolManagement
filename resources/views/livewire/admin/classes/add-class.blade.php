@@ -6,18 +6,14 @@
         <form wire:submit.prevent="addClass">
             <div class="font-normal text-gray-600">
 
-                {{-- <div class="my-4">
-                    <x-input label="Class Name" placeholder="Class Name" type="text" required wire:model.defer="name" />
-                </div> --}}
-
-                <div class="mb-4 z-50">
-                    <x-select label="Class Name" placeholder="Select class name" :async-data="route('api.classnames')"
-                        option-label="name" class="capitalize" option-value="name" wire:model.defer="name" />
-                </div>
-
                 <div class="my-4">
                     <x-input label="House Name" placeholder="Example Yarkel Kubin" type="text"
                         wire:model.defer="house_name" />
+                </div>
+
+                <div class="mb-4 z-50">
+                    <x-select label="Class Teacher" placeholder="Select Class Name" :async-data="route('api.classnames.index')"
+                        option-label="name" class="uppercase" option-value="id" wire:model.defer="name" />
                 </div>
 
                 <div class="mb-4">
