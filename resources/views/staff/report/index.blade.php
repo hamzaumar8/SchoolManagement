@@ -1,17 +1,14 @@
 <x-app-layout>
-
-
     @if(Auth::user()->staff->classes->count() == 1)
 
     @foreach(Auth::user()->staff->classes as $class)
     <x-table-card
         header="{{$class->name}} Terminal Reports for  Term {{Session::get('CurrTerm')['term']}} ({{Session::get('CurrTerm')['academic_year']}})">
 
-        <button onclick='Livewire.emit("openModal", "staff.report.generate-reports", {{ json_encode(["class" => $class]) }})'>Generate Report</button>
+        <button onclick='Livewire.emit("openModal", "staff.report.generate-reports", {{ json_encode(["classId" => $class->id, "termId" => $term->id]) }})'>Generate Report</button>
 
         <livewire:staff.report.student-table :classId="$class->id" :term="$term"/>
       
-
     </x-table-card>
     @endforeach
     @elseif(Auth::user()->staff->classes->count() > 1)

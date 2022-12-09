@@ -21,6 +21,14 @@ return new class extends Migration
 
             $table->string('head_master_remark')->nullable();
             $table->string('class_teacher_remark')->nullable();
+            $table->string('class_position')->nullable();
+            $table->string('reopen_date')->nullable();
+            $table->string('overall_position')->nullable();
+            $table->string('class_enrollment')->nullable();
+            $table->string('overall_enrollment')->nullable();
+            $table->string('attendance_present_total')->nullable();
+            $table->string('attendance_total')->nullable();
+
             $table->foreign('term_id')->references('id')->on('terms')->onDelete('set null');
             $table->foreign('class_id')->references('id')->on('classes')->onDelete('set null');
             $table->foreign('student_id')->references('id')->on('students')->onDelete('set null');

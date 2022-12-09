@@ -92,7 +92,7 @@
                                         </td>
                                         <td class="uppercase px-3 py-2 whitespace-nowrap border font-bold">
                                             <span class="">
-                        {{$report->class_enrollment}}
+                        {{$report->student->class->students->count()}}
                                             </span>
                                         </td>
                                         <td class="uppercase px-3 py-2 whitespace-nowrap border font-bold">
@@ -127,7 +127,9 @@
                                             </span>
                                         </td>
                                         <td class="uppercase px-3 py-2 whitespace-nowrap border font-bold">
-                                            <span class="">{{$report->overall_enrollment}}
+                                            <span class="">
+   {{$report->student->classOverallEnrollmentTotal($report->class->name)}}
+                     
                                             </span>
                                         </td>
                                         <td class="uppercase px-3 py-2 whitespace-nowrap border font-bold">
@@ -396,7 +398,7 @@
                                         <td class="text-center uppercase px-3 py-2 whitespace-nowrap border font-bold">
                                             <span class="">
                                                 <div>
-                                                    {{ $report->attendance_present_total }}
+                                                    {{$report->student->studentTotalPresentAttendanceReport($report->term->id, $report->class->id, $report->student->id)}}
                                                 </div>
                                             </span>
                                         </td>
@@ -410,7 +412,7 @@
                                         <td class="text-center uppercase px-3 py-2 whitespace-nowrap border font-bold">
                                             <span class="">
                                                 <div>
-                                                    {{$report->attendance_total}}
+                                                    {{$report->student->studentTotalAttendanceReport($report->term->id, $report->class->id, $report->student->id)}}
                                                 </div>
                                             </span>
                                         </td>
