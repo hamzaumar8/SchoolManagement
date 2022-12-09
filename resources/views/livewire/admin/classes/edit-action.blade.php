@@ -11,7 +11,7 @@
                 </div>
 
                 <div class="mb-4 z-50">
-                    <x-select label="Class Teacher" placeholder="Select Class Name" :async-data="route('api.classnames.index')"
+                    <x-select label="Class Name" placeholder="Select Class Name" :async-data="route('api.classnames.index')"
                         option-label="name" class="uppercase" option-value="id" wire:model.defer="name" />
                 </div>
 

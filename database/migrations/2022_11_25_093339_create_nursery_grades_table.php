@@ -49,7 +49,7 @@ return new class extends Migration
 
             $table->enum('status', ['save', 'submit'])->default('save');
 
-            $table->foreign('grade_id')->references('id')->on('grade_systems')->onDelete('set null');
+            $table->foreign('grade_id')->references('id')->on('grade_systems')->onDelete('cascade');
             $table->foreign('student_id')->references('id')->on('students')->onDelete('set null');
             $table->timestamps();
         });

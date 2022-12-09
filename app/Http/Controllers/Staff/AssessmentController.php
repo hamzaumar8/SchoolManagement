@@ -60,7 +60,8 @@ class AssessmentController extends Controller
     public function show($id)
     {
         $staff_id = Auth::user()->staff->id;
-        $term = session()->get('CurrTerm');
+        $CurrTerm = session()->get('CurrTerm') ? session()->get('CurrTerm') : null;
+        $term = $CurrTerm ? Term::find($CurrTerm->id) : null;
         $gradesystem = GradeSystem::where('term_id', $term->id)->where('subject_id', $id)->where('staff_id', $staff_id)->first();
         return view('staff.grades.class', compact('gradesystem'));
     }
@@ -74,7 +75,8 @@ class AssessmentController extends Controller
     public function class_subject($class_id, $subject_id)
     {
         $staff_id = Auth::user()->staff->id;
-        $term = session()->get('CurrTerm') ? session()->get('CurrTerm') : null;
+        $CurrTerm = session()->get('CurrTerm') ? session()->get('CurrTerm') : null;
+        $term = $CurrTerm ? Term::find($CurrTerm->id) : null;
         $classes = Classes::findOrFail($class_id);
         $subject = Subject::findOrFail($subject_id);
         $gradesystem = GradeSystem::where('term_id', $term->id)
@@ -109,7 +111,8 @@ class AssessmentController extends Controller
     public function class_subject_preschool($class_id, $subject_id, $student_id, $class_type)
     {
         $staff_id = Auth::user()->staff->id;
-        $term = session()->get('CurrTerm');
+        $CurrTerm = session()->get('CurrTerm') ? session()->get('CurrTerm') : null;
+        $term = $CurrTerm ? Term::find($CurrTerm->id) : null;
         $classes = Classes::findOrFail($class_id);
         $subject = Subject::findOrFail($subject_id);
         $student = Student::findOrFail($student_id);
