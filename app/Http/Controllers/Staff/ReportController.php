@@ -68,9 +68,12 @@ class ReportController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function class($class_id, $class_name)
     {
-        //
+        $CurrTerm = session()->get('CurrTerm') ? session()->get('CurrTerm') : null;
+        $term = $CurrTerm ? Term::find($CurrTerm->id) : null;
+        $class = Classes::findOrFail($class_id);
+        return view('staff.report.class', compact('class', 'term'));
     }
 
     /**

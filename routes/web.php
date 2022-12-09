@@ -77,6 +77,7 @@ Route::middleware(['auth'])->name('staff.')->prefix('staff')->group(function () 
 
         Route::get('report', [StaffReportController::class, 'index'])->name('report.index');
         Route::get('report/show/term/{term_id}/class/{class_id}/{student_id}', [StaffReportController::class, 'show'])->name('report.show');
+        Route::get('report/show/class/{class_id}/{class_name}', [StaffReportController::class, 'class'])->name('report.class');
 
         Route::resource('assessment', StaffAssessmentController::class);
         Route::get('assessment/class/{class_id}/subject/{subject_id}', [StaffAssessmentController::class, 'class_subject'])->name('assessment.class_subject');
