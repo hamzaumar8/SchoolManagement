@@ -71,11 +71,13 @@ class EditAction extends ModalComponent
             if ($this->class_type == 'creche' || $this->class_type == 'nursery' || $this->class_type == 'kg') {
                 $subject = Subject::where('name', 'LIKE', '%all%')->orWhere('name', 'LIKE', '%all subjects%')->orWhere('name', 'LIKE', '%all subject%')->first();
                 if ($subject) {
-                    $clsSub = ClassesSubject::firstOrCreate(
+                    $clsSub = ClassesSubject::firstOrNew(
                         ['class_id' => $classes->id],
                         ['subject_id' => $subject->id],
-                        ['staff_id' => $this->staff_name],
                     );
+
+                    $clsSub->staff_id = $this->staff_name;
+                    $clsSub->save();
 
                     $term = session()->get('CurrTerm') ? session()->get('CurrTerm') : null;
                     $gs = GradeSystem::firstOrCreate(

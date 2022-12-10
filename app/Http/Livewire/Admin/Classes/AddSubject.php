@@ -77,6 +77,9 @@ class AddSubject extends Component
         try {
 
             foreach ($this->classsubjects as $class_subjects) {
+                if ($class_subjects->class->class_type == 'creche' || $class_subjects->class->class_type == 'nursery' || $class_subjects->class->class_type == 'kg') {
+                    $class_subjects->staff_id = $class_subjects->class->staff->id;
+                }
                 $class_subjects->save();
 
                 $term = session()->get('CurrTerm') ? session()->get('CurrTerm') : null;
@@ -95,7 +98,9 @@ class AddSubject extends Component
                 }
 
                 if ($gs) {
+
                     foreach ($class_subjects->class->students as  $student) {
+
                         // 
                         if ($class_subjects->class->class_type == 'basic school' || $class_subjects->class->class_type == 'junior high') {
                             $check = Grade::where('grade_id', $gs->id)->where('student_id', $student->id)->first();
@@ -106,8 +111,6 @@ class AddSubject extends Component
                                 ]);
                             }
                         } elseif ($class_subjects->class->class_type == 'nursery') {
-                            dd('hamza');
-                            // 
                             $check = NurseryGrade::where('grade_id', $gs->id)->where('student_id', $student->id)->first();
                             if (!$check) {
                                 NurseryGrade::create([

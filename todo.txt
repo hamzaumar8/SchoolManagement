@@ -1,13 +1,3 @@
-Addmission Voucher 
--- delete voucher 
-
-
--- Wire Ui alert on error Voucher Form
-
--- take out the hospital reports out (base on what is determine)
-
--- Addmission Form (Voucher)
-    may be change the dropdown (select) for nationality and previous classission Form (Voucher)
-    may be change the dropdown (select) for nationality and previous classission Form (Voucher)
-    may be change the dropdown (select) for nationality and previous class
+Class Subject 
+-- Add Term to the table (long rung )
     

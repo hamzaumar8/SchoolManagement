@@ -427,7 +427,7 @@
                                         <td class="uppercase px-3 py-2 whitespace-nowrap border font-bold" colspan="7">
                                             <span class="">
                                                 <div>
-                                                    lorem
+                                                    {{ $report->class_teacher_remark }}
                                                 </div>
                                             </span>
                                         </td>
@@ -443,7 +443,7 @@
                                         <td class="uppercase px-3 py-2 whitespace-nowrap border font-bold" colspan="7">
                                             <span class="">
                                                 <div>
-                                                    lorem
+                                                    {{ $report->head_master_remark }}
                                                 </div>
                                             </span>
                                         </td>
