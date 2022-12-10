@@ -81,9 +81,12 @@ class EditAction extends ModalComponent
                     $gs = GradeSystem::firstOrCreate(
                         ['subject_id' => $clsSub->subject_id],
                         ['term_id' => $term->id],
-                        ['staff_id' => $clsSub->staff_id],
                         ['class_id' => $clsSub->class_id],
                     );
+
+                    if ($gs) {
+                        $gs->update(['staff_id' => $clsSub->staff_id]);
+                    }
 
                     if ($gs) {
                         foreach ($clsSub->class->students as  $student) {

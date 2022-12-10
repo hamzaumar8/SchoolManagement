@@ -79,7 +79,10 @@ class AddClass extends ModalComponent
 
                     $term = session()->get('CurrTerm') ? session()->get('CurrTerm') : null;
                     $gs = GradeSystem::where('subject_id', $clsSub->subject_id)->where('term_id', $term
-                        ->id)->where('staff_id', $clsSub->staff_id)->where('class_id', $clsSub->class_id)->first();
+                        ->id)->where('class_id', $clsSub->class_id)->first();
+                    if ($gs) {
+                        $gs->update(['staff_id' => $clsSub->staff_id]);
+                    }
                     if (!$gs) {
                         $gs = GradeSystem::create([
                             'subject_id' => $clsSub->subject_id,
