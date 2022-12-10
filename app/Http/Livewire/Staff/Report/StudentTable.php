@@ -163,16 +163,8 @@ final class StudentTable extends PowerGridComponent
     public function actionRules(): array
     {
         return [
-
-            //Hide button edit for ID 1
-            // Rule::button('edit')
-            //     ->when(fn ($student) => $student->id === 1)
-            //     ->hide(),
-
-            // Rule::button('addmitted')
-            //     ->when(function ($student) {
-            //         return $student->status === 'addmitted';
-            //     })->hide(),
+            Rule::button('details')
+                ->when(fn ($student) => $student->terminalReportsGenerate(1, $student->class->id) === 0)->hide(),
 
             // Rule::rows()
             // ->when(fn ($addmission) => $addmission->status === 'submit')

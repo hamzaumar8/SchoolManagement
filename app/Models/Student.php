@@ -116,6 +116,16 @@ class Student extends Model
         return $this->hasMany(TerminalReport::class);
     }
 
+    public function terminalReportsGenerate($term_id, $class_id)
+    {
+        $trg = $this->hasMany(TerminalReport::class)->where('term_id', $term_id)->where('class_id', $class_id)->first();
+        $return = 0;
+        if ($trg) {
+            $return = 1;
+        }
+        return $return;
+    }
+
 
     public function grades()
     {
@@ -135,7 +145,6 @@ class Student extends Model
     public function tgrades($term_id, $subject_id, $class_id, $student_id)
     {
         $gs = $this->gradesystemstudent($term_id, $subject_id, $class_id);
-        // dd($gs);
         return Grade::where('grade_id', $gs->id)->where('student_id', $student_id)->first();
     }
 
@@ -144,9 +153,13 @@ class Student extends Model
         $gs = GradeSystem::where('term_id', $term_id)->where('class_id', $class_id)->get();
 
         $total = 0;
+
+        $vv = array();
         foreach ($gs as $g) {
             $gd = Grade::where('grade_id', $g->id)->where('student_id', $student_id)->first();
-            $total += $gd->total;
+            if ($gd) {
+                $total += $gd->total;
+            }
         }
         return ((int)($total));
     }
