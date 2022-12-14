@@ -899,7 +899,11 @@
             </table>
             {{-- </div> --}}
         @elseif ($report->class->class_type == 'kg')
-            <livewire:staff.report.show.kg :report="$report" />
+            @if ($check->name == $report->class->name)
+                <livewire:staff.report.show.kg2 :report="$report" />
+            @else
+                <livewire:staff.report.show.kg :report="$report" />
+            @endif
         @else
             <livewire:staff.report.show.nursery :report="$report" />
         @endif

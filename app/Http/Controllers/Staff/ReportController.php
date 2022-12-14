@@ -57,9 +57,9 @@ class ReportController extends Controller
         $class =  Classes::findOrFail($class_id);
 
         $report = TerminalReport::where('student_id', $student->id)->where('term_id',  $term->id)->where('class_id', $class->id)->first();
+        $check = Classes::where('name', 'like', '%Kindergarten two%')->orWhere('name', 'like', '%kindergarten 2%')->first();
 
-        // dd($report);
-        return view('staff.report.show', compact('report', 'term', 'student'));
+        return view('staff.report.show', compact('report', 'term', 'student', 'check'));
     }
 
     /**
