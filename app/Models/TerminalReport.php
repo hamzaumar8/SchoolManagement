@@ -25,4 +25,9 @@ class TerminalReport extends Model
     {
         return $this->belongsTo(Term::class);
     }
+
+    public function grade()
+    {
+        return $this->belongsTo(GradeSystem::class);
+    }
 }

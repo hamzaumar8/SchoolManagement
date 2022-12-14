@@ -47,36 +47,51 @@ class GenerateReports extends ModalComponent
         try {
             $class = Classes::findOrFail($this->classId);
             foreach ($class->students as $student) {
-                $overall_enrollment = $student->classOverallEnrollmentTotal($class->name);
-                $attendance_present_total = $student->studentTotalPresentAttendanceReport($this->termId, $class->id, $student->id);
-                $attendance_total = $student->studentTotalAttendanceReport($this->termId, $class->id, $student->id);
-                $class_enrollment = $student->class->students->count();
-                $class_position = $student->classPosition($this->termId, $class->id, $student->id);
-                $overall_position = $student->overallClassPosition($this->termId, $class->id, $student->id);
+                if ($class->class_type == 'basic school' || $class->class_type ==  'junior high') {
+                    $overall_enrollment = $student->classOverallEnrollmentTotal($class->name);
+                    $attendance_present_total = $student->studentTotalPresentAttendanceReport($this->termId, $class->id, $student->id);
+                    $attendance_total = $student->studentTotalAttendanceReport($this->termId, $class->id, $student->id);
+                    $class_enrollment = $student->class->students->count();
+                    $class_position = $student->classPosition($this->termId, $class->id, $student->id);
+                    $overall_position = $student->overallClassPosition($this->termId, $class->id, $student->id);
 
-                $check = TerminalReport::where('term_id', $this->termId)->where('class_id', $class->id)->where('student_id', $student->id)->first();
-                if (!$check) {
-                    $check = TerminalReport::create([
-                        'term_id' => $this->termId,
-                        'class_id' => $class->id,
-                        'student_id' => $student->id,
-                        'reopen_date' => $this->reopen_date,
-                        'overall_enrollment' => $overall_enrollment,
-                        'attendance_present_total' => $attendance_present_total,
-                        'attendance_total' => $attendance_total,
-                        'class_enrollment' => $class_enrollment,
-                        'class_position' => $class_position,
-                        'overall_position' => $overall_position,
-                    ]);
+                    $check = TerminalReport::where('term_id', $this->termId)->where('class_id', $class->id)->where('student_id', $student->id)->first();
+                    if (!$check) {
+                        $check = TerminalReport::create([
+                            'term_id' => $this->termId,
+                            'class_id' => $class->id,
+                            'student_id' => $student->id,
+                            'reopen_date' => $this->reopen_date,
+                            'overall_enrollment' => $overall_enrollment,
+                            'attendance_present_total' => $attendance_present_total,
+                            'attendance_total' => $attendance_total,
+                            'class_enrollment' => $class_enrollment,
+                            'class_position' => $class_position,
+                            'overall_position' => $overall_position,
+                        ]);
+                    } else {
+                        $check->reopen_date = $this->reopen_date;
+                        $check->overall_enrollment = $overall_enrollment;
+                        $check->attendance_present_total = $attendance_present_total;
+                        $check->attendance_total = $attendance_total;
+                        $check->class_enrollment = $class_enrollment;
+                        $check->class_position = $class_position;
+                        $check->overall_position = $overall_position;
+                        $check->save();
+                    }
                 } else {
-                    $check->reopen_date = $this->reopen_date;
-                    $check->overall_enrollment = $overall_enrollment;
-                    $check->attendance_present_total = $attendance_present_total;
-                    $check->attendance_total = $attendance_total;
-                    $check->class_enrollment = $class_enrollment;
-                    $check->class_position = $class_position;
-                    $check->overall_position = $overall_position;
-                    $check->save();
+                    $check = TerminalReport::where('term_id', $this->termId)->where('class_id', $class->id)->where('student_id', $student->id)->first();
+                    if (!$check) {
+                        $check = TerminalReport::create([
+                            'term_id' => $this->termId,
+                            'class_id' => $class->id,
+                            'student_id' => $student->id,
+                            'reopen_date' => $this->reopen_date,
+                        ]);
+                    } else {
+                        $check->reopen_date = $this->reopen_date;
+                        $check->save();
+                    }
                 }
             }
 

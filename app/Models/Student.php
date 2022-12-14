@@ -227,4 +227,11 @@ class Student extends Model
         }
         return $total;
     }
+
+
+
+    public function nursery_grades()
+    {
+        return $this->hasMany(NurseryGrade::class);
+    }
 }

@@ -15,6 +15,11 @@
     .radioBtn label {
         @apply flex items-center justify-center bg-gray-50 w-[25px] h-[25px] border-2 border-slate-500 text-slate-900 rounded-md;
     }
+
+    input[type="radio"].checkBtn {
+        @apply w-[25px] h-[25px] text-slate-900 bg-white rounded-none border border-black;
+    }
+
     table.printed td {
         @apply border-gray-700;
     }
