@@ -127,17 +127,21 @@ class AssessmentController extends Controller
         $check = [];
         if ($gradesystem) {
             if ($class_type == 'kg') {
-                $check = Classes::where('name', 'like', '%kindergarten two%')->orWhere('name', 'like', '%kindergarten 2%')->first();
-                if ($check->name === $classes->name) {
-                    $grades = KTGrade::firstOrCreate(
-                        ['grade_id' =>  $gradesystem->id],
-                        ['student_id' => $student->id]
-                    );
+                $check = Classes::where('name', 'like', '%Kindergarten two%')->orWhere('name', 'like', '%kindergarten 2%')->first();
+                if ($check) {
+                    if ($check->name === $classes->name) {
+                        $grades = KTGrade::firstOrCreate(
+                            ['grade_id' =>  $gradesystem->id],
+                            ['student_id' => $student->id]
+                        );
+                    } else {
+                        $grades = KGrade::firstOrCreate(
+                            ['grade_id' =>  $gradesystem->id],
+                            ['student_id' => $student->id]
+                        );
+                    }
                 } else {
-                    $grades = KGrade::firstOrCreate(
-                        ['grade_id' =>  $gradesystem->id],
-                        ['student_id' => $student->id]
-                    );
+                    return redirect(route('staff.dashboard'));
                 }
             } elseif ($class_type == 'nursery') {
                 $grades = NurseryGrade::firstOrCreate(

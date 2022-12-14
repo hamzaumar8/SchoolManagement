@@ -75,7 +75,6 @@ class Kg extends Component
     public function process($status)
     {
         try {
-            $this->grades->ms_can_throw = $this->ms_can_throw;
             $this->grades->talk_living = $this->talk_living;
             $this->grades->identify_group = $this->identify_group;
             $this->grades->talk_compare = $this->talk_compare;

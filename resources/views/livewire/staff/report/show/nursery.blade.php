@@ -51,14 +51,14 @@
                         {{ $report->term->end_date }}
                     </span>
                 </td>
-                <td class="uppercase px-3 py-2 whitespace-nowrap border font-bold">
+                <td class="text-right uppercase px-3 py-2 whitespace-nowrap border font-bold">
                     <span>
-                        Next Term Bigins:
+                        Next Term Begins:
                     </span>
                 </td>
                 <td class="uppercase px-3 py-2 whitespace-nowrap border font-bold" colspan="4">
                     <span>
-                        {{ $report->class_position }}
+                        {{ $report->reopen_date }}
 
                     </span>
                 </td>
