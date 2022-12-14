@@ -10,6 +10,7 @@ use App\Models\KGrade;
 use App\Models\KTGrade;
 use App\Models\NurseryGrade;
 use App\Models\Subject;
+use App\Models\Term;
 use Exception;
 use LivewireUI\Modal\ModalComponent;
 use WireUi\Traits\Actions;
@@ -77,7 +78,10 @@ class AddClass extends ModalComponent
                         'staff_id' => $this->staff_name
                     ]);
 
-                    $term = session()->get('CurrTerm') ? session()->get('CurrTerm') : null;
+                    $term = Term::orderBy('end_date', 'DESC')->first();
+
+
+
                     $gs = GradeSystem::where('subject_id', $clsSub->subject_id)->where('term_id', $term
                         ->id)->where('class_id', $clsSub->class_id)->first();
                     if ($gs) {

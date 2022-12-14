@@ -50,13 +50,12 @@ class AddSubject extends Component
     public function delete($index)
     {
         try {
-            $term = session()->get('CurrTerm') ? session()->get('CurrTerm') : null;
-            $CurrTerm = $term ? Term::find($term->id) : null;
+            $term = Term::orderBy('end_date', 'DESC')->first();
 
             $contact = $this->classsubjects[$index];
             $this->classsubjects->forget($index);
 
-            $gs = GradeSystem::where('subject_id', $contact->subject_id)->where('term_id', $CurrTerm->id)->where('staff_id', $contact->staff_id)->where('class_id', $contact->class_id)->first();
+            $gs = GradeSystem::where('subject_id', $contact->subject_id)->where('term_id', $term->id)->where('staff_id', $contact->staff_id)->where('class_id', $contact->class_id)->first();
             if ($gs) {
                 $gs->delete();
             }
@@ -82,7 +81,8 @@ class AddSubject extends Component
                 }
                 $class_subjects->save();
 
-                $term = session()->get('CurrTerm') ? session()->get('CurrTerm') : null;
+                $CurrTerm = session()->get('CurrTerm') ? session()->get('CurrTerm') : null;
+                $term = $CurrTerm ? Term::find($CurrTerm->id) : null;
                 $gs = GradeSystem::where('subject_id', $class_subjects->subject_id)->where('term_id', $term
                     ->id)->where('class_id', $class_subjects->class_id)->first();
                 if ($gs) {

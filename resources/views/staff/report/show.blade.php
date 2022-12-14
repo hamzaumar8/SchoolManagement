@@ -3,19 +3,6 @@
     <x-html-print>
         @if ($report->class->class_type == 'basic school' || $report->class->class_type == 'junior high')
             <table class="table !text-slate-800 border !border-gray-700 printed relative">
-                <thead>
-                    <tr>
-                        <th style="width: 12% !important;"></th>
-                        <th style="width: 12% !important;"></th>
-                        <th style="width: 10% !important;"></th>
-                        <th style="width: 10% !important;"></th>
-                        <th style="width: 10% !important;"></th>
-                        <th style="width: 10% !important;"></th>
-                        <th style="width: 12% !important;"></th>
-                        <th style="width: 12% !important;"></th>
-                        <th style="width: 12% !important;"></th>
-                    </tr>
-                </thead>
                 <tbody>
                     <tr>
                         <td class="px-2 py-3 text-left text-xs whitespace-nowrap" colspan="2">
@@ -911,6 +898,7 @@
                 </tbody>
             </table>
             {{-- </div> --}}
+        @elseif ($report->class->class_type == 'kg')
         @else
             <livewire:staff.report.show.nursery :report="$report" />
         @endif
